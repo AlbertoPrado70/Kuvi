@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 
-public class BackgroundController : MonoBehaviour {
-
+public class Background : MonoBehaviour {
+    
     private Material backgroundMaterial; 
 
     void Start() {
@@ -14,7 +14,7 @@ public class BackgroundController : MonoBehaviour {
 
     public void setColor() {
 
-        Color color1 = Random.ColorHSV(0, 1, 0.7f, 1, 0.8f, 0.9f);
+        Color color1 = Random.ColorHSV(0, 1, 0.7f, 1, 0.7f, 0.8f);
         Color color2 = Random.ColorHSV(0, 1, 0.7f, 1, 0.4f, 0.5f);
 
         backgroundMaterial.DOColor(color1, "_Color1", 1);
