@@ -11,8 +11,24 @@ public class Cube : MonoBehaviour {
         this.column = column; 
     }
 
-    public void moveRight(int distance) {
-        transform.DOMoveZ(transform.position.z + distance, 0.25f).SetEase(Ease.InOutQuad);
+    public void move(Iddle.Move move, int distance) {
+
+        if(move == Iddle.Move.TOP) {
+            transform.DOMoveX(transform.position.x - distance, 0.5f).SetEase(Ease.InOutQuad);
+        }
+
+        if(move == Iddle.Move.RIGHT) {
+            transform.DOMoveZ(transform.position.z + distance, 0.5f).SetEase(Ease.InOutQuad);
+        }
+
+        if(move == Iddle.Move.BOTTOM) {
+            transform.DOMoveX(transform.position.x + distance, 0.5f).SetEase(Ease.InOutQuad);
+        }
+
+        if(move == Iddle.Move.LEFT) {
+            transform.DOMoveZ(transform.position.z - distance, 0.5f).SetEase(Ease.InOutQuad);
+        }
+
     }
 
 }

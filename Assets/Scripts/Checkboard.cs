@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public class Checkboard : MonoBehaviour {
     
-    public enum Move{TOP, RIGHT, BOTTOM, LEFT};
     public const int LEVEL_SIZE = 5;  
 
     public GameObject floorPrefab;
@@ -32,7 +31,6 @@ public class Checkboard : MonoBehaviour {
                 prefabPosition.Set(row, 0, column);
                 floor[row, column] = Instantiate(floorPrefab, prefabPosition, Quaternion.identity, transform);
                 floor[row, column].hideFlags = HideFlags.HideInHierarchy;
-                floor[row, column].SetActive(false);
                 
                 if((row * LEVEL_SIZE + column) % 2 == 0) {
                     floor[row, column].GetComponent<Renderer>().material.color = new Color(0.9f, 0.9f, 0.9f, 1);
@@ -59,34 +57,6 @@ public class Checkboard : MonoBehaviour {
     public void setState(State state) {
 
         actualState = state;
-
-    }
-
-    public void moveCube(Move move, int row, int column) {
-
-        int distance = 0; 
-
-        if(move == Move.RIGHT) {
-
-            for(int i = column + 1; i < LEVEL_SIZE; i++) {
-                if(level.matrix[row * LEVEL_SIZE + i] == 1) {
-                    distance++;
-                }   
-                else {
-                    break;
-                }
-            }
-
-            foreach(Cube cube in cubes) {
-                if(cube.row == row && cube.column == column) {
-                    cube.moveRight(distance);
-                    cube.column = cube.column + distance;
-                    level.matrix[row * LEVEL_SIZE + column] = 1;
-                    level.matrix[row * (LEVEL_SIZE + column + distance)] = 2;
-                }
-            }
-
-        }
 
     }
 

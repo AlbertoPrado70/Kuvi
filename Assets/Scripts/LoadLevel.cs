@@ -2,7 +2,7 @@
 
 public class LoadLevel : State {
  
-    Checkboard checkboard;
+    private Checkboard checkboard;
 
     public LoadLevel(Checkboard checkboard) {
 
@@ -14,6 +14,7 @@ public class LoadLevel : State {
 
         setLevel(checkboard.actualLevel);
         checkboard.setState(checkboard.iddleState);
+        checkboard.printMatrix();
 
     }
 
@@ -25,11 +26,15 @@ public class LoadLevel : State {
         for(int row = 0; row < Checkboard.LEVEL_SIZE; row++) {
             for(int column = 0; column < Checkboard.LEVEL_SIZE; column++) {
                 
-                if(checkboard.level.matrix[row * Checkboard.LEVEL_SIZE + column] > 0) {
+                if(checkboard.level.matrix[row * Checkboard.LEVEL_SIZE + column] == -1) {
+                    checkboard.floor[row, column].SetActive(false);
+                }
+
+                if(checkboard.level.matrix[row * Checkboard.LEVEL_SIZE + column] == 1) {
                     checkboard.floor[row, column].SetActive(true);
                 }
 
-                if(checkboard.level.matrix[row * Checkboard.LEVEL_SIZE + column] == 2) {
+                if(checkboard.level.matrix[row * Checkboard.LEVEL_SIZE + column] == 1) {
                     GameObject cube = Checkboard.Instantiate(checkboard.cubePrefab, new Vector3(row, 0.75f, column), Quaternion.identity, checkboard.transform);
                     cube.name = "Cube" + row + column;
                     cube.GetComponent<Cube>().setPosition(row, column); 
