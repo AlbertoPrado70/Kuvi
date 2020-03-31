@@ -20,10 +20,17 @@ public class Iddle : State {
 
             if (hit) {
 
-                Debug.Log("Hit " + hitInfo.transform.gameObject.name);     
-                hitInfo.transform.gameObject.GetComponent<Cube>().transform.DOMoveX(0, 1f).SetEase(Ease.InOutQuint);
+                Cube c = hitInfo.collider.gameObject.GetComponent<Cube>();
+                Debug.Log("Cube" + c.row + c.column);
+                checkboard.moveCube(Checkboard.Move.RIGHT, c.row, c.column);
 
             } 
+
+        }
+
+        if(Input.GetKeyDown("d") || Input.touchCount > 0) {
+
+            checkboard.moveCube(Checkboard.Move.RIGHT, 0, 0);
 
         }
 
