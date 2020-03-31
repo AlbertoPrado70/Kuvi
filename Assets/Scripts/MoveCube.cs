@@ -3,31 +3,69 @@
 public class MoveCube : State {
 
     public enum Move{TOP, RIGHT, BOTTOM, LEFT};
+    public const int SWIPE_DISTANCE = 30;
 
     private Checkboard checkboard;
+
+    private bool isTouched; 
+    private Vector3 touchPosition;
+    private Vector3 lastPosition;
+
 
     public MoveCube(Checkboard checkboard) {
 
         this.checkboard = checkboard; 
 
+        isTouched = false;
+        touchPosition = new Vector3(0, 0, 0);
+
     }
 
     public override void Tick() {
 
-        if(Input.GetKeyDown("s")) {
-            moveCube(Move.BOTTOM, 1, 0);
+        if(Input.GetMouseButtonDown(0)) {
+            touchPosition = Input.mousePosition;
+            isTouched = true;
         }
 
-        if(Input.GetKeyDown("w")) {
-            moveCube(Move.TOP, 1, 0);
+        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
+            touchPosition = Input.GetTouch(0).position;
+            isTouched = true;
         }
 
-        if(Input.GetKeyDown("d")) {
-            moveCube(Move.RIGHT, 1, 0);
-        }
+        if(isTouched) {
 
-        if(Input.GetKeyDown("a")) {
-            moveCube(Move.LEFT, 1, 0);
+            lastPosition = (Input.touchCount > 0) ? (Vector3)Input.GetTouch(0).position : (Vector3)Input.mousePosition;
+
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(touchPosition);
+            
+            if (Physics.Raycast(ray, out hit)) {
+
+                Cube cube = hit.transform.GetComponent<Cube>();
+
+                if(touchPosition.x - lastPosition.x < -SWIPE_DISTANCE && touchPosition.y - lastPosition.y < -SWIPE_DISTANCE) {
+                    moveCube(Move.RIGHT, cube.row, cube.column);
+                    isTouched = false;
+                }
+
+                if(touchPosition.x - lastPosition.x > SWIPE_DISTANCE && touchPosition.y - lastPosition.y > SWIPE_DISTANCE) {
+                    moveCube(Move.LEFT, cube.row, cube.column);
+                    isTouched = false;
+                }
+
+                if(touchPosition.x - lastPosition.x < -SWIPE_DISTANCE && touchPosition.y - lastPosition.y > SWIPE_DISTANCE) {
+                    moveCube(Move.BOTTOM, cube.row, cube.column);
+                    isTouched = false;
+                }
+
+                if(touchPosition.x - lastPosition.x > SWIPE_DISTANCE && touchPosition.y - lastPosition.y < -SWIPE_DISTANCE) {
+                    moveCube(Move.TOP, cube.row, cube.column);
+                    isTouched = false;
+                }
+
+            }
+
         }
 
     }
