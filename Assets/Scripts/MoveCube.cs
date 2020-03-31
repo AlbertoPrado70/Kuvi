@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-public class Iddle : State {
+public class MoveCube : State {
 
     public enum Move{TOP, RIGHT, BOTTOM, LEFT};
 
     private Checkboard checkboard;
 
-    public Iddle(Checkboard checkboard) {
+    public MoveCube(Checkboard checkboard) {
 
         this.checkboard = checkboard; 
 
@@ -15,19 +15,19 @@ public class Iddle : State {
     public override void Tick() {
 
         if(Input.GetKeyDown("s")) {
-            moveCube(Move.BOTTOM, 0, 1);
+            moveCube(Move.BOTTOM, 1, 0);
         }
 
         if(Input.GetKeyDown("w")) {
-            moveCube(Move.TOP, 0, 1);
+            moveCube(Move.TOP, 1, 0);
         }
 
         if(Input.GetKeyDown("d")) {
-            moveCube(Move.RIGHT, 0, 1);
+            moveCube(Move.RIGHT, 1, 0);
         }
 
         if(Input.GetKeyDown("a")) {
-            moveCube(Move.LEFT, 0, 1);
+            moveCube(Move.LEFT, 1, 0);
         }
 
     }

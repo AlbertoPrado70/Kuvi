@@ -15,7 +15,7 @@ public class Checkboard : MonoBehaviour {
     public int actualLevel;
 
     public LoadLevel loadLevelState;
-    public Iddle iddleState; 
+    public MoveCube moveCubeState; 
     public State actualState; 
 
     void Start() {
@@ -43,7 +43,7 @@ public class Checkboard : MonoBehaviour {
         actualLevel = 0; 
 
         loadLevelState = new LoadLevel(this);
-        iddleState = new Iddle(this);
+        moveCubeState = new MoveCube(this);
         setState(loadLevelState);
 
     }
