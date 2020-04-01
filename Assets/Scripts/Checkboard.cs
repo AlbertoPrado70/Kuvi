@@ -16,6 +16,7 @@ public class Checkboard : MonoBehaviour {
 
     public LoadLevel loadLevelState;
     public MoveCube moveCubeState; 
+    public BoardComplete boardCompleteState;
     public State actualState; 
 
     void Start() {
@@ -41,6 +42,7 @@ public class Checkboard : MonoBehaviour {
 
         loadLevelState = new LoadLevel(this);
         moveCubeState = new MoveCube(this);
+        boardCompleteState = new BoardComplete(this);
         setState(loadLevelState);
 
     }
@@ -71,6 +73,5 @@ public class Checkboard : MonoBehaviour {
         Debug.Log(s);
 
     }
-
  
 }

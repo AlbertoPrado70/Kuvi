@@ -3,7 +3,7 @@
 public class MoveCube : State {
 
     public enum Move{TOP, RIGHT, BOTTOM, LEFT};
-    public const int SWIPE_DISTANCE = 50;
+    public const int SWIPE_DISTANCE = 30;
 
     private Checkboard checkboard;
 
@@ -47,21 +47,25 @@ public class MoveCube : State {
                 if(touchPosition.x - lastPosition.x < -SWIPE_DISTANCE && touchPosition.y - lastPosition.y < -SWIPE_DISTANCE) {
                     moveCube(Move.RIGHT, cube.row, cube.column);
                     isTouched = false;
+                    checkboard.setState(checkboard.boardCompleteState);
                 }
 
                 if(touchPosition.x - lastPosition.x > SWIPE_DISTANCE && touchPosition.y - lastPosition.y > SWIPE_DISTANCE) {
                     moveCube(Move.LEFT, cube.row, cube.column);
                     isTouched = false;
+                    checkboard.setState(checkboard.boardCompleteState);
                 }
 
                 if(touchPosition.x - lastPosition.x < -SWIPE_DISTANCE && touchPosition.y - lastPosition.y > SWIPE_DISTANCE) {
                     moveCube(Move.BOTTOM, cube.row, cube.column);
                     isTouched = false;
+                    checkboard.setState(checkboard.boardCompleteState);
                 }
 
                 if(touchPosition.x - lastPosition.x > SWIPE_DISTANCE && touchPosition.y - lastPosition.y < -SWIPE_DISTANCE) {
                     moveCube(Move.TOP, cube.row, cube.column);
                     isTouched = false;
+                    checkboard.setState(checkboard.boardCompleteState);
                 }
 
             }
