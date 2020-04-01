@@ -6,6 +6,12 @@ public class Cube : MonoBehaviour {
     public int row; 
     public int column; 
 
+    public void initAnimation() {
+
+        GetComponent<Renderer>().material.DOFade(0, 0.5f).From().SetDelay(2);
+
+    }
+
     public void setPosition(int row, int column) {
         this.row = row; 
         this.column = column; 

@@ -33,9 +33,16 @@ public class Floor : MonoBehaviour {
             isButton = true;
         }
 
-        pressedRenderer.material.color = pressedColor;
+        pressedRenderer.material.color = Color.white;
         pressedRenderer.material.DOFade(0, 0);
 
+    }
+
+    public void initAnimation(float delay) {
+
+        transform.DOMoveY(2, 1).From().SetDelay(delay);      
+        floorRenderer.material.DOFade(0, 1).From().SetDelay(delay);  
+    
     }
 
     public void pressedAnimation() {

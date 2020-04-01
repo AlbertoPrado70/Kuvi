@@ -72,6 +72,11 @@ public class MoveCube : State {
 
         }
 
+        if(Input.GetKeyDown("r")) {
+            Debug.Log("reiniciando");
+            checkboard.setState(checkboard.loadLevelState);
+        }
+
     }
 
      public void moveCube(Move move, int row, int column) {

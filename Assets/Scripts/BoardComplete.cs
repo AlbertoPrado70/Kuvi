@@ -13,13 +13,19 @@ public class BoardComplete : State {
 
     public override void Tick() {
 
-        isBoardCompleted();
-        checkboard.setState(checkboard.moveCubeState);
-        
+        if(!isBoardCompleted()) {
+            checkboard.setState(checkboard.moveCubeState);
+        }
+
+        // else {
+        //     checkboard.setState(checkboard.loadLevelState);
+        // }
 
     }
 
-    public void isBoardCompleted() {
+    public bool isBoardCompleted() {
+
+        bool isCompleted = true; 
 
         foreach(Cube cube in checkboard.cubes) {
 
@@ -28,10 +34,19 @@ public class BoardComplete : State {
             }
 
             else {
-                cube.GetComponent<Renderer>().material.DOColor(new Color(0.5f, 0.5f, 0.5f), 0.5f).SetDelay(0.25f);
+                cube.GetComponent<Renderer>().material.DOColor(new Color(0.35f, 0.35f, 0.35f, 1), 0.5f).SetDelay(0.25f);
+                isCompleted = false; 
             }
 
         }
+
+        if(isCompleted) {
+            foreach(Cube cube in checkboard.cubes) {
+                checkboard.floor[cube.row, cube.column].pressedAnimation();
+            }
+        }
+
+        return(isCompleted);
 
     }
     
