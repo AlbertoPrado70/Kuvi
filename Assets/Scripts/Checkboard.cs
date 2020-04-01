@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 public class Checkboard : MonoBehaviour {
     
-    public const int LEVEL_SIZE = 5;  
+    public const int LEVEL_SIZE = 5;
 
     public GameObject floorPrefab;
     public GameObject cubePrefab; 
 
-    public GameObject[,] floor;
+    public Floor[,] floor;
     public List<Cube> cubes;
 
     public Level level; 
@@ -20,7 +20,7 @@ public class Checkboard : MonoBehaviour {
 
     void Start() {
         
-        floor = new GameObject[LEVEL_SIZE, LEVEL_SIZE];
+        floor = new Floor[LEVEL_SIZE, LEVEL_SIZE];
         cubes = new List<Cube>();
 
         Vector3 prefabPosition = new Vector3(0, 0, 0);
@@ -29,12 +29,9 @@ public class Checkboard : MonoBehaviour {
             for(int column = 0; column < LEVEL_SIZE; column++) {
                 
                 prefabPosition.Set(row, 0, column);
-                floor[row, column] = Instantiate(floorPrefab, prefabPosition, Quaternion.identity, transform);
-                floor[row, column].hideFlags = HideFlags.HideInHierarchy;
-                
-                if((row * LEVEL_SIZE + column) % 2 == 0) {
-                    floor[row, column].GetComponent<Renderer>().material.color = new Color(0.9f, 0.9f, 0.9f, 1);
-                }
+                GameObject f = Instantiate(floorPrefab, prefabPosition, Quaternion.identity, transform);
+                f.hideFlags = HideFlags.HideInHierarchy;
+                floor[row, column] = f.GetComponent<Floor>();
 
             }
         }

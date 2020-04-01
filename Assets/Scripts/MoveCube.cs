@@ -3,7 +3,7 @@
 public class MoveCube : State {
 
     public enum Move{TOP, RIGHT, BOTTOM, LEFT};
-    public const int SWIPE_DISTANCE = 30;
+    public const int SWIPE_DISTANCE = 50;
 
     private Checkboard checkboard;
 

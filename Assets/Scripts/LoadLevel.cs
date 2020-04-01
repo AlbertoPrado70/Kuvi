@@ -27,8 +27,7 @@ public class LoadLevel : State {
         for(int row = 0; row < Checkboard.LEVEL_SIZE; row++) {
             for(int column = 0; column < Checkboard.LEVEL_SIZE; column++) {
                 
-                bool activeFloor = (checkboard.level.matrix[row * Checkboard.LEVEL_SIZE + column] == -1) ? false : true; 
-                checkboard.floor[row, column].SetActive(activeFloor);
+                checkboard.floor[row, column].setFloor(row * Checkboard.LEVEL_SIZE + column, checkboard.level.matrix[row * Checkboard.LEVEL_SIZE + column]);
 
                 if(checkboard.level.matrix[row * Checkboard.LEVEL_SIZE + column] == 1) {
 
