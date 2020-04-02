@@ -38,8 +38,6 @@ public class LoadLevel : State {
                     GameObject cube = Checkboard.Instantiate(checkboard.cubePrefab, new Vector3(row, 0.75f, column), Quaternion.identity, checkboard.transform);
                     cube.name = "Cube" + row + column;
                     cube.GetComponent<Cube>().setPosition(row, column); 
-                    cube.GetComponent<Renderer>().material.color = new Color(0.35f, 0.35f, 0.35f, 1);
-
                     cube.GetComponent<Cube>().initAnimation();
     
                     checkboard.cubes.Add(cube.GetComponent<Cube>());

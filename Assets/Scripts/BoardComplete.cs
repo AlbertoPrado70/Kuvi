@@ -4,49 +4,54 @@ using DG.Tweening;
 public class BoardComplete : State {
 
     private Checkboard checkboard;
+    public bool completeAnimation;
 
     public BoardComplete(Checkboard checkboard) {
 
         this.checkboard = checkboard;
+        completeAnimation = false; 
 
     }
 
     public override void Tick() {
-
-        if(!isBoardCompleted()) {
-            checkboard.setState(checkboard.moveCubeState);
-        }
-
-        // else {
-        //     checkboard.setState(checkboard.loadLevelState);
-        // }
-
-    }
-
-    public bool isBoardCompleted() {
 
         bool isCompleted = true; 
 
         foreach(Cube cube in checkboard.cubes) {
 
             if(checkboard.floor[cube.row, cube.column].isButton) {
-                cube.GetComponent<Renderer>().material.DOColor(new Color(0.5683072f, 0.5756204f, 0.9339623f), 0.5f).SetDelay(0.5f);
+                cube.cubeRenderer.material.DOColor(Color.red, 1).SetDelay(Cube.MOVE_DURATION);
             }
 
             else {
-                cube.GetComponent<Renderer>().material.DOColor(new Color(0.35f, 0.35f, 0.35f, 1), 0.5f).SetDelay(0.25f);
-                isCompleted = false; 
+                cube.cubeRenderer.material.DOColor(cube.cubeColor, 1);
+                isCompleted = false;
             }
 
         }
 
-        if(isCompleted) {
+        if(isCompleted && !completeAnimation) {
+            
             foreach(Cube cube in checkboard.cubes) {
                 checkboard.floor[cube.row, cube.column].pressedAnimation();
             }
+
+            completeAnimation = true; 
+
         }
 
-        return(isCompleted);
+        if(isCompleted && completeAnimation) {
+
+            if(Input.GetMouseButtonDown(0)) {
+                checkboard.setState(checkboard.loadLevelState);
+                completeAnimation = false;
+            }
+
+        }
+
+        if(!isCompleted) {
+            checkboard.setState(checkboard.moveCubeState);
+        }
 
     }
     

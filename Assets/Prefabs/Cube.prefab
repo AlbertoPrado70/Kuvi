@@ -91,6 +91,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c3696c375c793418d4bc6bc92d3464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubeRenderer: {fileID: 2062333059455584331}
+  cubeColor: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
   row: 0
   column: 0
 --- !u!65 &65857353348109090

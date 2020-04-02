@@ -3,6 +3,8 @@ using DG.Tweening;
 
 public class Floor : MonoBehaviour {
 
+    public const float INIT_ANIMATION = 1f;
+
     public GameObject pressedEffect;
 
     public Renderer floorRenderer; 
@@ -40,8 +42,8 @@ public class Floor : MonoBehaviour {
 
     public void initAnimation(float delay) {
 
-        transform.DOMoveY(2, 1).From().SetDelay(delay);      
-        floorRenderer.material.DOFade(0, 1).From().SetDelay(delay);  
+        transform.DOMoveY(4, INIT_ANIMATION).From().SetDelay(delay);      
+        floorRenderer.material.DOFade(0, INIT_ANIMATION).From().SetDelay(delay);  
     
     }
 
