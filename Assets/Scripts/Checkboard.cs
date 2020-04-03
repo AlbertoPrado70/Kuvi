@@ -38,7 +38,7 @@ public class Checkboard : MonoBehaviour {
         }
 
         level = new Level();
-        actualLevel = 0; 
+        actualLevel = 1; 
 
         loadLevelState = new LoadLevel(this);
         moveCubeState = new MoveCube(this);

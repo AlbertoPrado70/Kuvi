@@ -20,7 +20,7 @@ public class BoardComplete : State {
         foreach(Cube cube in checkboard.cubes) {
 
             if(checkboard.floor[cube.row, cube.column].isButton) {
-                cube.cubeRenderer.material.DOColor(Color.red, 1).SetDelay(Cube.MOVE_DURATION);
+                cube.cubeRenderer.material.DOColor(new Color(0.5f, 0.5f, 0.8f, 1), 1).SetDelay(Cube.MOVE_DURATION);
             }
 
             else {
