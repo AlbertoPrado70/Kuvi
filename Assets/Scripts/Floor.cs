@@ -13,12 +13,6 @@ public class Floor : MonoBehaviour {
     public Renderer floorRenderer; 
     public FloorType type;
 
-    void Start() {
-
-        floorRenderer = GetComponent<Renderer>();
-
-    }
-
     public void setFloor(int value) {
 
         if(value == -1) {

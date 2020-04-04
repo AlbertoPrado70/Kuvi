@@ -7,7 +7,6 @@ public class Kuvi : MonoBehaviour {
 
     public GameObject floorPrefab;
     public GameObject cubePrefab; 
-    public GameObject completeEffect;
 
     public Floor[,] floor;
     public List<Cube> cubes;
@@ -25,16 +24,10 @@ public class Kuvi : MonoBehaviour {
         floor = new Floor[LEVEL_SIZE, LEVEL_SIZE];
         cubes = new List<Cube>();
 
-        Vector3 prefabPosition = new Vector3(0, 0, 0);
-
         for(int row = 0; row < LEVEL_SIZE; row++) {
-            for(int column = 0; column < LEVEL_SIZE; column++) {
-                
-                prefabPosition.Set(row, 0, column);
-                GameObject f = Instantiate(floorPrefab, prefabPosition, Quaternion.identity, transform);
-                // f.hideFlags = HideFlags.HideInHierarchy;
+            for(int column = 0; column < LEVEL_SIZE; column++) {   
+                GameObject f = Instantiate(floorPrefab, Vector3.zero, Quaternion.identity, transform);
                 floor[row, column] = f.GetComponent<Floor>();
-
             }
         }
 
@@ -57,21 +50,6 @@ public class Kuvi : MonoBehaviour {
     public void setState(State state) {
 
         actualState = state;
-
-    }
-
-    public void printMatrix() {
-
-        string s = "Level " + actualLevel + "\n";
-
-        for(int row = 0; row < LEVEL_SIZE; row++) {
-            for(int column = 0; column < LEVEL_SIZE; column++) {
-                s += level.matrix[row * LEVEL_SIZE + column];
-            }
-            s += "\n";
-        }
-
-        Debug.Log(s);
 
     }
  
