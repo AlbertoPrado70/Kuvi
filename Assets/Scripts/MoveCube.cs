@@ -5,16 +5,16 @@ public class MoveCube : State {
     public enum Move{TOP, RIGHT, BOTTOM, LEFT};
     public const int SWIPE_DISTANCE = 30;
 
-    private Checkboard checkboard;
+    private Kuvi kuvi;
 
     private bool isTouched; 
     private Vector3 touchPosition;
     private Vector3 lastPosition;
 
 
-    public MoveCube(Checkboard checkboard) {
+    public MoveCube(Kuvi kuvi) {
 
-        this.checkboard = checkboard; 
+        this.kuvi = kuvi; 
 
         isTouched = false;
         touchPosition = new Vector3(0, 0, 0);
@@ -47,25 +47,25 @@ public class MoveCube : State {
                 if(touchPosition.x - lastPosition.x < -SWIPE_DISTANCE && touchPosition.y - lastPosition.y < -SWIPE_DISTANCE) {
                     moveCube(Move.RIGHT, cube.row, cube.column);
                     isTouched = false;
-                    checkboard.setState(checkboard.boardCompleteState);
+                    kuvi.setState(kuvi.boardCompleteState);
                 }
 
                 if(touchPosition.x - lastPosition.x > SWIPE_DISTANCE && touchPosition.y - lastPosition.y > SWIPE_DISTANCE) {
                     moveCube(Move.LEFT, cube.row, cube.column);
                     isTouched = false;
-                    checkboard.setState(checkboard.boardCompleteState);
+                    kuvi.setState(kuvi.boardCompleteState);
                 }
 
                 if(touchPosition.x - lastPosition.x < -SWIPE_DISTANCE && touchPosition.y - lastPosition.y > SWIPE_DISTANCE) {
                     moveCube(Move.BOTTOM, cube.row, cube.column);
                     isTouched = false;
-                    checkboard.setState(checkboard.boardCompleteState);
+                    kuvi.setState(kuvi.boardCompleteState);
                 }
 
                 if(touchPosition.x - lastPosition.x > SWIPE_DISTANCE && touchPosition.y - lastPosition.y < -SWIPE_DISTANCE) {
                     moveCube(Move.TOP, cube.row, cube.column);
                     isTouched = false;
-                    checkboard.setState(checkboard.boardCompleteState);
+                    kuvi.setState(kuvi.boardCompleteState);
                 }
 
             }
@@ -81,23 +81,23 @@ public class MoveCube : State {
 
         if(move == Move.TOP) {
             for(int i = row - 1; i >= 0; i--) {
-                int nextValue = checkboard.level.matrix[i * Checkboard.LEVEL_SIZE + column];
+                int nextValue = kuvi.level.matrix[i * Kuvi.LEVEL_SIZE + column];
                 cubeCollided = (nextValue == 1 || nextValue == -1) ? true : cubeCollided;
                 distance += (!cubeCollided) ? 1 : 0;
             }
         }
 
         if(move == Move.RIGHT) {
-            for(int i = column + 1; i < Checkboard.LEVEL_SIZE; i++) {
-                int nextValue = checkboard.level.matrix[row * Checkboard.LEVEL_SIZE + i];
+            for(int i = column + 1; i < Kuvi.LEVEL_SIZE; i++) {
+                int nextValue = kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + i];
                 cubeCollided = (nextValue == 1 || nextValue == -1) ? true : cubeCollided;
                 distance += (!cubeCollided) ? 1 : 0;
             }
         }
 
         if(move == Move.BOTTOM) {
-            for(int i = row + 1; i < Checkboard.LEVEL_SIZE; i++) {
-                int nextValue = checkboard.level.matrix[i * Checkboard.LEVEL_SIZE + column];
+            for(int i = row + 1; i < Kuvi.LEVEL_SIZE; i++) {
+                int nextValue = kuvi.level.matrix[i * Kuvi.LEVEL_SIZE + column];
                 cubeCollided = (nextValue == 1 || nextValue == -1) ? true : cubeCollided;
                 distance += (!cubeCollided) ? 1 : 0;
             }
@@ -105,13 +105,13 @@ public class MoveCube : State {
 
         if(move == Move.LEFT) {
             for(int i = column - 1; i >= 0; i--) {
-                int nextValue = checkboard.level.matrix[row * Checkboard.LEVEL_SIZE + i];
+                int nextValue = kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + i];
                 cubeCollided = (nextValue == 1 || nextValue == -1) ? true : cubeCollided;
                 distance += (!cubeCollided) ? 1 : 0;
             }
         }
 
-        foreach(Cube cube in checkboard.cubes) {
+        foreach(Cube cube in kuvi.cubes) {
             if(cube.row == row && cube.column == column) {
 
                 cube.move(move, distance);
@@ -132,8 +132,8 @@ public class MoveCube : State {
                     cube.column = cube.column - distance;
                 }
                 
-                checkboard.level.matrix[row * Checkboard.LEVEL_SIZE + column] = 0;
-                checkboard.level.matrix[cube.row * Checkboard.LEVEL_SIZE + cube.column] = 1;
+                kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + column] = 0;
+                kuvi.level.matrix[cube.row * Kuvi.LEVEL_SIZE + cube.column] = 1;
 
             }
         }

@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 
-public class BoardComplete : State {
+public class LevelComplete : State {
 
-    private Checkboard checkboard;
+    private Kuvi checkboard;
     public bool completeAnimation;
 
-    public BoardComplete(Checkboard checkboard) {
+    public LevelComplete(Kuvi checkboard) {
 
         this.checkboard = checkboard;
         completeAnimation = false; 

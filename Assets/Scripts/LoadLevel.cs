@@ -3,52 +3,52 @@ using DG.Tweening;
 
 public class LoadLevel : State {
  
-    private Checkboard checkboard;
+    private Kuvi kuvi;
 
-    public LoadLevel(Checkboard checkboard) {
+    public LoadLevel(Kuvi kuvi) {
 
-        this.checkboard = checkboard;
+        this.kuvi = kuvi;
 
     }
 
     public override void Tick() {
 
-        setLevel(checkboard.actualLevel);
-        checkboard.setState(checkboard.moveCubeState);
+        setLevel(kuvi.actualLevel);
+        kuvi.setState(kuvi.moveCubeState);
 
     }
 
     public void setLevel(int levelIndex) {
 
-        foreach(Cube cube in checkboard.cubes) {
-            Checkboard.Destroy(cube.gameObject);
+        foreach(Cube cube in kuvi.cubes) {
+            Kuvi.Destroy(cube.gameObject);
         }
 
-        checkboard.cubes.Clear();
+        kuvi.cubes.Clear();
 
         levelIndex = (levelIndex >= Level.json.Length) ? 0 : levelIndex; 
-        JsonUtility.FromJsonOverwrite(Level.json[levelIndex].Replace('\'', '"'), checkboard.level);
+        JsonUtility.FromJsonOverwrite(Level.json[levelIndex].Replace('\'', '"'), kuvi.level);
         
         float delayAnimation = 0;
 
-        for(int row = 0; row < Checkboard.LEVEL_SIZE; row++) {
-            for(int column = 0; column < Checkboard.LEVEL_SIZE; column++) {
+        for(int row = 0; row < Kuvi.LEVEL_SIZE; row++) {
+            for(int column = 0; column < Kuvi.LEVEL_SIZE; column++) {
                 
-                checkboard.floor[row, column].setFloor(checkboard.level.matrix[row * Checkboard.LEVEL_SIZE + column]);
+                kuvi.floor[row, column].setFloor(kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + column]);
                 
-                if(checkboard.level.matrix[row * Checkboard.LEVEL_SIZE + column] != -1) {
-                    checkboard.floor[row, column].initAnimation(delayAnimation);
+                if(kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + column] != -1) {
+                    kuvi.floor[row, column].initAnimation(delayAnimation);
                     delayAnimation += 0.05f;
                 }
 
-                if(checkboard.level.matrix[row * Checkboard.LEVEL_SIZE + column] == 1) {
+                if(kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + column] == 1) {
 
-                    GameObject cube = Checkboard.Instantiate(checkboard.cubePrefab, new Vector3(row, 0.75f, column), Quaternion.identity, checkboard.transform);
+                    GameObject cube = Kuvi.Instantiate(kuvi.cubePrefab, new Vector3(row, 0.75f, column), Quaternion.identity, kuvi.transform);
                     cube.name = "Cube" + row + column;
                     cube.GetComponent<Cube>().setPosition(row, column); 
                     cube.GetComponent<Cube>().initAnimation();
     
-                    checkboard.cubes.Add(cube.GetComponent<Cube>());
+                    kuvi.cubes.Add(cube.GetComponent<Cube>());
 
                 }
                 

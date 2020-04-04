@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class Checkboard : MonoBehaviour {
+public class Kuvi : MonoBehaviour {
     
     public const int LEVEL_SIZE = 8;
 
@@ -17,7 +17,7 @@ public class Checkboard : MonoBehaviour {
 
     public LoadLevel loadLevelState;
     public MoveCube moveCubeState; 
-    public BoardComplete boardCompleteState;
+    public LevelComplete boardCompleteState;
     public State actualState; 
 
     void Start() {
@@ -43,7 +43,7 @@ public class Checkboard : MonoBehaviour {
 
         loadLevelState = new LoadLevel(this);
         moveCubeState = new MoveCube(this);
-        boardCompleteState = new BoardComplete(this);
+        boardCompleteState = new LevelComplete(this);
         setState(loadLevelState);
 
     }
