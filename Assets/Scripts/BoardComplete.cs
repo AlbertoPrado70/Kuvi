@@ -19,7 +19,7 @@ public class BoardComplete : State {
 
         foreach(Cube cube in checkboard.cubes) {
 
-            if(checkboard.floor[cube.row, cube.column].isButton) {
+            if(checkboard.floor[cube.row, cube.column].type == FloorType.OBJETIVE) {
                 cube.cubeRenderer.material.DOColor(new Color(0.5f, 0.5f, 0.8f, 1), 1).SetDelay(Cube.MOVE_DURATION);
             }
 
@@ -32,9 +32,9 @@ public class BoardComplete : State {
 
         if(isCompleted && !completeAnimation) {
             
-            foreach(Cube cube in checkboard.cubes) {
-                checkboard.floor[cube.row, cube.column].pressedAnimation();
-            }
+            // foreach(Cube cube in checkboard.cubes) {
+            //     checkboard.floor[cube.row, cube.column].pressedAnimation();
+            // }
 
             completeAnimation = true; 
 

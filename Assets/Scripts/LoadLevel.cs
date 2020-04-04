@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using DG.Tweening;
 
 public class LoadLevel : State {
  
@@ -22,16 +23,23 @@ public class LoadLevel : State {
         foreach(Cube cube in checkboard.cubes) {
             Checkboard.Destroy(cube.gameObject);
         }
+
         checkboard.cubes.Clear();
 
         levelIndex = (levelIndex >= Level.json.Length) ? 0 : levelIndex; 
         JsonUtility.FromJsonOverwrite(Level.json[levelIndex].Replace('\'', '"'), checkboard.level);
         
+        float delayAnimation = 0;
+
         for(int row = 0; row < Checkboard.LEVEL_SIZE; row++) {
             for(int column = 0; column < Checkboard.LEVEL_SIZE; column++) {
                 
-                checkboard.floor[row, column].setFloor(row * Checkboard.LEVEL_SIZE + column, checkboard.level.matrix[row * Checkboard.LEVEL_SIZE + column]);
-                checkboard.floor[row, column].initAnimation((row * Checkboard.LEVEL_SIZE + column) * 0.05f);
+                checkboard.floor[row, column].setFloor(checkboard.level.matrix[row * Checkboard.LEVEL_SIZE + column]);
+                
+                if(checkboard.level.matrix[row * Checkboard.LEVEL_SIZE + column] != -1) {
+                    checkboard.floor[row, column].initAnimation(delayAnimation);
+                    delayAnimation += 0.05f;
+                }
 
                 if(checkboard.level.matrix[row * Checkboard.LEVEL_SIZE + column] == 1) {
 

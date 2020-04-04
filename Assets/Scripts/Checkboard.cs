@@ -7,6 +7,7 @@ public class Checkboard : MonoBehaviour {
 
     public GameObject floorPrefab;
     public GameObject cubePrefab; 
+    public GameObject completeEffect;
 
     public Floor[,] floor;
     public List<Cube> cubes;
@@ -31,7 +32,7 @@ public class Checkboard : MonoBehaviour {
                 
                 prefabPosition.Set(row, 0, column);
                 GameObject f = Instantiate(floorPrefab, prefabPosition, Quaternion.identity, transform);
-                f.hideFlags = HideFlags.HideInHierarchy;
+                // f.hideFlags = HideFlags.HideInHierarchy;
                 floor[row, column] = f.GetComponent<Floor>();
 
             }

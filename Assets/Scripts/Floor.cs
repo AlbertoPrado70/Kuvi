@@ -5,39 +5,55 @@ public class Floor : MonoBehaviour {
 
     public const float INIT_ANIMATION = 1f;
 
-    public GameObject pressedEffect;
+    public Color floorColor; 
+    public Color objectiveColor; 
+    public Color buttonColor; 
+    public Color movingFloor; 
 
     public Renderer floorRenderer; 
-    public Renderer pressedRenderer;
+    public FloorType type;
 
-    public Color floorColor; 
-    public Color grayColor;
-    public Color pressedColor; 
+    void Start() {
 
-    public bool isButton;
+        floorRenderer = GetComponent<Renderer>();
 
-    public void setFloor(int index, int value) {
+    }
+
+    public void setFloor(int value) {
 
         if(value == -1) {
+            type = FloorType.EMPTY;
             gameObject.SetActive(false);
         }
 
-        if(index % 2 == 0) {
-            floorRenderer.material.color = grayColor;
-        }
-
-        else {
-            floorRenderer.material.color = floorColor;
+        if(value >= 0) {
+            type = FloorType.NORMAL;
+            gameObject.SetActive(true);
+            floorRenderer.material.color = floorColor; 
         }
 
         if(value == 2) {
-            floorRenderer.material.color = pressedColor;
-            isButton = true;
+            type = FloorType.OBJETIVE;
+            floorRenderer.material.color = objectiveColor;
         }
 
-        pressedRenderer.material.color = Color.white;
-        pressedRenderer.material.DOFade(0, 0);
+        if(value == 3) {
+            type = FloorType.BUTTON;
+            floorRenderer.material.color = buttonColor;
+        }
 
+        if(value == 4) {
+            type = FloorType.INACTIVE;
+            floorRenderer.material.color = movingFloor;
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 0.5f, gameObject.transform.position.z);
+        }
+
+        if(value == 5) {
+            type = FloorType.ACTIVE;
+            floorRenderer.material.color = movingFloor;
+            transform.DOMoveY(0, 1);
+        }
+        
     }
 
     public void initAnimation(float delay) {
@@ -45,16 +61,6 @@ public class Floor : MonoBehaviour {
         transform.DOMoveY(4, INIT_ANIMATION).From().SetDelay(delay);      
         floorRenderer.material.DOFade(0, INIT_ANIMATION).From().SetDelay(delay);  
     
-    }
-
-    public void pressedAnimation() {
-
-        pressedEffect.transform.DOScale(Vector3.one * 0, 0);
-        pressedRenderer.material.DOFade(1, 0);
-
-        pressedEffect.transform.DOScale(Vector3.one * 5, 1).SetDelay(0.5f);
-        pressedRenderer.material.DOFade(0, 1).SetDelay(0.5f);
-
     }
 
 }
