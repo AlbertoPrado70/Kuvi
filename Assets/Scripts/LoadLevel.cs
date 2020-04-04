@@ -38,7 +38,7 @@ public class LoadLevel : State {
                 
                 if(kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + column] != -1) {
                     kuvi.floor[row, column].initAnimation(delayAnimation);
-                    delayAnimation += 0.05f;
+                    delayAnimation += 0.1f;
                 }
 
                 if(kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + column] == 1) {

@@ -24,10 +24,17 @@ public class Kuvi : MonoBehaviour {
         floor = new Floor[LEVEL_SIZE, LEVEL_SIZE];
         cubes = new List<Cube>();
 
+        Vector3 position = new Vector3(0, 0, 0);
+        Vector3 floorSize = floorPrefab.GetComponent<Floor>().floorRenderer.bounds.size; 
+
         for(int row = 0; row < LEVEL_SIZE; row++) {
             for(int column = 0; column < LEVEL_SIZE; column++) {   
-                GameObject f = Instantiate(floorPrefab, Vector3.zero, Quaternion.identity, transform);
+
+                position.Set(floorSize.x * row, 0, floorSize.z * column);
+
+                GameObject f = Instantiate(floorPrefab, position, Quaternion.identity, transform);
                 floor[row, column] = f.GetComponent<Floor>();
+
             }
         }
 
