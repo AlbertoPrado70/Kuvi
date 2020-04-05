@@ -45,25 +45,25 @@ public class MoveCube : State {
                 Cube cube = hit.transform.GetComponent<Cube>();
 
                 if(touchPosition.x - lastPosition.x < -SWIPE_DISTANCE && touchPosition.y - lastPosition.y < -SWIPE_DISTANCE) {
-                    moveCube(Move.RIGHT, cube.row, cube.column);
-                    isTouched = false;
-                    kuvi.setState(kuvi.boardCompleteState);
-                }
-
-                if(touchPosition.x - lastPosition.x > SWIPE_DISTANCE && touchPosition.y - lastPosition.y > SWIPE_DISTANCE) {
-                    moveCube(Move.LEFT, cube.row, cube.column);
-                    isTouched = false;
-                    kuvi.setState(kuvi.boardCompleteState);
-                }
-
-                if(touchPosition.x - lastPosition.x < -SWIPE_DISTANCE && touchPosition.y - lastPosition.y > SWIPE_DISTANCE) {
                     moveCube(Move.BOTTOM, cube.row, cube.column);
                     isTouched = false;
                     kuvi.setState(kuvi.boardCompleteState);
                 }
 
-                if(touchPosition.x - lastPosition.x > SWIPE_DISTANCE && touchPosition.y - lastPosition.y < -SWIPE_DISTANCE) {
+                if(touchPosition.x - lastPosition.x > SWIPE_DISTANCE && touchPosition.y - lastPosition.y > SWIPE_DISTANCE) {
                     moveCube(Move.TOP, cube.row, cube.column);
+                    isTouched = false;
+                    kuvi.setState(kuvi.boardCompleteState);
+                }
+
+                if(touchPosition.x - lastPosition.x < -SWIPE_DISTANCE && touchPosition.y - lastPosition.y > SWIPE_DISTANCE) {
+                    moveCube(Move.LEFT, cube.row, cube.column);
+                    isTouched = false;
+                    kuvi.setState(kuvi.boardCompleteState);
+                }
+
+                if(touchPosition.x - lastPosition.x > SWIPE_DISTANCE && touchPosition.y - lastPosition.y < -SWIPE_DISTANCE) {
+                    moveCube(Move.RIGHT, cube.row, cube.column);
                     isTouched = false;
                     kuvi.setState(kuvi.boardCompleteState);
                 }

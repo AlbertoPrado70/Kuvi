@@ -52,7 +52,7 @@ public class Floor : MonoBehaviour {
 
     public void initAnimation(float delay) {
 
-        transform.DOMoveY(4, INIT_ANIMATION).From().SetDelay(delay);      
+        transform.DOMoveY(0, INIT_ANIMATION).From().SetDelay(delay);      
         floorRenderer.material.DOFade(0, INIT_ANIMATION).From().SetDelay(delay);  
     
     }

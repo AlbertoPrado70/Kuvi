@@ -8,7 +8,8 @@ public class LoadLevel : State {
     public LoadLevel(Kuvi kuvi) {
 
         this.kuvi = kuvi;
-
+        kuvi.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2 - 200, Camera.main.farClipPlane / 2));
+    
     }
 
     public override void Tick() {
@@ -19,9 +20,6 @@ public class LoadLevel : State {
     }
 
     public void setLevel(int levelIndex) {
-
-        Vector3 cameraCenter = Camera.main.ScreenToWorldPoint( new Vector3(Screen.width/2, Screen.height/2 - 100, Camera.main.farClipPlane / 2));
-        kuvi.transform.position = cameraCenter;       
 
         foreach(Cube cube in kuvi.cubes) {
             Kuvi.Destroy(cube.gameObject);
@@ -49,10 +47,11 @@ public class LoadLevel : State {
                     Vector3 floorSize = kuvi.floorPrefab.GetComponent<Floor>().floorRenderer.bounds.size;
 
                     GameObject cube = Kuvi.Instantiate(kuvi.cubePrefab, Vector3.zero, Quaternion.identity, kuvi.transform);
+
                     cube.transform.localPosition = new Vector3(row * floorSize.x, floorSize.y, column * floorSize.x);
                     cube.name = "Cube" + row + column;
                     cube.GetComponent<Cube>().setPosition(row, column); 
-                    cube.GetComponent<Cube>().initAnimation();
+                    cube.GetComponent<Cube>().initAnimation(1 + delayAnimation);
     
                     kuvi.cubes.Add(cube.GetComponent<Cube>());
 

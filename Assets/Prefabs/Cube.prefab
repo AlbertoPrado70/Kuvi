@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubeRenderer: {fileID: 8043297602877197773}
-  cubeColor: {r: 1, g: 1, b: 1, a: 1}
+  cubeColor: {r: 0.38203096, g: 0.5756951, b: 0.9528302, a: 1}
   row: 0
   column: 0
 --- !u!65 &65646030708837132
