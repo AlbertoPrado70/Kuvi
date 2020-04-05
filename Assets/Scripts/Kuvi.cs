@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Kuvi : MonoBehaviour {
     
-    public const int LEVEL_SIZE = 8;
+    public const int LEVEL_SIZE = 7;
 
     public GameObject floorPrefab;
     public GameObject cubePrefab; 
