@@ -6,8 +6,10 @@ public class Cube : MonoBehaviour {
     public const float INIT_DURATION = 0.5f; 
     public const float MOVE_DURATION = 0.5f;
 
-    public Renderer cubeRenderer; 
     public Color cubeColor; 
+    public Color objectiveColor; 
+    public Color buttonColor; 
+    public Renderer cubeRenderer; 
 
     public int row; 
     public int column; 

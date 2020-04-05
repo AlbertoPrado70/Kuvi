@@ -121,9 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e13e6324b55a31248baf098ed594feaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorColor: {r: 1, g: 1, b: 1, a: 1}
-  objectiveColor: {r: 1, g: 0.5896226, b: 0.5896226, a: 1}
-  buttonColor: {r: 1, g: 0.90713394, b: 0, a: 1}
-  movingFloor: {r: 0, g: 0.6792453, b: 0.0013791211, a: 1}
+  floorMesh: {fileID: 3300000, guid: 405a07933c23a8c449edcf974275757b, type: 3}
+  objectiveMesh: {fileID: 3300000, guid: 0a0bb76dd10c37f4997c874f8250d1b5, type: 3}
+  platFormMesh: {fileID: 3300000, guid: 7ddc4109527e1314a8d6576f386e8997, type: 3}
+  buttonMesh: {fileID: 3300000, guid: ca5a90f0d935197429e5f0be52fff157, type: 3}
   floorRenderer: {fileID: 4448235971065615020}
+  floorMeshFilter: {fileID: 4448235971064516716}
   type: 0

@@ -5,12 +5,13 @@ public class Floor : MonoBehaviour {
 
     public const float INIT_ANIMATION = 1f;
 
-    public Color floorColor; 
-    public Color objectiveColor; 
-    public Color buttonColor; 
-    public Color movingFloor; 
+    public MeshFilter floorMesh; 
+    public MeshFilter objectiveMesh; 
+    public MeshFilter platFormMesh; 
+    public MeshFilter buttonMesh; 
 
     public Renderer floorRenderer; 
+    public MeshFilter floorMeshFilter;
     public FloorType type;
 
     public void setFloor(int value) {
@@ -23,29 +24,28 @@ public class Floor : MonoBehaviour {
         if(value >= 0) {
             type = FloorType.NORMAL;
             gameObject.SetActive(true);
-            floorRenderer.material.color = floorColor; 
+            floorMeshFilter.mesh = floorMesh.sharedMesh;
         }
 
         if(value == 2) {
             type = FloorType.OBJETIVE;
-            floorRenderer.material.color = objectiveColor;
+            floorMeshFilter.mesh = objectiveMesh.sharedMesh;
         }
 
         if(value == 3) {
             type = FloorType.BUTTON;
-            floorRenderer.material.color = buttonColor;
+            floorMeshFilter.mesh = buttonMesh.sharedMesh;
         }
 
         if(value == 4) {
             type = FloorType.INACTIVE;
-            floorRenderer.material.color = movingFloor;
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 0.5f, gameObject.transform.position.z);
+            floorMeshFilter.mesh = platFormMesh.sharedMesh;
+            transform.position = new Vector3(transform.position.x, transform.position.y - 0.4f, transform.position.z);
         }
 
         if(value == 5) {
             type = FloorType.ACTIVE;
-            floorRenderer.material.color = movingFloor;
-            transform.DOMoveY(0, 1);
+            floorMeshFilter.mesh = platFormMesh.sharedMesh;
         }
         
     }

@@ -45,8 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c3696c375c793418d4bc6bc92d3464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubeColor: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
+  objectiveColor: {r: 0.20879315, g: 0.6725017, b: 0.8679245, a: 0}
+  buttonColor: {r: 0.9188994, g: 0.9245283, b: 0.2660199, a: 0}
   cubeRenderer: {fileID: 8043297602877197773}
-  cubeColor: {r: 0.38203096, g: 0.5756951, b: 0.9528302, a: 1}
   row: 0
   column: 0
 --- !u!65 &65646030708837132
