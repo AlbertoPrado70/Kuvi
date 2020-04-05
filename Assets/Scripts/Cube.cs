@@ -9,7 +9,10 @@ public class Cube : MonoBehaviour {
     public Color cubeColor; 
     public Color objectiveColor; 
     public Color buttonColor; 
-    public Renderer cubeRenderer; 
+    public Renderer cubeRenderer;
+
+    public Renderer effectRenderer;
+    public Transform effectTransform;
 
     public int row; 
     public int column; 
@@ -43,6 +46,22 @@ public class Cube : MonoBehaviour {
         if(move == MoveCube.Move.LEFT) {
             transform.DOMoveZ(transform.position.z - (distance * 0.8f), MOVE_DURATION).SetEase(Ease.InOutQuad);
         }
+
+    }
+
+    public void colorAnimation(Color color, float delay) {
+
+        cubeRenderer.material.DOColor(color, 1f).SetDelay(delay);
+
+    }
+
+    public void completeAnimation() {
+
+        effectRenderer.material.DOFade(1, 0);
+        effectTransform.DOScale(0, 0);
+
+        effectRenderer.material.DOFade(0, 1).SetDelay(1f);
+        effectTransform.DOScale(5, 1).SetDelay(1f);
 
     }
 

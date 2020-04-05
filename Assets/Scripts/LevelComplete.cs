@@ -3,55 +3,35 @@ using DG.Tweening;
 
 public class LevelComplete : State {
 
-    private Kuvi checkboard;
-    public bool completeAnimation;
+    private Kuvi kuvi;
 
-    public LevelComplete(Kuvi checkboard) {
+    public LevelComplete(Kuvi kuvi) {
 
-        this.checkboard = checkboard;
-        completeAnimation = false; 
+        this.kuvi = kuvi;
 
     }
 
     public override void Tick() {
 
-        bool isCompleted = true; 
+        bool levelComplete = true; 
 
-        foreach(Cube cube in checkboard.cubes) {
-
-            if(checkboard.floor[cube.row, cube.column].type == FloorType.OBJETIVE) {
-                cube.cubeRenderer.material.DOColor(new Color(0.5f, 0.5f, 0.8f, 1), 1).SetDelay(Cube.MOVE_DURATION);
+        foreach(Cube cube in kuvi.cubes) {
+            if(kuvi.floor[cube.row, cube.column].type == FloorType.OBJETIVE) {
+                cube.colorAnimation(cube.objectiveColor, 0.5f);
             }
-
             else {
-                cube.cubeRenderer.material.DOColor(cube.cubeColor, 1);
-                isCompleted = false;
+                cube.colorAnimation(cube.cubeColor, 0);
+                levelComplete = false; 
             }
-
         }
 
-        if(isCompleted && !completeAnimation) {
-            
-            // foreach(Cube cube in checkboard.cubes) {
-            //     checkboard.floor[cube.row, cube.column].pressedAnimation();
-            // }
-
-            completeAnimation = true; 
-
-        }
-
-        if(isCompleted && completeAnimation) {
-
-            if(Input.GetMouseButtonDown(0)) {
-                checkboard.setState(checkboard.loadLevelState);
-                completeAnimation = false;
+        if(levelComplete) {
+            foreach(Cube cube in kuvi.cubes) {
+                cube.completeAnimation();
             }
-
         }
 
-        if(!isCompleted) {
-            checkboard.setState(checkboard.moveCubeState);
-        }
+        kuvi.setState(kuvi.moveCubeState);
 
     }
     

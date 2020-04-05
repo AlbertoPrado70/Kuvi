@@ -47,25 +47,25 @@ public class MoveCube : State {
                 if(touchPosition.x - lastPosition.x < -SWIPE_DISTANCE && touchPosition.y - lastPosition.y < -SWIPE_DISTANCE) {
                     moveCube(Move.BOTTOM, cube.row, cube.column);
                     isTouched = false;
-                    kuvi.setState(kuvi.boardCompleteState);
+                    kuvi.setState(kuvi.activateFloorState);
                 }
 
                 if(touchPosition.x - lastPosition.x > SWIPE_DISTANCE && touchPosition.y - lastPosition.y > SWIPE_DISTANCE) {
                     moveCube(Move.TOP, cube.row, cube.column);
                     isTouched = false;
-                    kuvi.setState(kuvi.boardCompleteState);
+                    kuvi.setState(kuvi.activateFloorState);
                 }
 
                 if(touchPosition.x - lastPosition.x < -SWIPE_DISTANCE && touchPosition.y - lastPosition.y > SWIPE_DISTANCE) {
                     moveCube(Move.LEFT, cube.row, cube.column);
                     isTouched = false;
-                    kuvi.setState(kuvi.boardCompleteState);
+                    kuvi.setState(kuvi.activateFloorState);
                 }
 
                 if(touchPosition.x - lastPosition.x > SWIPE_DISTANCE && touchPosition.y - lastPosition.y < -SWIPE_DISTANCE) {
                     moveCube(Move.RIGHT, cube.row, cube.column);
                     isTouched = false;
-                    kuvi.setState(kuvi.boardCompleteState);
+                    kuvi.setState(kuvi.activateFloorState);
                 }
 
             }
@@ -78,6 +78,34 @@ public class MoveCube : State {
 
         int distance = 0; 
         bool cubeCollided = false;
+
+        // Desactivamos pisos antes de mover
+
+        if(move == Move.RIGHT && column + 1 < Kuvi.LEVEL_SIZE && kuvi.floor[row, column].type == FloorType.BUTTON) {
+            if(kuvi.floor[row, column + 1].type == FloorType.NORMAL || kuvi.floor[row, column + 1].type == FloorType.BUTTON || kuvi.floor[row, column + 1].type == FloorType.OBJETIVE) {
+                kuvi.activateFloorState.desactivateLevelFloor();
+            }
+        }
+
+        if(move == Move.LEFT && column - 1 >= 0 && kuvi.floor[row, column].type == FloorType.BUTTON) {
+            if(kuvi.floor[row, column - 1].type == FloorType.NORMAL || kuvi.floor[row, column - 1].type == FloorType.BUTTON || kuvi.floor[row, column - 1].type == FloorType.OBJETIVE) {
+                kuvi.activateFloorState.desactivateLevelFloor();
+            }
+        }
+
+        if(move == Move.TOP && row - 1 < Kuvi.LEVEL_SIZE && kuvi.floor[row, column].type == FloorType.BUTTON) {
+            if(kuvi.floor[row - 1, column].type == FloorType.NORMAL || kuvi.floor[row - 1, column].type == FloorType.BUTTON || kuvi.floor[row - 1, column].type == FloorType.OBJETIVE) {
+                kuvi.activateFloorState.desactivateLevelFloor();
+            }
+        }
+
+        if(move == Move.BOTTOM && row + 1 < Kuvi.LEVEL_SIZE && kuvi.floor[row, column].type == FloorType.BUTTON) {
+            if(kuvi.floor[row + 1, column].type == FloorType.NORMAL || kuvi.floor[row + 1, column].type == FloorType.BUTTON || kuvi.floor[row + 1, column].type == FloorType.OBJETIVE) {
+                kuvi.activateFloorState.desactivateLevelFloor();
+            }
+        }
+
+        // Movimiento
 
         if(move == Move.TOP) {
             for(int i = row - 1; i >= 0; i--) {
@@ -112,7 +140,7 @@ public class MoveCube : State {
         }
 
         foreach(Cube cube in kuvi.cubes) {
-            if(cube.row == row && cube.column == column) {
+            if(cube.row == row && cube.column == column && distance > 0) {
 
                 cube.move(move, distance);
 
