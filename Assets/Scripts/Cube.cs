@@ -60,8 +60,8 @@ public class Cube : MonoBehaviour {
         effectRenderer.material.DOFade(1, 0);
         effectTransform.DOScale(0, 0);
 
-        effectRenderer.material.DOFade(0, 1).SetDelay(1f);
-        effectTransform.DOScale(5, 1).SetDelay(1f);
+        effectRenderer.material.DOFade(0, 1).SetDelay(MOVE_DURATION);
+        effectTransform.DOScale(5, 1).SetDelay(MOVE_DURATION);
 
     }
 

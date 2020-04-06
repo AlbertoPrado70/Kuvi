@@ -293,9 +293,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6510dc3211f32964e87e84a7611127e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorPrefab: {fileID: 4448235971063417966, guid: beebda10a7f65f54db3045cf9663215d,
+  floorPrefab: {fileID: 6672426604622052679, guid: beebda10a7f65f54db3045cf9663215d,
     type: 3}
-  cubePrefab: {fileID: 8043297602875003661, guid: 80f3a4196cc58394b81d609deaf83b42,
+  cubePrefab: {fileID: 2651405929957556927, guid: 80f3a4196cc58394b81d609deaf83b42,
     type: 3}
   cubes: []
   level:

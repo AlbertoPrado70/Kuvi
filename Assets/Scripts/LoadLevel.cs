@@ -8,7 +8,9 @@ public class LoadLevel : State {
     public LoadLevel(Kuvi kuvi) {
 
         this.kuvi = kuvi;
-        kuvi.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2 - 200, Camera.main.farClipPlane / 2));
+
+        // kuvi.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.farClipPlane / 2));
+        Debug.Log(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.farClipPlane / 2)));
     
     }
 
@@ -51,7 +53,7 @@ public class LoadLevel : State {
                     cube.transform.localPosition = new Vector3(row * floorSize.x, floorSize.y, column * floorSize.x);
                     cube.name = "Cube" + row + column;
                     cube.GetComponent<Cube>().setPosition(row, column); 
-                    cube.GetComponent<Cube>().initAnimation(1 + delayAnimation);
+                    cube.GetComponent<Cube>().initAnimation(Floor.INIT_ANIMATION + delayAnimation);
     
                     kuvi.cubes.Add(cube.GetComponent<Cube>());
 

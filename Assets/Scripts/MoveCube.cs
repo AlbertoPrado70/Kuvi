@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using DG.Tweening;
 
 public class MoveCube : State {
 
@@ -33,7 +34,7 @@ public class MoveCube : State {
             isTouched = true;
         }
 
-        if(isTouched) {
+        if(isTouched && !kuvi.levelCompleteState.levelCompleted) {
 
             lastPosition = (Input.touchCount > 0) ? (Vector3)Input.GetTouch(0).position : (Vector3)Input.mousePosition;
 
@@ -71,7 +72,19 @@ public class MoveCube : State {
             }
 
         }
-        
+
+        // Nivel completado. Limpiamos el estado del juego y pasamos al siguiente nivel 
+        if(isTouched && kuvi.levelCompleteState.levelCompleted && DOTween.TotalPlayingTweens() == 0) {
+
+            kuvi.levelCompleteState.levelCompleted = false; 
+            kuvi.actualLevel++;
+
+            kuvi.setState(kuvi.loadLevelState);
+
+            isTouched = false;
+
+        }
+
     }
 
      public void moveCube(Move move, int row, int column) {

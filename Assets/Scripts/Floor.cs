@@ -3,11 +3,13 @@ using DG.Tweening;
 
 public class Floor : MonoBehaviour {
 
-    public const float INIT_ANIMATION = 1f;
+    public const float INIT_ANIMATION = 0.8f;
+
+    public Color floorColor;
+    public Color objectiveColor; 
+    public Color buttonColor;
 
     public MeshFilter floorMesh; 
-    public MeshFilter objectiveMesh; 
-    public MeshFilter platFormMesh; 
     public MeshFilter buttonMesh; 
 
     public Renderer floorRenderer; 
@@ -25,27 +27,32 @@ public class Floor : MonoBehaviour {
             type = FloorType.NORMAL;
             gameObject.SetActive(true);
             floorMeshFilter.mesh = floorMesh.sharedMesh;
+            floorRenderer.material.color = floorColor; 
         }
 
         if(value == 2) {
             type = FloorType.OBJETIVE;
-            floorMeshFilter.mesh = objectiveMesh.sharedMesh;
+            floorMeshFilter.mesh = buttonMesh.sharedMesh;
+            floorRenderer.material.color = objectiveColor;
         }
 
         if(value == 3) {
             type = FloorType.BUTTON;
             floorMeshFilter.mesh = buttonMesh.sharedMesh;
+            floorRenderer.material.color = buttonColor;
         }
 
         if(value == 4) {
             type = FloorType.INACTIVE;
-            floorMeshFilter.mesh = platFormMesh.sharedMesh;
+            floorMeshFilter.mesh = floorMesh.sharedMesh;
             transform.position = new Vector3(transform.position.x, transform.position.y - 0.4f, transform.position.z);
+            floorRenderer.material.color = buttonColor;
         }
 
         if(value == 5) {
             type = FloorType.ACTIVE;
-            floorMeshFilter.mesh = platFormMesh.sharedMesh;
+            floorMeshFilter.mesh = floorMesh.sharedMesh;
+            floorRenderer.material.color = buttonColor;
         }
         
     }
