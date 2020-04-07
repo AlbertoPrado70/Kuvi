@@ -16,6 +16,14 @@ public class Floor : MonoBehaviour {
     public MeshFilter floorMeshFilter;
     public FloorType type;
 
+    public Vector3 firstPosition; 
+
+    void Start() {
+
+        firstPosition = transform.position;
+
+    }
+
     public void setFloor(int value) {
 
         if(value == -1) {
@@ -27,7 +35,8 @@ public class Floor : MonoBehaviour {
             type = FloorType.NORMAL;
             gameObject.SetActive(true);
             floorMeshFilter.mesh = floorMesh.sharedMesh;
-            floorRenderer.material.color = floorColor; 
+            floorRenderer.material.color = floorColor;
+            transform.position = firstPosition; 
         }
 
         if(value == 2) {

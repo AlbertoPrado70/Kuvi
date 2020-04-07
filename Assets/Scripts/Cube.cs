@@ -5,10 +5,11 @@ public class Cube : MonoBehaviour {
     
     public const float INIT_DURATION = 0.5f; 
     public const float MOVE_DURATION = 0.5f;
+    public const float SELECTED_DURATION = 0.2f;
 
     public Color cubeColor; 
     public Color objectiveColor; 
-    public Color buttonColor; 
+    public Color selectedColor; 
     public Renderer cubeRenderer;
 
     public Renderer effectRenderer;
@@ -17,34 +18,48 @@ public class Cube : MonoBehaviour {
     public int row; 
     public int column; 
 
+    public bool readyToMove; 
+
+    void Start() {
+
+        readyToMove = false; 
+
+    }
+
     public void setPosition(int row, int column) {
+
         this.row = row; 
         this.column = column; 
+
     }
 
     public void initAnimation(float delay) {
 
         cubeRenderer.material.color = cubeColor;
-        cubeRenderer.material.DOFade(0, INIT_DURATION).From().SetDelay(delay);
+        cubeRenderer.material.DOFade(0, INIT_DURATION).From().SetDelay(delay).OnComplete(() => readyToMove = true);
 
     }
 
     public void move(MoveCube.Move move, int distance) {
 
         if(move == MoveCube.Move.TOP) {
-            transform.DOMoveX(transform.position.x - (distance * cubeRenderer.bounds.size.x), MOVE_DURATION).SetEase(Ease.InOutQuad);
+            readyToMove = false; 
+            transform.DOMoveX(transform.position.x - (distance * cubeRenderer.bounds.size.x), MOVE_DURATION).SetEase(Ease.InOutQuad).OnComplete(() => readyToMove = true);
         }
 
         if(move == MoveCube.Move.RIGHT) {
-            transform.DOMoveZ(transform.position.z + (distance * cubeRenderer.bounds.size.x), MOVE_DURATION).SetEase(Ease.InOutQuad);
+            readyToMove = false; 
+            transform.DOMoveZ(transform.position.z + (distance * cubeRenderer.bounds.size.x), MOVE_DURATION).SetEase(Ease.InOutQuad).OnComplete(() => readyToMove = true);
         }
 
         if(move == MoveCube.Move.BOTTOM) {
-            transform.DOMoveX(transform.position.x + (distance * cubeRenderer.bounds.size.x), MOVE_DURATION).SetEase(Ease.InOutQuad);
+            readyToMove = false; 
+            transform.DOMoveX(transform.position.x + (distance * cubeRenderer.bounds.size.x), MOVE_DURATION).SetEase(Ease.InOutQuad).OnComplete(() => readyToMove = true);
         }
 
         if(move == MoveCube.Move.LEFT) {
-            transform.DOMoveZ(transform.position.z - (distance * cubeRenderer.bounds.size.x), MOVE_DURATION).SetEase(Ease.InOutQuad);
+            readyToMove = false; 
+            transform.DOMoveZ(transform.position.z - (distance * cubeRenderer.bounds.size.x), MOVE_DURATION).SetEase(Ease.InOutQuad).OnComplete(() => readyToMove = true);
         }
 
     }
@@ -52,6 +67,12 @@ public class Cube : MonoBehaviour {
     public void colorAnimation(Color color, float delay) {
 
         cubeRenderer.material.DOColor(color, 1f).SetDelay(delay);
+
+    }
+
+    public void selectedAnimation(Color color) {
+
+        cubeRenderer.material.DOColor(color, SELECTED_DURATION);
 
     }
 

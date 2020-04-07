@@ -217,7 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubeColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   objectiveColor: {r: 0.15263437, g: 0.39800486, b: 0.9245283, a: 1}
-  buttonColor: {r: 0.8207547, g: 0.81532294, b: 0.2981043, a: 1}
+  selectedColor: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
   cubeRenderer: {fileID: 2651405929955630207}
   effectRenderer: {fileID: 2399601632551176080}
   effectTransform: {fileID: 8587621703878662289}
