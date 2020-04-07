@@ -32,19 +32,19 @@ public class Cube : MonoBehaviour {
     public void move(MoveCube.Move move, int distance) {
 
         if(move == MoveCube.Move.TOP) {
-            transform.DOMoveX(transform.position.x - (distance * 0.8f), MOVE_DURATION).SetEase(Ease.InOutQuad);
+            transform.DOMoveX(transform.position.x - (distance * cubeRenderer.bounds.size.x), MOVE_DURATION).SetEase(Ease.InOutQuad);
         }
 
         if(move == MoveCube.Move.RIGHT) {
-            transform.DOMoveZ(transform.position.z + (distance * 0.8f), MOVE_DURATION).SetEase(Ease.InOutQuad);
+            transform.DOMoveZ(transform.position.z + (distance * cubeRenderer.bounds.size.x), MOVE_DURATION).SetEase(Ease.InOutQuad);
         }
 
         if(move == MoveCube.Move.BOTTOM) {
-            transform.DOMoveX(transform.position.x + (distance * 0.8f), MOVE_DURATION).SetEase(Ease.InOutQuad);
+            transform.DOMoveX(transform.position.x + (distance * cubeRenderer.bounds.size.x), MOVE_DURATION).SetEase(Ease.InOutQuad);
         }
 
         if(move == MoveCube.Move.LEFT) {
-            transform.DOMoveZ(transform.position.z - (distance * 0.8f), MOVE_DURATION).SetEase(Ease.InOutQuad);
+            transform.DOMoveZ(transform.position.z - (distance * cubeRenderer.bounds.size.x), MOVE_DURATION).SetEase(Ease.InOutQuad);
         }
 
     }

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using DG.Tweening;
 
 public class LoadLevel : State {
  
@@ -10,6 +9,8 @@ public class LoadLevel : State {
     public LoadLevel(Kuvi kuvi) {
 
         this.kuvi = kuvi;
+
+        setCameraPosition();
     
     }
 
@@ -61,7 +62,6 @@ public class LoadLevel : State {
             }
         }
 
-        setCameraPosition();
         kuvi.background.setColor();
 
     }
@@ -70,23 +70,14 @@ public class LoadLevel : State {
 
         Bounds levelBounds = new Bounds(Vector3.zero, Vector3.zero);
 
-        for(int row = 0; row < Kuvi.LEVEL_SIZE; row++) {
-            for(int column = 0; column < Kuvi.LEVEL_SIZE; column++) {
-                if(kuvi.floor[row, column].type != FloorType.EMPTY) {
-                    levelBounds.Encapsulate(kuvi.floor[row, column].floorRenderer.bounds);
-                }
-            }
-        }
+        float floorSize = kuvi.floor[0, 0].floorRenderer.bounds.size.x * Kuvi.LEVEL_SIZE;
 
         float cameraHeight = 2 * Camera.main.orthographicSize;
         float cameraWidth = cameraHeight * Camera.main.aspect;
 
-        float levelWidth = Mathf.Sqrt(Mathf.Pow(levelBounds.size.x, 2) + Mathf.Pow(levelBounds.size.x, 2));
-        float levelHeight = kuvi.floor[0, 0].floorRenderer.bounds.size.z * Kuvi.LEVEL_SIZE;
+        float levelWidth = Mathf.Sqrt(Mathf.Pow(floorSize, 2) + Mathf.Pow(floorSize, 2));
 
         float newSize = cameraWidth / (levelWidth + LEVEL_PADDING);
-
-        Debug.Log(newSize);
 
         kuvi.transform.localScale = kuvi.transform.localScale * newSize;
 
