@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class MenuController : MonoBehaviour {
 
@@ -8,6 +9,8 @@ public class MenuController : MonoBehaviour {
 
     public Transform completeTransform; 
     public Image completeFade;
+
+    public TextMeshProUGUI levelMessage;
 
     public bool completedFadedAnimation; 
 
@@ -29,12 +32,14 @@ public class MenuController : MonoBehaviour {
     
     }
 
-    void Update() {
+    public void showLevelMessage(string message) {
 
-        if(Input.GetKeyDown("f")) {
-            completeAnimation();
-        }
-        
+        levelMessage.SetText(message);
+        levelMessage.DOFade(0, 0);
+
+        levelMessage.DOFade(1, 1).SetDelay(1);
+        levelMessage.DOFade(0, 1).SetDelay(5);
+
     }
 
 }

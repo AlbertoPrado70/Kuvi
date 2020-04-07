@@ -63,6 +63,7 @@ public class LoadLevel : State {
         }
 
         kuvi.background.setColor();
+        kuvi.menuController.showLevelMessage(kuvi.level.message);
 
     }
 
