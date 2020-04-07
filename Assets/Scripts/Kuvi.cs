@@ -8,6 +8,8 @@ public class Kuvi : MonoBehaviour {
     public GameObject floorPrefab;
     public GameObject cubePrefab; 
 
+    public Background background;
+
     public Floor[,] floor;
     public List<Cube> cubes;
 

@@ -297,6 +297,7 @@ MonoBehaviour:
     type: 3}
   cubePrefab: {fileID: 2651405929957556927, guid: 80f3a4196cc58394b81d609deaf83b42,
     type: 3}
+  background: {fileID: 1944351684}
   cubes: []
   level:
     message: 

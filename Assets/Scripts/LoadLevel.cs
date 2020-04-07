@@ -3,14 +3,13 @@ using DG.Tweening;
 
 public class LoadLevel : State {
  
+    public const float LEVEL_PADDING = 0.25f;
+
     private Kuvi kuvi;
 
     public LoadLevel(Kuvi kuvi) {
 
         this.kuvi = kuvi;
-
-        kuvi.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.farClipPlane / 2));
-        Debug.Log(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.farClipPlane / 2)));
     
     }
 
@@ -50,7 +49,7 @@ public class LoadLevel : State {
 
                     GameObject cube = Kuvi.Instantiate(kuvi.cubePrefab, Vector3.zero, Quaternion.identity, kuvi.transform);
 
-                    cube.transform.localPosition = new Vector3(row * floorSize.x, 0.61f, column * floorSize.x);
+                    cube.transform.localPosition = new Vector3(row * floorSize.x, 0.6f, column * floorSize.x);
                     cube.name = "Cube" + row + column;
                     cube.GetComponent<Cube>().setPosition(row, column); 
                     cube.GetComponent<Cube>().initAnimation(Floor.INIT_ANIMATION + delayAnimation);
@@ -62,8 +61,39 @@ public class LoadLevel : State {
             }
         }
 
+        setCameraPosition();
+        kuvi.background.setColor();
 
     }
 
-    
+    public void setCameraPosition() {
+
+        Bounds levelBounds = new Bounds(Vector3.zero, Vector3.zero);
+
+        for(int row = 0; row < Kuvi.LEVEL_SIZE; row++) {
+            for(int column = 0; column < Kuvi.LEVEL_SIZE; column++) {
+                if(kuvi.floor[row, column].type != FloorType.EMPTY) {
+                    levelBounds.Encapsulate(kuvi.floor[row, column].floorRenderer.bounds);
+                }
+            }
+        }
+
+        float cameraHeight = 2 * Camera.main.orthographicSize;
+        float cameraWidth = cameraHeight * Camera.main.aspect;
+
+        float levelWidth = Mathf.Sqrt(Mathf.Pow(levelBounds.size.x, 2) + Mathf.Pow(levelBounds.size.x, 2));
+        float levelHeight = kuvi.floor[0, 0].floorRenderer.bounds.size.z * Kuvi.LEVEL_SIZE;
+
+        float newSize = cameraWidth / (levelWidth + LEVEL_PADDING);
+
+        Debug.Log(newSize);
+
+        kuvi.transform.localScale = kuvi.transform.localScale * newSize;
+
+        Vector3 center = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.farClipPlane / 2));
+
+        kuvi.transform.position = new Vector3(center.x, center.y - levelWidth / 2, center.z);
+
+    }
+
 }
