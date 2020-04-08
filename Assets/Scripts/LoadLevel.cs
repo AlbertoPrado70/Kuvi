@@ -62,7 +62,6 @@ public class LoadLevel : State {
             }
         }
 
-        kuvi.background.setColor();
         kuvi.menuController.showLevelMessage(kuvi.level.message);
 
     }
@@ -70,10 +69,18 @@ public class LoadLevel : State {
     public void setCameraPosition() {
 
         Bounds levelBounds = new Bounds(Vector3.zero, Vector3.zero);
-
+        for(int row = 0; row < Kuvi.LEVEL_SIZE; row++) {
+            for(int column = 0; column < Kuvi.LEVEL_SIZE; column++) {
+                if(kuvi.floor[row, column].type != FloorType.EMPTY) {
+                    
+                }
+            }
+        }
+  
         float floorSize = kuvi.floor[0, 0].floorRenderer.bounds.size.x * Kuvi.LEVEL_SIZE;
 
         float cameraHeight = 2 * Camera.main.orthographicSize;
+
         float cameraWidth = cameraHeight * Camera.main.aspect;
 
         float levelWidth = Mathf.Sqrt(Mathf.Pow(floorSize, 2) + Mathf.Pow(floorSize, 2));
@@ -87,5 +94,6 @@ public class LoadLevel : State {
         kuvi.transform.position = new Vector3(center.x, center.y - levelWidth / 2, center.z);
 
     }
+
 
 }

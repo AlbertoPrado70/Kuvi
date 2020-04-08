@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 55230dbf3617f9044b2ad0a2b5af86c5, type: 2}
+  - {fileID: 2100000, guid: 772b459b35b5c1d4e8f83a8e143d7348, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -123,9 +123,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
   objectiveColor: {r: 0.2300641, g: 0.37412065, b: 0.8867924, a: 1}
-  buttonColor: {r: 0.9339623, g: 0.9327746, b: 0.110137045, a: 1}
+  buttonColor: {r: 1, g: 1, b: 0.2688679, a: 1}
   floorMesh: {fileID: 3300000, guid: 405a07933c23a8c449edcf974275757b, type: 3}
   buttonMesh: {fileID: 3300000, guid: ca5a90f0d935197429e5f0be52fff157, type: 3}
   floorRenderer: {fileID: 6672426604624241541}
   floorMeshFilter: {fileID: 6672426604623241541}
   type: 0
+  firstPosition: {x: 0, y: 0, z: 0}
