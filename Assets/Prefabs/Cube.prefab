@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ff71fad840a230b4996ebe5ac86fb96d, type: 2}
+  - {fileID: 2100000, guid: 772b459b35b5c1d4e8f83a8e143d7348, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c3696c375c793418d4bc6bc92d3464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeColor: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
+  cubeColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
   objectiveColor: {r: 0.2627451, g: 0.3921569, b: 0.8196079, a: 1}
   selectedColor: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
   cubeRenderer: {fileID: 2651405929955630207}

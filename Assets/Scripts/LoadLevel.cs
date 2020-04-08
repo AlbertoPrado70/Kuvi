@@ -44,6 +44,10 @@ public class LoadLevel : State {
                     delayAnimation += 0.1f;
                 }
 
+                if((row * Kuvi.LEVEL_SIZE + column) % 2 == 0 && kuvi.floor[row, column].type == FloorType.NORMAL) {
+                    kuvi.floor[row, column].floorRenderer.material.color = new Color(0.95f, 0.95f, 0.95f, 1);
+                }
+
                 if(kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + column] == 1) {
 
                     Vector3 floorSize = kuvi.floorPrefab.GetComponent<Floor>().floorRenderer.bounds.size;
@@ -90,6 +94,8 @@ public class LoadLevel : State {
         kuvi.transform.localScale = kuvi.transform.localScale * newSize;
 
         Vector3 center = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.farClipPlane / 2));
+
+        Debug.Log(center);
 
         kuvi.transform.position = new Vector3(center.x, center.y - levelWidth / 2, center.z);
 
