@@ -6,6 +6,7 @@ public class Cube : MonoBehaviour {
     public const float INIT_DURATION = 0.5f; 
     public const float MOVE_DURATION = 0.5f;
     public const float SELECTED_DURATION = 0.2f;
+    public const float OUT_ANIMATION = 0.5f;
 
     public Color cubeColor; 
     public Color objectiveColor; 
@@ -83,6 +84,13 @@ public class Cube : MonoBehaviour {
 
         effectRenderer.material.DOFade(0, 1).SetDelay(MOVE_DURATION);
         effectTransform.DOScale(5, 1).SetDelay(MOVE_DURATION);
+
+    }
+
+
+    public void fadeOutAnimation() {
+
+        cubeRenderer.material.DOFade(0, OUT_ANIMATION); 
 
     }
 

@@ -25,8 +25,8 @@ public class MenuController : MonoBehaviour {
         completeTransform.localScale = Vector3.zero;
 
         completeTransform.DOScale(20, FADE_ANIMATION);     
-        completeFade.DOFade(0.8f, FADE_ANIMATION);
-        completeFade.DOFade(0, FADE_ANIMATION).SetDelay(FADE_ANIMATION - 0.1f);
+        completeFade.DOFade(0.5f, FADE_ANIMATION);
+        completeFade.DOFade(0, FADE_ANIMATION).SetDelay(FADE_ANIMATION);
     
         completedFadedAnimation = true; 
     
@@ -38,7 +38,7 @@ public class MenuController : MonoBehaviour {
         levelMessage.DOFade(0, 0);
 
         levelMessage.DOFade(1, 1).SetDelay(1);
-        levelMessage.DOFade(0, 1).SetDelay(5);
+        levelMessage.DOFade(0, 1).SetDelay(3);
 
     }
 

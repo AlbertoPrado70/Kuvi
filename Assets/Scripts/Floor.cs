@@ -4,6 +4,7 @@ using DG.Tweening;
 public class Floor : MonoBehaviour {
 
     public const float INIT_ANIMATION = 0.6f;
+    public const float OUT_ANIMATION = 0.5f;
 
     public Color floorColor;
     public Color objectiveColor; 
@@ -54,7 +55,7 @@ public class Floor : MonoBehaviour {
         if(value == 4) {
             type = FloorType.INACTIVE;
             floorMeshFilter.mesh = floorMesh.sharedMesh;
-            transform.position = new Vector3(transform.position.x, transform.position.y - 0.4f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
             floorRenderer.material.color = buttonColor;
         }
 
@@ -68,9 +69,17 @@ public class Floor : MonoBehaviour {
 
     public void initAnimation(float delay) {
 
+        floorRenderer.material.DOFade(0, 0);
+
         transform.DOLocalMoveY(5, INIT_ANIMATION).From().SetDelay(delay);      
         floorRenderer.material.DOFade(0, INIT_ANIMATION).From().SetDelay(delay);  
     
+    }
+
+    public void fadeOutAnimation() {
+
+        floorRenderer.material.DOFade(0, OUT_ANIMATION); 
+
     }
 
 }

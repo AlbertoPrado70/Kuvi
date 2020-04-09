@@ -62,6 +62,7 @@ public class Kuvi : MonoBehaviour {
     public void setState(State state) {
 
         actualState = state;
+        Debug.Log(actualState);
 
     }
  
