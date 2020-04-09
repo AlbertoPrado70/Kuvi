@@ -66,6 +66,7 @@ public class LoadLevel : State {
             }
         }
 
+        kuvi.menuController.setLevelText((kuvi.actualLevel + 1).ToString());
         kuvi.menuController.showLevelMessage(kuvi.level.message);
 
     }

@@ -4,7 +4,34 @@ using TMPro;
 
 public class MenuController : MonoBehaviour {
 
+    public TextMeshProUGUI levelText;
     public TextMeshProUGUI levelMessage;
+
+    public bool lastLevel;
+    public bool nextLevel; 
+
+    void Start() {
+
+        lastLevel = false; 
+        nextLevel = false; 
+
+    }
+
+    public void goToLastLevel() {
+        lastLevel = true; 
+        Debug.Log("back");
+    }
+
+    public void goToNextLevel() {
+        nextLevel = true; 
+        Debug.Log("next");
+    }
+
+    public void setLevelText(string level) {
+
+        levelText.SetText(level);
+
+    }
 
     public void showLevelMessage(string message) {
 

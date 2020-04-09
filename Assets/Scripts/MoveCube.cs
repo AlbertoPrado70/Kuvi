@@ -74,9 +74,7 @@ public class MoveCube : State {
         }
 
         // Nivel completado. Limpiamos el estado del juego y pasamos al siguiente nivel 
-        if(isTouched && kuvi.levelCompleteState.levelCompleted && DOTween.TotalPlayingTweens() == 0) {
-
-                Debug.Log("Total playings: " + cubesPlayingAnimation());
+        if(kuvi.levelCompleteState.levelCompleted && DOTween.TotalPlayingTweens() == 0) {
 
             foreach(Cube cube in kuvi.cubes) {
                 cube.DOComplete();
@@ -95,17 +93,22 @@ public class MoveCube : State {
 
         }
 
-    }
+        // Cambiamos de nivel
+        if(kuvi.menuController.lastLevel) {
 
-    public int cubesPlayingAnimation() {
+            kuvi.menuController.lastLevel = false; 
+            kuvi.actualLevel--; 
+            kuvi.setState(kuvi.loadLevelState);
 
-        int totalPlayingAnimations = 0; 
-
-        foreach(Cube cube in kuvi.cubes) {
-            totalPlayingAnimations += (!cube.readyToMove) ? 1 : 0;
         }
 
-        return(totalPlayingAnimations);
+        if(kuvi.menuController.nextLevel) {
+
+            kuvi.menuController.nextLevel = false; 
+            kuvi.actualLevel++; 
+            kuvi.setState(kuvi.loadLevelState);
+
+        }
 
     }
 
