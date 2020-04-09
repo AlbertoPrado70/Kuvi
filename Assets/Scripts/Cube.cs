@@ -4,9 +4,9 @@ using DG.Tweening;
 public class Cube : MonoBehaviour {
     
     public const float INIT_DURATION = 0.5f; 
+    public const float OUT_ANIMATION = 0.5f;
     public const float MOVE_DURATION = 0.5f;
     public const float SELECTED_DURATION = 0.2f;
-    public const float OUT_ANIMATION = 0.5f;
 
     public Color cubeColor; 
     public Color objectiveColor; 
@@ -71,19 +71,15 @@ public class Cube : MonoBehaviour {
 
     }
 
-    public void selectedAnimation(Color color) {
-
-        cubeRenderer.material.DOColor(color, SELECTED_DURATION);
-
-    }
-
     public void completeAnimation() {
+
+        readyToMove = false; 
 
         effectRenderer.material.DOFade(1, 0);
         effectTransform.DOScale(0, 0);
 
-        effectRenderer.material.DOFade(0, 1).SetDelay(MOVE_DURATION);
-        effectTransform.DOScale(5, 1).SetDelay(MOVE_DURATION);
+        effectRenderer.material.DOFade(0, 0.7f).SetDelay(MOVE_DURATION).OnComplete(() => readyToMove = true);
+        effectTransform.DOScale(5, 0.7f).SetDelay(MOVE_DURATION);
 
     }
 

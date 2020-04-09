@@ -1,6 +1,4 @@
-﻿using DG.Tweening;
-
-public class LevelComplete : State {
+﻿public class LevelComplete : State {
 
     private Kuvi kuvi;
     public bool levelCompleted;
@@ -29,6 +27,7 @@ public class LevelComplete : State {
         if(allButtonsPressed) {
 
             foreach(Cube cube in kuvi.cubes) {
+                cube.readyToMove = false; 
                 cube.completeAnimation();
             }
 

@@ -9,7 +9,6 @@ public class Kuvi : MonoBehaviour {
     public GameObject cubePrefab; 
 
     public MenuController menuController;
-    public Background background;
 
     public Floor[,] floor;
     public List<Cube> cubes;
@@ -62,7 +61,6 @@ public class Kuvi : MonoBehaviour {
     public void setState(State state) {
 
         actualState = state;
-        Debug.Log(actualState);
 
     }
  
