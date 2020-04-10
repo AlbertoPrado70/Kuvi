@@ -10,7 +10,6 @@ public class Cube : MonoBehaviour {
 
     public Color cubeColor; 
     public Color objectiveColor; 
-    public Color selectedColor; 
     public Renderer cubeRenderer;
 
     public Renderer effectRenderer;
@@ -19,75 +18,70 @@ public class Cube : MonoBehaviour {
     public int row; 
     public int column; 
 
-    public bool readyToMove; 
+    public bool isTweening; 
 
     void Start() {
-
-        readyToMove = false; 
-
+        isTweening = false; 
     }
 
     public void setPosition(int row, int column) {
-
         this.row = row; 
         this.column = column; 
-
     }
 
     public void initAnimation(float delay) {
-
+        isTweening = true; 
         cubeRenderer.material.color = cubeColor;
-        cubeRenderer.material.DOFade(0, INIT_DURATION).From().SetDelay(delay).OnComplete(() => readyToMove = true);
-
+        cubeRenderer.material.DOFade(0, INIT_DURATION).From().SetDelay(delay).OnComplete(() => isTweening = false);
     }
 
     public void move(MoveCube.Move move, int distance) {
 
-        if(move == MoveCube.Move.TOP) {
-            readyToMove = false; 
-            transform.DOMoveX(transform.position.x - (distance * cubeRenderer.bounds.size.x), MOVE_DURATION).SetEase(Ease.InOutQuad).OnComplete(() => readyToMove = true);
+        isTweening = true;
+        float floorLength = cubeRenderer.bounds.size.x;
+
+        if(move == MoveCube.Move.TOP) { 
+            transform.DOMoveX(transform.position.x - (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutQuad).OnComplete(() => isTweening = false);
         }
 
         if(move == MoveCube.Move.RIGHT) {
-            readyToMove = false; 
-            transform.DOMoveZ(transform.position.z + (distance * cubeRenderer.bounds.size.x), MOVE_DURATION).SetEase(Ease.InOutQuad).OnComplete(() => readyToMove = true);
+            transform.DOMoveZ(transform.position.z + (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutQuad).OnComplete(() => isTweening = false);
         }
 
         if(move == MoveCube.Move.BOTTOM) {
-            readyToMove = false; 
-            transform.DOMoveX(transform.position.x + (distance * cubeRenderer.bounds.size.x), MOVE_DURATION).SetEase(Ease.InOutQuad).OnComplete(() => readyToMove = true);
+            transform.DOMoveX(transform.position.x + (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutQuad).OnComplete(() => isTweening = false);
         }
 
         if(move == MoveCube.Move.LEFT) {
-            readyToMove = false; 
-            transform.DOMoveZ(transform.position.z - (distance * cubeRenderer.bounds.size.x), MOVE_DURATION).SetEase(Ease.InOutQuad).OnComplete(() => readyToMove = true);
+            transform.DOMoveZ(transform.position.z - (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutQuad).OnComplete(() => isTweening = false);
         }
 
     }
 
     public void colorAnimation(Color color, float delay) {
-
-        cubeRenderer.material.DOColor(color, 1f).SetDelay(delay);
-
+        isTweening = true; 
+        cubeRenderer.material.DOColor(color, 1f).SetDelay(delay).OnComplete(() => isTweening = false);
     }
 
     public void completeAnimation() {
 
-        readyToMove = false; 
+        isTweening = true; 
 
         effectRenderer.material.DOFade(1, 0);
         effectTransform.DOScale(0, 0);
 
-        effectRenderer.material.DOFade(0, 0.7f).SetDelay(MOVE_DURATION).OnComplete(() => readyToMove = true);
-        effectTransform.DOScale(5, 0.7f).SetDelay(MOVE_DURATION);
+        effectRenderer.material.DOFade(0, 0.7f).SetDelay(MOVE_DURATION);
+        effectTransform.DOScale(5, 0.7f).SetDelay(MOVE_DURATION).OnComplete(() => isTweening = false);
 
     }
 
 
     public void fadeOutAnimation() {
-        cubeRenderer.material.DOFade(0, OUT_ANIMATION); 
+        isTweening = true;
+        cubeRenderer.material.DOFade(0, OUT_ANIMATION).OnComplete(() => isTweening = false); 
     }
 
+    // TODO: Creo que esta función no funciona muy bien.
     public void completeAllAnimations() {
         cubeRenderer.DOComplete();
         effectRenderer.DOComplete();

@@ -27,7 +27,6 @@
         if(allButtonsPressed) {
 
             foreach(Cube cube in kuvi.cubes) {
-                cube.readyToMove = false; 
                 cube.completeAnimation();
             }
 
