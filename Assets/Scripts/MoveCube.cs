@@ -94,20 +94,19 @@ public class MoveCube : State {
         }
 
         // Cambiamos de nivel
-        if(kuvi.menuController.lastLevel) {
-
+        if(kuvi.menuController.lastLevel && DOTween.TotalPlayingTweens() == 0) {
+            kuvi.menuController.levelMessage.DOComplete();
             kuvi.menuController.lastLevel = false; 
             kuvi.actualLevel--; 
             kuvi.setState(kuvi.loadLevelState);
 
         }
 
-        if(kuvi.menuController.nextLevel) {
-
+        if(kuvi.menuController.nextLevel && DOTween.TotalPlayingTweens() == 0) {
+            kuvi.menuController.levelMessage.DOComplete();
             kuvi.menuController.nextLevel = false; 
             kuvi.actualLevel++; 
             kuvi.setState(kuvi.loadLevelState);
-
         }
 
     }

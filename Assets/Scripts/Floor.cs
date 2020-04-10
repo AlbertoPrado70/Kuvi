@@ -82,4 +82,8 @@ public class Floor : MonoBehaviour {
 
     }
 
+    public void completeAllAnimations() {
+        floorRenderer.DOComplete();
+    }
+
 }

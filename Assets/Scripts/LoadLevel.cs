@@ -7,18 +7,14 @@ public class LoadLevel : State {
     private Kuvi kuvi;
 
     public LoadLevel(Kuvi kuvi) {
-
         this.kuvi = kuvi;
         setCameraPosition();
-    
     }
 
     public override void Tick() {
-        
         setLevel(kuvi.actualLevel);
         setCameraPosition();
         kuvi.setState(kuvi.moveCubeState);
-
     }
 
     public void setLevel(int levelIndex) {

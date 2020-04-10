@@ -85,9 +85,13 @@ public class Cube : MonoBehaviour {
 
 
     public void fadeOutAnimation() {
-
         cubeRenderer.material.DOFade(0, OUT_ANIMATION); 
+    }
 
+    public void completeAllAnimations() {
+        cubeRenderer.DOComplete();
+        effectRenderer.DOComplete();
+        effectTransform.DOComplete();
     }
 
 }

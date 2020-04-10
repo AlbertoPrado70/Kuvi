@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 
 public class MenuController : MonoBehaviour {
+
+    public Image blackPanel; 
 
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI levelMessage;
@@ -17,14 +20,17 @@ public class MenuController : MonoBehaviour {
 
     }
 
+    public void fadeOutPanel() {
+        blackPanel.color = new Color(0, 0, 0, 1); 
+        blackPanel.DOFade(0, 2).OnComplete(() => blackPanel.gameObject.SetActive(false)); 
+    }
+
     public void goToLastLevel() {
         lastLevel = true; 
-        Debug.Log("back");
     }
 
     public void goToNextLevel() {
         nextLevel = true; 
-        Debug.Log("next");
     }
 
     public void setLevelText(string level) {
