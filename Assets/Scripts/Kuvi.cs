@@ -66,4 +66,16 @@ public class Kuvi : MonoBehaviour {
 
     }
  
+    public int totalTweeningCubes() {
+
+        int totalTweens = 0; 
+        
+        foreach(Cube cube in cubes) {
+            totalTweens += (cube.isTweening) ? 1 : 0; 
+        }
+
+        return(totalTweens); 
+
+    }
+
 }

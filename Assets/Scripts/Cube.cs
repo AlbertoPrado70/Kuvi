@@ -86,6 +86,7 @@ public class Cube : MonoBehaviour {
         cubeRenderer.DOComplete();
         effectRenderer.DOComplete();
         effectTransform.DOComplete();
+        isTweening = false; 
     }
 
 }

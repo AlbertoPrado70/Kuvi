@@ -18,11 +18,11 @@ public class Floor : MonoBehaviour {
     public FloorType type;
 
     public Vector3 firstPosition; 
+    public bool isTweening; 
 
     void Start() {
-
         firstPosition = transform.position;
-
+        isTweening = false; 
     }
 
     public void setFloor(int value) {
@@ -69,21 +69,24 @@ public class Floor : MonoBehaviour {
 
     public void initAnimation(float delay) {
 
+        isTweening = true; 
         floorRenderer.material.DOFade(0, 0);
 
         transform.DOLocalMoveY(5, INIT_ANIMATION).From().SetDelay(delay);      
-        floorRenderer.material.DOFade(0, INIT_ANIMATION).From().SetDelay(delay);  
+        floorRenderer.material.DOFade(0, INIT_ANIMATION).From().SetDelay(delay).OnComplete(() => isTweening = false);  
     
     }
 
     public void fadeOutAnimation() {
-
-        floorRenderer.material.DOFade(0, OUT_ANIMATION); 
-
+        isTweening = true; 
+        floorRenderer.material.DOFade(0, OUT_ANIMATION).OnComplete(() => isTweening = false); 
     }
 
+    // TODO: No se si esta funcion hace su trabajo. 
     public void completeAllAnimations() {
+        transform.DOComplete();
         floorRenderer.DOComplete();
+        isTweening = false; 
     }
 
 }
