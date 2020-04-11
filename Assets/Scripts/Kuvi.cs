@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using DG.Tweening;
 using System.Collections.Generic;
 
 public class Kuvi : MonoBehaviour {
@@ -80,11 +81,11 @@ public class Kuvi : MonoBehaviour {
     public void completeAllTweens() {
 
         foreach(Cube cube in cubes) {
-            cube.completeAllAnimations(); 
+            cube.isTweening = false; 
         }
 
         foreach(Floor floor in floor) {
-            floor.completeAllAnimations(); 
+            floor.isTweening = false; 
         }
 
     }

@@ -18,7 +18,7 @@ public class LoadLevel : State {
 
     public override void Tick() {
         if(kuvi.totalTweens() == 0) {
-            Debug.Log("Cambiando");
+            kuvi.setState(kuvi.moveCubeState);
         }
     }
 
@@ -31,37 +31,44 @@ public class LoadLevel : State {
         kuvi.cubes.Clear();
         kuvi.menuController.stopMessageAnimations();
 
-        levelIndex = (levelIndex >= Level.json.Length) ? 0 : levelIndex; 
+        levelIndex = (levelIndex >= Level.json.Length) ? Level.json.Length - 1 : levelIndex; 
         JsonUtility.FromJsonOverwrite(Level.json[levelIndex].Replace('\'', '"'), kuvi.level);
         
         float delayAnimation = 0;
 
+        Vector3 cubePosition = new Vector3();
+
         for(int row = 0; row < Kuvi.LEVEL_SIZE; row++) {
             for(int column = 0; column < Kuvi.LEVEL_SIZE; column++) {
-                
+
                 kuvi.floor[row, column].setFloor(kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + column]);
-                
+
                 if(kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + column] != -1) {
+
                     kuvi.floor[row, column].initAnimation(delayAnimation);
+                    
                     delayAnimation += 0.1f;
+
                 }
 
+
                 if((row * Kuvi.LEVEL_SIZE + column) % 2 == 0 && kuvi.floor[row, column].type == FloorType.NORMAL) {
-                    kuvi.floor[row, column].floorRenderer.material.color = new Color(0.95f, 0.95f, 0.95f, 1);
+                    kuvi.floor[row, column].floorRenderer.material.color = kuvi.floor[row, column].grayFloorColor;
                 }
 
                 if(kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + column] == 1) {
 
                     Vector3 floorSize = kuvi.floorPrefab.GetComponent<Floor>().floorRenderer.bounds.size;
-
                     GameObject cube = Kuvi.Instantiate(kuvi.cubePrefab, Vector3.zero, Quaternion.identity, kuvi.transform);
 
-                    cube.transform.localPosition = new Vector3(row * floorSize.x, 0.6f, column * floorSize.x);
-                    cube.name = "Cube" + row + column;
-                    cube.GetComponent<Cube>().setPosition(row, column); 
-                    cube.GetComponent<Cube>().initAnimation(Floor.INIT_ANIMATION + delayAnimation);
+                    cubePosition.Set(row * floorSize.x, 0.6f, column * floorSize.x);
+                    cube.transform.localPosition = cubePosition;
+                    
+                    Cube cubeComponent = cube.GetComponent<Cube>();
+                    cubeComponent.setPosition(row, column); 
+                    cubeComponent.initAnimation(Floor.INIT_ANIMATION + delayAnimation);
     
-                    kuvi.cubes.Add(cube.GetComponent<Cube>());
+                    kuvi.cubes.Add(cubeComponent);
 
                 }
                 

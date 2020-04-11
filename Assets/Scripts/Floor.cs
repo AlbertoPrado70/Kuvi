@@ -3,27 +3,33 @@ using DG.Tweening;
 
 public class Floor : MonoBehaviour {
 
-    public const float INIT_ANIMATION = 0.6f;
+    public const float INIT_ANIMATION = 0.3f;
     public const float OUT_ANIMATION = 0.5f;
 
     public Color floorColor;
-    public Color objectiveColor; 
-    public Color buttonColor;
+    public Color grayFloorColor;
+    public Color buttonColor; 
 
     public MeshFilter floorMesh; 
     public MeshFilter buttonMesh; 
 
     public Renderer floorRenderer; 
     public MeshFilter floorMeshFilter;
+    
     public FloorType type;
-
     public bool isTweening; 
+    public int value; 
 
     void Awake() {
-        isTweening = false; 
+        type = FloorType.EMPTY;
+        isTweening = false;
+        value = -1; 
+        floorRenderer.material.color = new Color(0, 0, 0, 0);
     }
 
     public void setFloor(int value) {
+
+        this.value = value; 
 
         if(value == -1) {
             type = FloorType.EMPTY;
@@ -40,25 +46,6 @@ public class Floor : MonoBehaviour {
         if(value == 2) {
             type = FloorType.OBJETIVE;
             floorMeshFilter.mesh = buttonMesh.sharedMesh;
-            floorRenderer.material.color = objectiveColor;
-        }
-
-        if(value == 3) {
-            type = FloorType.BUTTON;
-            floorMeshFilter.mesh = buttonMesh.sharedMesh;
-            floorRenderer.material.color = buttonColor;
-        }
-
-        if(value == 4) {
-            type = FloorType.INACTIVE;
-            floorMeshFilter.mesh = floorMesh.sharedMesh;
-            transform.position = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
-            floorRenderer.material.color = buttonColor;
-        }
-
-        if(value == 5) {
-            type = FloorType.ACTIVE;
-            floorMeshFilter.mesh = floorMesh.sharedMesh;
             floorRenderer.material.color = buttonColor;
         }
         
@@ -66,10 +53,12 @@ public class Floor : MonoBehaviour {
 
     public void initAnimation(float delay) {
 
+        floorRenderer.material.DOFade(0, 0);
+
         isTweening = true; 
 
-        transform.DOLocalMoveY(5, INIT_ANIMATION).From().SetDelay(delay);      
-        floorRenderer.material.DOFade(0, INIT_ANIMATION).From().SetDelay(delay).OnComplete(() => isTweening = false);  
+        transform.DOLocalMoveY(2, INIT_ANIMATION).From().SetDelay(delay);      
+        floorRenderer.material.DOFade(1, INIT_ANIMATION).SetDelay(delay).OnComplete(() => isTweening = false);  
     
     }
 

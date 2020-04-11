@@ -77,11 +77,14 @@ public class MoveCube : State {
         if(kuvi.menuController.lastLevel) {
             kuvi.menuController.lastLevel = false; 
             kuvi.actualLevel--; 
+            kuvi.completeAllTweens();
             kuvi.setState(kuvi.loadLevelState);
         }
 
         if(kuvi.menuController.nextLevel) {
             kuvi.menuController.nextLevel = false; 
+            
+            kuvi.completeAllTweens();
             kuvi.actualLevel++; 
             kuvi.setState(kuvi.loadLevelState);
         }
@@ -92,32 +95,6 @@ public class MoveCube : State {
 
         int distance = 0; 
         bool cubeCollided = false;
-
-        // Desactivamos pisos antes de mover
-
-        if(move == Move.RIGHT && column + 1 < Kuvi.LEVEL_SIZE && kuvi.floor[row, column].type == FloorType.BUTTON) {
-            if(kuvi.floor[row, column + 1].type == FloorType.NORMAL || kuvi.floor[row, column + 1].type == FloorType.BUTTON || kuvi.floor[row, column + 1].type == FloorType.OBJETIVE) {
-                kuvi.activateFloorState.desactivateLevelFloor();
-            }
-        }
-
-        if(move == Move.LEFT && column - 1 >= 0 && kuvi.floor[row, column].type == FloorType.BUTTON) {
-            if(kuvi.floor[row, column - 1].type == FloorType.NORMAL || kuvi.floor[row, column - 1].type == FloorType.BUTTON || kuvi.floor[row, column - 1].type == FloorType.OBJETIVE) {
-                kuvi.activateFloorState.desactivateLevelFloor();
-            }
-        }
-
-        if(move == Move.TOP && row - 1 >= 0 && kuvi.floor[row, column].type == FloorType.BUTTON) {
-            if(kuvi.floor[row - 1, column].type == FloorType.NORMAL || kuvi.floor[row - 1, column].type == FloorType.BUTTON || kuvi.floor[row - 1, column].type == FloorType.OBJETIVE) {
-                kuvi.activateFloorState.desactivateLevelFloor();
-            }
-        }
-
-        if(move == Move.BOTTOM && row + 1 < Kuvi.LEVEL_SIZE && kuvi.floor[row, column].type == FloorType.BUTTON) {
-            if(kuvi.floor[row + 1, column].type == FloorType.NORMAL || kuvi.floor[row + 1, column].type == FloorType.BUTTON || kuvi.floor[row + 1, column].type == FloorType.OBJETIVE) {
-                kuvi.activateFloorState.desactivateLevelFloor();
-            }
-        }
 
         // Movimiento
 

@@ -2,9 +2,6 @@
 
     EMPTY,
     NORMAL, 
-    OBJETIVE, 
-    BUTTON,
-    ACTIVE, 
-    INACTIVE
+    OBJETIVE
     
 }
