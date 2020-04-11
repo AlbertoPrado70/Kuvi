@@ -7,7 +7,6 @@ public class Kuvi : MonoBehaviour {
 
     public GameObject floorPrefab;
     public GameObject cubePrefab; 
-
     public MenuController menuController;
 
     public Floor[,] floor;
@@ -22,7 +21,7 @@ public class Kuvi : MonoBehaviour {
     public LevelComplete levelCompleteState;
     public State actualState; 
 
-    void Start() {
+    void Awake() {
 
         floor = new Floor[LEVEL_SIZE, LEVEL_SIZE];
         cubes = new List<Cube>();
@@ -48,20 +47,18 @@ public class Kuvi : MonoBehaviour {
         moveCubeState = new MoveCube(this);
         activateFloorState = new ActivateFloor(this); 
         levelCompleteState = new LevelComplete(this);
+
         setState(loadLevelState);
 
     }
 
     void Update() {
-        
         actualState.Tick();
-
     }
 
     public void setState(State state) {
-
         actualState = state;
-
+        actualState.onEnter();
     }
  
     public int totalTweens() {

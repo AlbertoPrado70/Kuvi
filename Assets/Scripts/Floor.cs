@@ -17,11 +17,9 @@ public class Floor : MonoBehaviour {
     public MeshFilter floorMeshFilter;
     public FloorType type;
 
-    public Vector3 firstPosition; 
     public bool isTweening; 
 
-    void Start() {
-        firstPosition = transform.position;
+    void Awake() {
         isTweening = false; 
     }
 
@@ -37,7 +35,6 @@ public class Floor : MonoBehaviour {
             gameObject.SetActive(true);
             floorMeshFilter.mesh = floorMesh.sharedMesh;
             floorRenderer.material.color = floorColor;
-            transform.position = firstPosition; 
         }
 
         if(value == 2) {
@@ -70,7 +67,6 @@ public class Floor : MonoBehaviour {
     public void initAnimation(float delay) {
 
         isTweening = true; 
-        floorRenderer.material.DOFade(0, 0);
 
         transform.DOLocalMoveY(5, INIT_ANIMATION).From().SetDelay(delay);      
         floorRenderer.material.DOFade(0, INIT_ANIMATION).From().SetDelay(delay).OnComplete(() => isTweening = false);  

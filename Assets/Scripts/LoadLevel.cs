@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using DG.Tweening;
 
 public class LoadLevel : State {
  
@@ -9,26 +8,21 @@ public class LoadLevel : State {
 
     public LoadLevel(Kuvi kuvi) {
         this.kuvi = kuvi;
+    }
+
+    public override void onEnter() {
+        kuvi.menuController.fadeOutPanel();
+        setLevel(kuvi.actualLevel);
         setCameraPosition();
     }
 
     public override void Tick() {
-
         if(kuvi.totalTweens() == 0) {
-
-            setLevel(kuvi.actualLevel);
-            setCameraPosition();
-        
-            kuvi.menuController.fadeOutPanel();
-            kuvi.setState(kuvi.moveCubeState);
-
+            Debug.Log("Cambiando");
         }
-
     }
 
     public void setLevel(int levelIndex) {
-
-        DOTween.timeScale = 1;
 
         foreach(Cube cube in kuvi.cubes) {
             Kuvi.Destroy(cube.gameObject);
@@ -81,18 +75,13 @@ public class LoadLevel : State {
 
     public void setCameraPosition() {
 
-        // Obtenemos el centro de la camara
         Vector3 center = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.farClipPlane / 2));
 
-        // Calculamos las dimensiones de la camara
         float cameraHeight = 2 * Camera.main.orthographicSize;
         float cameraWidth = cameraHeight * Camera.main.aspect;        
-
-        // Escalamos el contenedor
         float floorDiagonal = kuvi.floor[0, 0].floorRenderer.bounds.size.x * Mathf.Sqrt(2);
         float newSize = cameraWidth / (floorDiagonal * Kuvi.LEVEL_SIZE + LEVEL_PADDING);
 
-        // Centramos el contenedor
         kuvi.transform.localScale = kuvi.transform.localScale * newSize;
         kuvi.transform.position = new Vector3(center.x, center.y - (floorDiagonal * newSize * 3), center.z);
 

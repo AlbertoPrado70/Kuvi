@@ -13,7 +13,7 @@ public class MenuController : MonoBehaviour {
     public bool lastLevel;
     public bool nextLevel; 
 
-    void Start() {
+    void Awake() {
 
         lastLevel = false; 
         nextLevel = false; 
@@ -26,12 +26,10 @@ public class MenuController : MonoBehaviour {
     }
 
     public void goToLastLevel() {
-        DOTween.timeScale = 2.5f;
         lastLevel = true; 
     }
 
     public void goToNextLevel() {
-        DOTween.timeScale = 2.5f;
         nextLevel = true; 
     }
 

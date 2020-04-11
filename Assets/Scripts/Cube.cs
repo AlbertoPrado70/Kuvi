@@ -20,7 +20,7 @@ public class Cube : MonoBehaviour {
 
     public bool isTweening; 
 
-    void Start() {
+    void Awake() {
         isTweening = false; 
     }
 
