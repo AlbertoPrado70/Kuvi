@@ -66,7 +66,7 @@ public class ActivateFloor : State {
                 if(kuvi.floor[row, column].type == FloorType.ACTIVE) {
                     kuvi.floor[row, column].type = FloorType.INACTIVE;
                     kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + column] = 4; 
-                    kuvi.floor[row, column].transform.DOLocalMoveY(-0.4f, 0.5f);
+                    kuvi.floor[row, column].transform.DOLocalMoveY(-0.8f, 0.5f);
                 }
             }
         }

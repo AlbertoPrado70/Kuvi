@@ -26,17 +26,17 @@ public class MenuController : MonoBehaviour {
     }
 
     public void goToLastLevel() {
+        DOTween.timeScale = 2.5f;
         lastLevel = true; 
     }
 
     public void goToNextLevel() {
+        DOTween.timeScale = 2.5f;
         nextLevel = true; 
     }
 
     public void setLevelText(string level) {
-
         levelText.SetText(level);
-
     }
 
     public void showLevelMessage(string message) {

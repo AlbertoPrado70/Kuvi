@@ -43,7 +43,7 @@
             kuvi.levelCompleteState.levelCompleted = false; 
             kuvi.actualLevel++;
 
-            kuvi.setState(kuvi.cleanLevelState);
+            kuvi.setState(kuvi.loadLevelState);
             
         }
 

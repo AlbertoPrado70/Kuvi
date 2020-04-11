@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using DG.Tweening;
 
 public class LoadLevel : State {
  
@@ -26,6 +27,8 @@ public class LoadLevel : State {
     }
 
     public void setLevel(int levelIndex) {
+
+        DOTween.timeScale = 1;
 
         foreach(Cube cube in kuvi.cubes) {
             Kuvi.Destroy(cube.gameObject);
