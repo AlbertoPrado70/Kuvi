@@ -4,14 +4,13 @@ using DG.Tweening;
 public class MoveCube : State {
 
     public enum Move{TOP, RIGHT, BOTTOM, LEFT};
-    public const int SWIPE_DISTANCE = 30;
+    public const int SWIPE_DISTANCE = 20;
 
     private Kuvi kuvi;
 
     private bool isTouched; 
     private Vector3 touchPosition;
     private Vector3 lastPosition;
-
 
     public MoveCube(Kuvi kuvi) {
 
@@ -24,6 +23,7 @@ public class MoveCube : State {
 
     public override void Tick() {
 
+        // Registramos un toque de pantalla o de mouse 
         if(Input.GetMouseButtonDown(0)) {
             touchPosition = Input.mousePosition;
             isTouched = true;
@@ -73,40 +73,17 @@ public class MoveCube : State {
 
         }
 
-        // Nivel completado. Limpiamos el estado del juego y pasamos al siguiente nivel 
-        if(kuvi.levelCompleteState.levelCompleted && DOTween.TotalPlayingTweens() == 0) {
-
-            foreach(Cube cube in kuvi.cubes) {
-                cube.DOComplete();
-                cube.effectRenderer.DOComplete();
-                cube.effectTransform.DOComplete();
-            }
-
-            kuvi.menuController.levelMessage.DOComplete();
-
-            kuvi.levelCompleteState.levelCompleted = false; 
-            kuvi.actualLevel++;
-
-            kuvi.setState(kuvi.loadLevelState);
-
-            isTouched = false;
-
-        }
-
         // Cambiamos de nivel
-        if(kuvi.menuController.lastLevel && DOTween.TotalPlayingTweens() == 0) {
-            kuvi.menuController.levelMessage.DOComplete();
+        if(kuvi.menuController.lastLevel) {
             kuvi.menuController.lastLevel = false; 
             kuvi.actualLevel--; 
-            kuvi.setState(kuvi.loadLevelState);
-
+            kuvi.setState(kuvi.cleanLevelState);
         }
 
-        if(kuvi.menuController.nextLevel && DOTween.TotalPlayingTweens() == 0) {
-            kuvi.menuController.levelMessage.DOComplete();
+        if(kuvi.menuController.nextLevel) {
             kuvi.menuController.nextLevel = false; 
             kuvi.actualLevel++; 
-            kuvi.setState(kuvi.loadLevelState);
+            kuvi.setState(kuvi.cleanLevelState);
         }
 
     }

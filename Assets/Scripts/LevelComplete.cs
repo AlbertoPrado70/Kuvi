@@ -4,37 +4,49 @@
     public bool levelCompleted;
 
     public LevelComplete(Kuvi kuvi) {
-
         this.kuvi = kuvi;
         levelCompleted = false; 
-
     }
 
     public override void Tick() {
 
-        bool allButtonsPressed = true; 
+        if(!levelCompleted) {
 
-        foreach(Cube cube in kuvi.cubes) {
-            if(kuvi.floor[cube.row, cube.column].type == FloorType.OBJETIVE) {
-                cube.colorAnimation(cube.objectiveColor, Cube.MOVE_DURATION);
+            bool allButtonsPressed = true; 
+
+            foreach(Cube cube in kuvi.cubes) {
+                if(kuvi.floor[cube.row, cube.column].type == FloorType.OBJETIVE) {
+                    cube.colorAnimation(cube.objectiveColor);
+                }
+                else {
+                    cube.colorAnimation(cube.cubeColor);
+                    allButtonsPressed = false; 
+                }
             }
-            else {
-                cube.colorAnimation(cube.cubeColor, 0);
-                allButtonsPressed = false; 
-            }
+
+            levelCompleted = allButtonsPressed;
+
         }
 
-        if(allButtonsPressed) {
+        if(!levelCompleted) {
+            
+            kuvi.setState(kuvi.moveCubeState);
+            
+        }
+
+        if(levelCompleted && kuvi.totalTweens() == 0) {
 
             foreach(Cube cube in kuvi.cubes) {
                 cube.completeAnimation();
             }
 
-            levelCompleted = true; 
+            kuvi.levelCompleteState.levelCompleted = false; 
+            kuvi.actualLevel++;
+
+            kuvi.setState(kuvi.cleanLevelState);
             
         }
 
-        kuvi.setState(kuvi.moveCubeState);
 
     }
     

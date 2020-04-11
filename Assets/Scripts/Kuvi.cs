@@ -20,10 +20,11 @@ public class Kuvi : MonoBehaviour {
     public MoveCube moveCubeState; 
     public ActivateFloor activateFloorState; 
     public LevelComplete levelCompleteState;
+    public CleanLevel cleanLevelState; 
     public State actualState; 
 
     void Start() {
-        
+
         floor = new Floor[LEVEL_SIZE, LEVEL_SIZE];
         cubes = new List<Cube>();
 
@@ -48,9 +49,8 @@ public class Kuvi : MonoBehaviour {
         moveCubeState = new MoveCube(this);
         activateFloorState = new ActivateFloor(this); 
         levelCompleteState = new LevelComplete(this);
+        cleanLevelState = new CleanLevel(this); 
         setState(loadLevelState);
-
-        menuController.fadeOutPanel();
 
     }
 
@@ -66,15 +66,31 @@ public class Kuvi : MonoBehaviour {
 
     }
  
-    public int totalTweeningCubes() {
+    public int totalTweens() {
 
-        int totalTweens = 0; 
+        int activeTweens = 0; 
         
         foreach(Cube cube in cubes) {
-            totalTweens += (cube.isTweening) ? 1 : 0; 
+            activeTweens += (cube.isTweening) ? 1 : 0; 
         }
 
-        return(totalTweens); 
+        foreach(Floor floor in floor) {
+            activeTweens += (floor.isTweening) ? 1 : 0; 
+        }
+
+        return(activeTweens); 
+
+    }
+
+    public void completeAllTweens() {
+
+        foreach(Cube cube in cubes) {
+            cube.completeAllAnimations(); 
+        }
+
+        foreach(Floor floor in floor) {
+            floor.completeAllAnimations(); 
+        }
 
     }
 

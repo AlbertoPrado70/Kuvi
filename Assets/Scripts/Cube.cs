@@ -41,26 +41,25 @@ public class Cube : MonoBehaviour {
         float floorLength = cubeRenderer.bounds.size.x;
 
         if(move == MoveCube.Move.TOP) { 
-            transform.DOMoveX(transform.position.x - (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutQuad).OnComplete(() => isTweening = false);
+            transform.DOMoveX(transform.position.x - (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutCubic).OnComplete(() => isTweening = false);
         }
 
         if(move == MoveCube.Move.RIGHT) {
-            transform.DOMoveZ(transform.position.z + (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutQuad).OnComplete(() => isTweening = false);
+            transform.DOMoveZ(transform.position.z + (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutCubic).OnComplete(() => isTweening = false);
         }
 
         if(move == MoveCube.Move.BOTTOM) {
-            transform.DOMoveX(transform.position.x + (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutQuad).OnComplete(() => isTweening = false);
+            transform.DOMoveX(transform.position.x + (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutCubic).OnComplete(() => isTweening = false);
         }
 
         if(move == MoveCube.Move.LEFT) {
-            transform.DOMoveZ(transform.position.z - (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutQuad).OnComplete(() => isTweening = false);
+            transform.DOMoveZ(transform.position.z - (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutCubic).OnComplete(() => isTweening = false);
         }
 
     }
 
-    public void colorAnimation(Color color, float delay) {
-        isTweening = true; 
-        cubeRenderer.material.DOColor(color, 1f).SetDelay(delay).OnComplete(() => isTweening = false);
+    public void colorAnimation(Color color) {
+        cubeRenderer.material.DOColor(color, 1f);
     }
 
     public void completeAnimation() {
@@ -70,8 +69,8 @@ public class Cube : MonoBehaviour {
         effectRenderer.material.DOFade(1, 0);
         effectTransform.DOScale(0, 0);
 
-        effectRenderer.material.DOFade(0, 0.7f).SetDelay(MOVE_DURATION);
-        effectTransform.DOScale(5, 0.7f).SetDelay(MOVE_DURATION).OnComplete(() => isTweening = false);
+        effectRenderer.material.DOFade(0, 0.7f);
+        effectTransform.DOScale(5, 0.7f).OnComplete(() => isTweening = false);
 
     }
 
@@ -83,6 +82,7 @@ public class Cube : MonoBehaviour {
 
     // TODO: Creo que esta función no funciona muy bien.
     public void completeAllAnimations() {
+        transform.DOComplete();
         cubeRenderer.DOComplete();
         effectRenderer.DOComplete();
         effectTransform.DOComplete();

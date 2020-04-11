@@ -12,9 +12,17 @@ public class LoadLevel : State {
     }
 
     public override void Tick() {
-        setLevel(kuvi.actualLevel);
-        setCameraPosition();
-        kuvi.setState(kuvi.moveCubeState);
+
+        if(kuvi.totalTweens() == 0) {
+
+            setLevel(kuvi.actualLevel);
+            setCameraPosition();
+        
+            kuvi.menuController.fadeOutPanel();
+            kuvi.setState(kuvi.moveCubeState);
+
+        }
+
     }
 
     public void setLevel(int levelIndex) {
@@ -24,6 +32,7 @@ public class LoadLevel : State {
         }
 
         kuvi.cubes.Clear();
+        kuvi.menuController.stopMessageAnimations();
 
         levelIndex = (levelIndex >= Level.json.Length) ? 0 : levelIndex; 
         JsonUtility.FromJsonOverwrite(Level.json[levelIndex].Replace('\'', '"'), kuvi.level);
