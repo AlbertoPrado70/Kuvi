@@ -53,6 +53,7 @@ public class Floor : MonoBehaviour {
 
     public void initAnimation(float delay) {
 
+
         floorRenderer.material.DOFade(0, 0);
 
         isTweening = true; 

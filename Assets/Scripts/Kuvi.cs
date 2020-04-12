@@ -24,6 +24,8 @@ public class Kuvi : MonoBehaviour {
 
     void Awake() {
 
+        DOTween.Init(true);
+
         floor = new Floor[LEVEL_SIZE, LEVEL_SIZE];
         cubes = new List<Cube>();
 
@@ -58,8 +60,14 @@ public class Kuvi : MonoBehaviour {
     }
 
     public void setState(State state) {
+
+        if(actualState != null) {
+            actualState.onExit();
+        }
+
         actualState = state;
         actualState.onEnter();
+        
     }
  
     public int totalTweens() {
@@ -79,6 +87,8 @@ public class Kuvi : MonoBehaviour {
     }
 
     public void completeAllTweens() {
+
+        DOTween.KillAll();
 
         foreach(Cube cube in cubes) {
             cube.isTweening = false; 

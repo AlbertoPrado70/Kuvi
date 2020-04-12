@@ -77,6 +77,14 @@ public class MoveCube : State {
         if(kuvi.menuController.lastLevel) {
             kuvi.menuController.lastLevel = false; 
             kuvi.actualLevel--; 
+            DOTween.KillAll();
+            foreach(Cube cube in kuvi.cubes) {
+            cube.isTweening = false; 
+        }
+
+        foreach(Floor floor in kuvi.floor) {
+            floor.isTweening = false; 
+        }
             kuvi.completeAllTweens();
             kuvi.setState(kuvi.loadLevelState);
         }
