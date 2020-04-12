@@ -18,7 +18,6 @@ public class Kuvi : MonoBehaviour {
 
     public LoadLevel loadLevelState;
     public MoveCube moveCubeState; 
-    public ActivateFloor activateFloorState; 
     public LevelComplete levelCompleteState;
     public State actualState; 
 
@@ -48,7 +47,6 @@ public class Kuvi : MonoBehaviour {
 
         loadLevelState = new LoadLevel(this);
         moveCubeState = new MoveCube(this);
-        activateFloorState = new ActivateFloor(this); 
         levelCompleteState = new LevelComplete(this);
 
         setState(loadLevelState);

@@ -3,7 +3,7 @@ using DG.Tweening;
 
 public class Floor : MonoBehaviour {
 
-    public const float INIT_ANIMATION = 0.3f;
+    public const float INIT_ANIMATION = 0.25f;
     public const float OUT_ANIMATION = 0.5f;
 
     public Color floorColor;
