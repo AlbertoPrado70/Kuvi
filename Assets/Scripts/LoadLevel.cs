@@ -2,9 +2,9 @@
 
 public class LoadLevel : State {
  
-    public const float LEVEL_PADDING = 0.05f;
     public enum LoadLevelState {FADE_FLOOR, ANIMATE_FLOOR, SET_STATE};
-
+    public const float LEVEL_PADDING = 0.05f;
+    
     private Kuvi kuvi;
     
     private bool isPanelFadedOut; 
@@ -21,15 +21,15 @@ public class LoadLevel : State {
 
     public override void onEnter() {
 
-        if(loadState == LoadLevelState.FADE_FLOOR) {
+        if(!isPanelFadedOut) {
             isPanelFadedOut = true; 
             kuvi.menuController.fadeOutPanel();
         }
 
-        kuvi.menuController.setLevelText(kuvi.actualLevel.ToString());
-
         setLevel(kuvi.actualLevel);
         setCameraPosition();
+
+        kuvi.menuController.stopMessageAnimations();
 
     }
 

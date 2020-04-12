@@ -1,52 +1,68 @@
-﻿public class LevelComplete : State {
+﻿using UnityEngine;
 
+public class LevelComplete : State {
+
+    public enum CompleteState {SET_STATE, SET_COMPLETE_ANIMATION, COMPLETE_LEVEL};
+    
     private Kuvi kuvi;
+
+    private CompleteState completeState; 
     public bool levelCompleted;
 
     public LevelComplete(Kuvi kuvi) {
+
         this.kuvi = kuvi;
+    
+        completeState = CompleteState.SET_STATE; 
         levelCompleted = false; 
+    
+    }
+
+    public override void onEnter() {
+
+        bool allButtonsPressed = true; 
+
+        foreach(Cube cube in kuvi.cubes) {
+            allButtonsPressed = (kuvi.floor[cube.row, cube.column].type == FloorType.OBJETIVE) ? allButtonsPressed : false; 
+        }
+
+        levelCompleted = allButtonsPressed; 
+
     }
 
     public override void Tick() {
 
-        if(!levelCompleted) {
+        if(completeState == CompleteState.SET_STATE) {
 
-            bool allButtonsPressed = true; 
-
-            foreach(Cube cube in kuvi.cubes) {
-                if(kuvi.floor[cube.row, cube.column].type == FloorType.OBJETIVE) {
-                    cube.colorAnimation(cube.objectiveColor);
-                }
-                else {
-                    cube.colorAnimation(cube.cubeColor);
-                    allButtonsPressed = false; 
-                }
+            if(!levelCompleted) {            
+                kuvi.setState(kuvi.moveCubeState);
             }
 
-            levelCompleted = allButtonsPressed;
+            if(levelCompleted) {
+                completeState = CompleteState.SET_COMPLETE_ANIMATION;
+            }
 
         }
 
-        if(!levelCompleted) {
+        if(completeState == CompleteState.SET_COMPLETE_ANIMATION && kuvi.totalTweens() == 0) {
             
-            kuvi.setState(kuvi.moveCubeState);
-            
-        }
-
-        if(levelCompleted && kuvi.totalTweens() == 0) {
-
             foreach(Cube cube in kuvi.cubes) {
                 cube.completeAnimation();
             }
 
-            kuvi.levelCompleteState.levelCompleted = false; 
-            kuvi.actualLevel++;
+            completeState = CompleteState.COMPLETE_LEVEL;
 
-            kuvi.setState(kuvi.loadLevelState);
-            
         }
 
+        if(completeState == CompleteState.COMPLETE_LEVEL && kuvi.totalTweens() == 0) {
+
+            levelCompleted = false; 
+            completeState = CompleteState.SET_STATE;
+
+            kuvi.actualLevel++; 
+            kuvi.setState(kuvi.loadLevelState); 
+
+        }
 
     }
     

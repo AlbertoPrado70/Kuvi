@@ -86,18 +86,4 @@ public class Kuvi : MonoBehaviour {
 
     }
 
-    public void completeAllTweens() {
-
-        DOTween.KillAll();
-
-        foreach(Cube cube in cubes) {
-            cube.isTweening = false; 
-        }
-
-        foreach(Floor floor in floor) {
-            floor.isTweening = false; 
-        }
-
-    }
-
 }

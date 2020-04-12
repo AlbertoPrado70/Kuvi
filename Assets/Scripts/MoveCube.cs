@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using DG.Tweening;
 
 public class MoveCube : State {
 
@@ -8,16 +7,17 @@ public class MoveCube : State {
 
     private Kuvi kuvi;
 
-    private bool isTouched; 
     private Vector3 touchPosition;
     private Vector3 lastPosition;
+    private bool isTouched; 
 
     public MoveCube(Kuvi kuvi) {
 
         this.kuvi = kuvi; 
 
-        isTouched = false;
-        touchPosition = new Vector3(0, 0, 0);
+        touchPosition = new Vector3();
+        lastPosition = new Vector3();
+        isTouched = false; 
 
     }
 
@@ -48,25 +48,25 @@ public class MoveCube : State {
                 if(touchPosition.x - lastPosition.x < -SWIPE_DISTANCE && touchPosition.y - lastPosition.y < -SWIPE_DISTANCE && !cube.isTweening) {
                     moveCube(Move.BOTTOM, cube.row, cube.column);
                     isTouched = false;
-                    kuvi.setState(kuvi.activateFloorState);
+                    kuvi.setState(kuvi.levelCompleteState);
                 }
 
                 if(touchPosition.x - lastPosition.x > SWIPE_DISTANCE && touchPosition.y - lastPosition.y > SWIPE_DISTANCE && !cube.isTweening) {
                     moveCube(Move.TOP, cube.row, cube.column);
                     isTouched = false;
-                    kuvi.setState(kuvi.activateFloorState);
+                    kuvi.setState(kuvi.levelCompleteState);
                 }
 
                 if(touchPosition.x - lastPosition.x < -SWIPE_DISTANCE && touchPosition.y - lastPosition.y > SWIPE_DISTANCE && !cube.isTweening) {
                     moveCube(Move.LEFT, cube.row, cube.column);
                     isTouched = false;
-                    kuvi.setState(kuvi.activateFloorState);
+                    kuvi.setState(kuvi.levelCompleteState);
                 }
 
                 if(touchPosition.x - lastPosition.x > SWIPE_DISTANCE && touchPosition.y - lastPosition.y < -SWIPE_DISTANCE && !cube.isTweening) {
                     moveCube(Move.RIGHT, cube.row, cube.column);
                     isTouched = false;
-                    kuvi.setState(kuvi.activateFloorState);
+                    kuvi.setState(kuvi.levelCompleteState);
                 }
 
             }
@@ -77,23 +77,14 @@ public class MoveCube : State {
         if(kuvi.menuController.lastLevel) {
             kuvi.menuController.lastLevel = false; 
             kuvi.actualLevel--; 
-            DOTween.KillAll();
-            foreach(Cube cube in kuvi.cubes) {
-            cube.isTweening = false; 
-        }
-
-        foreach(Floor floor in kuvi.floor) {
-            floor.isTweening = false; 
-        }
-            kuvi.completeAllTweens();
+            kuvi.menuController.setLevelText(kuvi.actualLevel.ToString());
             kuvi.setState(kuvi.loadLevelState);
         }
 
         if(kuvi.menuController.nextLevel) {
             kuvi.menuController.nextLevel = false; 
-            
-            kuvi.completeAllTweens();
             kuvi.actualLevel++; 
+            kuvi.menuController.setLevelText(kuvi.actualLevel.ToString());
             kuvi.setState(kuvi.loadLevelState);
         }
 

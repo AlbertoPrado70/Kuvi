@@ -18,6 +18,8 @@ public class MenuController : MonoBehaviour {
         lastLevel = false; 
         nextLevel = false; 
 
+        levelMessage.SetText("");
+
     }
 
     public void fadeOutPanel() {
@@ -42,7 +44,7 @@ public class MenuController : MonoBehaviour {
         levelMessage.SetText(message);
         levelMessage.DOFade(0, 0);
 
-        levelMessage.DOFade(1, 1).SetDelay(1);
+        levelMessage.DOFade(1, 1);
         levelMessage.DOFade(0, 1).SetDelay(4);
 
     }
