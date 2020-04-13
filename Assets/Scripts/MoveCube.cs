@@ -9,7 +9,9 @@ public class MoveCube : State {
 
     private Vector3 touchPosition;
     private Vector3 lastPosition;
-    private bool isTouched; 
+
+    public bool isTouched; 
+    public bool autosolve; 
 
     public MoveCube(Kuvi kuvi) {
 
@@ -17,7 +19,9 @@ public class MoveCube : State {
 
         touchPosition = new Vector3();
         lastPosition = new Vector3();
+
         isTouched = false; 
+        autosolve = false; 
 
     }
 
@@ -34,7 +38,7 @@ public class MoveCube : State {
             isTouched = true;
         }
 
-        if(isTouched && !kuvi.levelCompleteState.levelCompleted) {
+        if(isTouched && !kuvi.levelCompleteState.levelCompleted && !autosolve) {
 
             lastPosition = (Input.touchCount > 0) ? (Vector3)Input.GetTouch(0).position : (Vector3)Input.mousePosition;
 
@@ -84,12 +88,33 @@ public class MoveCube : State {
             kuvi.setState(kuvi.loadLevelState);
         }
 
+        // Empezamos a resolver
+        if(Input.GetKeyDown("a")) {
+            autosolve = true; 
+        }
+
+        if(autosolve) {
+            kuvi.solver.makeMove(this);
+            kuvi.solver.currentMove++;
+            kuvi.setState(kuvi.levelCompleteState);
+        }
+
+
     }
 
     public void moveCube(Move move, int row, int column) {
 
         int distance = 0; 
         bool cubeCollided = false;
+
+        // Moving Debug
+        int moveNumber = 0;
+        moveNumber = (move == Move.TOP) ? 1 : moveNumber;
+        moveNumber = (move == Move.RIGHT) ? 2 : moveNumber;
+        moveNumber = (move == Move.BOTTOM) ? 3 : moveNumber;
+        moveNumber = (move == Move.LEFT) ? 4 : moveNumber; 
+
+        Debug.Log(moveNumber + ", " + row + ", " + column);
 
         // Movimiento
 

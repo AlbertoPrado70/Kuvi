@@ -5,6 +5,8 @@ public class Cube : MonoBehaviour {
     
     // Cubo imitador: Realiza el mismo movimiento que el usuario
     // Cubo contrario: hace lo contrario al usuario
+    // Cubo bomba: Explota cubos rotos
+    // Cubo roto: Se destruyo cuando le explota una bomba
 
     public const float INIT_DURATION = 0.5f; 
     public const float OUT_ANIMATION = 0.5f;

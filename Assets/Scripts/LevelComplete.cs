@@ -59,6 +59,10 @@ public class LevelComplete : State {
             levelCompleted = false; 
             completeState = CompleteState.SET_STATE;
 
+            if(kuvi.moveCubeState.autosolve) {
+                kuvi.moveCubeState.autosolve = false; 
+            }
+
             kuvi.actualLevel++; 
             kuvi.setState(kuvi.loadLevelState); 
 

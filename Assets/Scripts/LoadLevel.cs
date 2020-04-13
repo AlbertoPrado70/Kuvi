@@ -29,6 +29,8 @@ public class LoadLevel : State {
         setLevel(kuvi.actualLevel);
         setCameraPosition();
 
+        kuvi.solver.currentSolution = kuvi.actualLevel;
+        kuvi.solver.currentMove = 0;
         kuvi.menuController.stopMessageAnimations();
 
     }
