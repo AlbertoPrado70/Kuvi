@@ -48,10 +48,9 @@ public class Kuvi : MonoBehaviour {
         loadLevelState = new LoadLevel(this);
         moveCubeState = new MoveCube(this);
         levelCompleteState = new LevelComplete(this);
-
+        
         setState(loadLevelState);
         
-
     }
 
     void Update() {

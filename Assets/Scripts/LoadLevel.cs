@@ -29,7 +29,6 @@ public class LoadLevel : State {
         setLevel(kuvi.actualLevel);
         setCameraPosition();
 
-        kuvi.menuController.setLevelText((kuvi.actualLevel + 1).ToString());
         kuvi.menuController.stopMessageAnimations();
 
     }
@@ -40,15 +39,9 @@ public class LoadLevel : State {
 
             for(int row = 0; row < Kuvi.LEVEL_SIZE; row++) {
                 for(int column = 0; column < Kuvi.LEVEL_SIZE; column++) {
-                    
-                    if(kuvi.floor[row, column].value != kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + column]) {
-                        
-                        if(kuvi.floor[row, column].type != FloorType.EMPTY) {
-                            kuvi.floor[row, column].fadeOutAnimation();
-                        }
-
+                    if(kuvi.floor[row, column].value != kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + column] && kuvi.floor[row, column].type != FloorType.EMPTY) {
+                        kuvi.floor[row, column].fadeOutAnimation();
                     }
-
                 }
             }
 
@@ -104,6 +97,7 @@ public class LoadLevel : State {
 
         if(loadState == LoadLevelState.SET_STATE && kuvi.totalTweens() == 0) {
             kuvi.menuController.showLevelMessage(kuvi.level.message);
+            kuvi.menuController.setMenuActive(true);
             kuvi.setState(kuvi.moveCubeState); 
         }
 
