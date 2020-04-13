@@ -28,10 +28,12 @@ public class MenuController : MonoBehaviour {
     }
 
     public void goToLastLevel() {
+        DOTween.CompleteAll();
         lastLevel = true; 
     }
 
     public void goToNextLevel() {
+        DOTween.CompleteAll();
         nextLevel = true; 
     }
 

@@ -50,6 +50,7 @@ public class Kuvi : MonoBehaviour {
         levelCompleteState = new LevelComplete(this);
 
         setState(loadLevelState);
+        
 
     }
 

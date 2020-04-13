@@ -29,6 +29,7 @@ public class LoadLevel : State {
         setLevel(kuvi.actualLevel);
         setCameraPosition();
 
+        kuvi.menuController.setLevelText((kuvi.actualLevel + 1).ToString());
         kuvi.menuController.stopMessageAnimations();
 
     }

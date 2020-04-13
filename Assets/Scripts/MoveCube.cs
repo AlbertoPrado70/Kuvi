@@ -77,14 +77,12 @@ public class MoveCube : State {
         if(kuvi.menuController.lastLevel) {
             kuvi.menuController.lastLevel = false; 
             kuvi.actualLevel--; 
-            kuvi.menuController.setLevelText(kuvi.actualLevel.ToString());
             kuvi.setState(kuvi.loadLevelState);
         }
 
         if(kuvi.menuController.nextLevel) {
             kuvi.menuController.nextLevel = false; 
             kuvi.actualLevel++; 
-            kuvi.menuController.setLevelText(kuvi.actualLevel.ToString());
             kuvi.setState(kuvi.loadLevelState);
         }
 
