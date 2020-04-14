@@ -5,12 +5,16 @@ using TMPro;
 
 public class MenuController : MonoBehaviour {
 
+    public const float OPEN_BUTTON_DURATION = 0.35f; 
+
     public Kuvi kuvi; 
     public Image blackPanel; 
 
     public Button backButton; 
     public Button nextButton;
     public Button menuButton; 
+
+    public Button[] menuButtons; 
 
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI levelMessage;
@@ -20,10 +24,31 @@ public class MenuController : MonoBehaviour {
     public bool lastLevel;
     public bool nextLevel; 
 
+
+    public AnimationCurve menuButtonEase;
+
     void Awake() {
+
         lastLevel = false; 
         nextLevel = false; 
         levelMessage.SetText("");
+
+        // Posicion de los botones del menu
+        float distance = 180; 
+        float teta = 0; 
+        Vector3 buttonPosition = new Vector3();
+
+        foreach(Button button in menuButtons) {
+
+            float x = distance * Mathf.Cos(teta); 
+            float y = distance * Mathf.Sin(teta);             
+
+            buttonPosition.Set(x, y, 0); 
+            button.GetComponent<RectTransform>().anchoredPosition = buttonPosition;
+            teta += Mathf.PI / 4;
+
+        }
+
     }
 
     public void fadeOutPanel() {
@@ -75,6 +100,25 @@ public class MenuController : MonoBehaviour {
     public void setMenuActive(bool state) {
         backButton.interactable = state; 
         nextButton.interactable = state;
+    }
+
+    public void openMenuAnimation() {
+
+        float delay = 0; 
+
+        foreach(Button button in menuButtons) {
+
+            button.gameObject.SetActive(true);
+
+            Sequence sequence = DOTween.Sequence(); 
+            sequence.Insert(delay, button.GetComponent<RectTransform>().DOAnchorPos(Vector3.zero, OPEN_BUTTON_DURATION).From().SetEase(menuButtonEase));
+            sequence.Insert(delay, button.GetComponent<RectTransform>().DOScale(Vector3.zero, OPEN_BUTTON_DURATION).From().SetEase(menuButtonEase));
+            sequence.Insert(delay, button.image.DOFade(0, OPEN_BUTTON_DURATION + 0.5f).From());
+
+            delay += 0.03f;
+
+        }
+
     }
 
 }

@@ -91,17 +91,22 @@ public class MoveCube : State {
             kuvi.setState(kuvi.loadLevelState);
         }
 
-        // Empezamos a resolver
-        if(Input.GetKeyDown("a")) {
-            autosolve = true; 
-        }
-
         if(autosolve && kuvi.totalTweens() == 0) {
             Movement m = kuvi.solver.makeMove();
             moveCube(m.move, m.row, m.column);
             kuvi.setState(kuvi.levelCompleteState);
         }
 
+        // Empezamos a resolver
+        if(Input.GetKeyDown("a")) {
+            autosolve = true; 
+            kuvi.setState(kuvi.loadLevelState);
+        }
+
+        // Reiniciamos el nivel 
+        if(Input.GetKeyDown("r")) {
+            kuvi.setState(kuvi.loadLevelState);
+        }
 
     }
 
@@ -111,7 +116,6 @@ public class MoveCube : State {
         bool cubeCollided = false;
 
         // Moving Debug
-        Debug.Log("Move: " + move + ", " + row + ", " + column);
         string m = ""; 
         m = (move == Move.TOP) ? "t" : m; 
         m = (move == Move.RIGHT) ? "r" : m; 

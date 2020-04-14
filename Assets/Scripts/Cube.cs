@@ -46,19 +46,19 @@ public class Cube : MonoBehaviour {
         float floorLength = cubeRenderer.bounds.size.x;
 
         if(move == MoveCube.Move.TOP) { 
-            transform.DOMoveX(transform.position.x - (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutCubic).OnComplete(() => isTweening = false);
+            transform.DOMoveX(transform.position.x - (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutQuart).OnComplete(() => isTweening = false);
         }
 
         if(move == MoveCube.Move.RIGHT) {
-            transform.DOMoveZ(transform.position.z + (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutCubic).OnComplete(() => isTweening = false);
+            transform.DOMoveZ(transform.position.z + (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutQuart).OnComplete(() => isTweening = false);
         }
 
         if(move == MoveCube.Move.BOTTOM) {
-            transform.DOMoveX(transform.position.x + (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutCubic).OnComplete(() => isTweening = false);
+            transform.DOMoveX(transform.position.x + (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutQuart).OnComplete(() => isTweening = false);
         }
 
         if(move == MoveCube.Move.LEFT) {
-            transform.DOMoveZ(transform.position.z - (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutCubic).OnComplete(() => isTweening = false);
+            transform.DOMoveZ(transform.position.z - (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutQuart).OnComplete(() => isTweening = false);
         }
 
     }
