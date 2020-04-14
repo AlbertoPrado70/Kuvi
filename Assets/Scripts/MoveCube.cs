@@ -2,7 +2,7 @@
 
 public class MoveCube : State {
 
-    public enum Move{TOP, RIGHT, BOTTOM, LEFT};
+    public enum Move{NONE, TOP, RIGHT, BOTTOM, LEFT};
     public const int SWIPE_DISTANCE = 20;
 
     private Kuvi kuvi;
@@ -12,6 +12,9 @@ public class MoveCube : State {
 
     public bool isTouched; 
     public bool autosolve; 
+
+    // String para ayudarnos a escribir soluciones
+    public string solucion; 
 
     public MoveCube(Kuvi kuvi) {
 
@@ -93,9 +96,9 @@ public class MoveCube : State {
             autosolve = true; 
         }
 
-        if(autosolve) {
-            kuvi.solver.makeMove(this);
-            kuvi.solver.currentMove++;
+        if(autosolve && kuvi.totalTweens() == 0) {
+            Movement m = kuvi.solver.makeMove();
+            moveCube(m.move, m.row, m.column);
             kuvi.setState(kuvi.levelCompleteState);
         }
 
@@ -108,13 +111,13 @@ public class MoveCube : State {
         bool cubeCollided = false;
 
         // Moving Debug
-        int moveNumber = 0;
-        moveNumber = (move == Move.TOP) ? 1 : moveNumber;
-        moveNumber = (move == Move.RIGHT) ? 2 : moveNumber;
-        moveNumber = (move == Move.BOTTOM) ? 3 : moveNumber;
-        moveNumber = (move == Move.LEFT) ? 4 : moveNumber; 
-
-        Debug.Log(moveNumber + ", " + row + ", " + column);
+        Debug.Log("Move: " + move + ", " + row + ", " + column);
+        string m = ""; 
+        m = (move == Move.TOP) ? "t" : m; 
+        m = (move == Move.RIGHT) ? "r" : m; 
+        m = (move == Move.BOTTOM) ? "b" : m; 
+        m = (move == Move.LEFT) ? "l" : m;
+        solucion += m + row + column + ";"; 
 
         // Movimiento
 

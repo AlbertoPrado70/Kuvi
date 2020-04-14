@@ -2,44 +2,53 @@
 
 public class Solver {
     
-    public int[,] solution = new int[4, 9] {
-        {3, 0, 3, -1, -1, -1, -1, -1, -1},
-        {3, 0, 2, 1, 6, 4, -1, -1, -1},
-        {3, 0, 3, 2, 3, 0, -1, -1, -1},
-        {3, 0, 1, 1, 6, 3, 3, 0, 5},
+    public string[] solution = new string[6]{
+        "b03;",
+        "b02;t64",
+        "b03;r30;",
+        "b01;t63;b05;",
+        "t43;t53;r13;t63;l13;",
+        "b00;b06;l66;t60;r00;b06;l66;l61;t60;r00;b06;l66;l62;",
     };
 
-    public int currentSolution; 
+    public string[] currentSolution; 
     public int currentMove; 
 
-    public Solver() {
-        currentSolution = 0; 
+    public Solver() { 
         currentMove = 0; 
     }
 
-    public void makeMove(MoveCube moveCubeState) {
+    public void parseSolution(int level) {
+        level = (level > solution.Length - 1) ? 0 : level; 
+        currentSolution = solution[level].Split(';');
+        currentMove = 0; 
+    }
 
-        MoveCube.Move move = MoveCube.Move.BOTTOM; 
+    public Movement makeMove() {
 
-        if(solution[currentSolution, currentMove] == 1) {
-            move = MoveCube.Move.TOP; 
-        }
+        Movement movement = new Movement();
 
-        if(solution[currentSolution, currentMove] == 2) {
-            move = MoveCube.Move.RIGHT; 
-        }
+        movement.move = MoveCube.Move.NONE; 
 
-        if(solution[currentSolution, currentMove] == 3) {
-            move = MoveCube.Move.BOTTOM; 
-        }
+        movement.move = (currentSolution[currentMove][0] == 't') ? MoveCube.Move.TOP : movement.move;
+        movement.move = (currentSolution[currentMove][0] == 'r') ? MoveCube.Move.RIGHT : movement.move;
+        movement.move = (currentSolution[currentMove][0] == 'b') ? MoveCube.Move.BOTTOM : movement.move;
+        movement.move = (currentSolution[currentMove][0] == 'l') ? MoveCube.Move.LEFT : movement.move; 
 
-        if(solution[currentSolution, currentMove] == 4) {
-            move = MoveCube.Move.LEFT; 
-        }
 
-        if(solution[currentSolution, currentMove + 1] != -1 && solution[currentSolution, currentMove + 2] != -1)
-            moveCubeState.moveCube(move, solution[currentSolution, currentMove + 1], solution[currentSolution, currentMove + 2]);
+        Debug.Log(currentSolution[currentMove][0]);
+        
+        int row = (int) char.GetNumericValue(currentSolution[currentMove][1]);
+        int column = (int) char.GetNumericValue(currentSolution[currentMove][2]);
+
+        movement.row = row; 
+        movement.column = column; 
+        currentMove++; 
+
+        return(movement); 
 
     }
 
 }
+
+

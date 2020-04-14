@@ -64,7 +64,12 @@ public class LevelComplete : State {
             }
 
             kuvi.actualLevel++; 
+            kuvi.menuController.setLevelText((kuvi.actualLevel + 1 ).ToString());
             kuvi.setState(kuvi.loadLevelState); 
+
+            // Move Debug Solution
+            Debug.Log(kuvi.moveCubeState.solucion); 
+            kuvi.moveCubeState.solucion = "";
 
         }
 
