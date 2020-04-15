@@ -6,15 +6,17 @@ using TMPro;
 public class MenuController : MonoBehaviour {
 
     public const float OPEN_BUTTON_DURATION = 0.35f; 
+    public const float RADIAL_BUTTON_DISTANCE = 170;
 
     public Kuvi kuvi; 
     public Image blackPanel; 
 
     public Button backButton; 
     public Button nextButton;
-    public Button menuButton; 
 
-    public Button[] menuButtons; 
+    public Image menuIcon; 
+    public GameObject[] menuButtons;
+    public RectTransform[] rectTransformButtons;  
 
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI levelMessage;
@@ -24,6 +26,10 @@ public class MenuController : MonoBehaviour {
     public bool lastLevel;
     public bool nextLevel; 
 
+    public bool menuIsOpen = false; 
+    public bool isAutoSolving = false; 
+
+    public float iconRotation = 0; 
 
     public AnimationCurve menuButtonEase;
 
@@ -33,20 +39,10 @@ public class MenuController : MonoBehaviour {
         nextLevel = false; 
         levelMessage.SetText("");
 
-        // Posicion de los botones del menu
-        float distance = 180; 
-        float teta = 0; 
-        Vector3 buttonPosition = new Vector3();
+        rectTransformButtons = new RectTransform[5];
 
-        foreach(Button button in menuButtons) {
-
-            float x = distance * Mathf.Cos(teta); 
-            float y = distance * Mathf.Sin(teta);             
-
-            buttonPosition.Set(x, y, 0); 
-            button.GetComponent<RectTransform>().anchoredPosition = buttonPosition;
-            teta += Mathf.PI / 4;
-
+        for(int i = 0; i < menuButtons.Length; i++) {
+            rectTransformButtons[i] = menuButtons[i].GetComponent<RectTransform>();
         }
 
     }
@@ -102,23 +98,70 @@ public class MenuController : MonoBehaviour {
         nextButton.interactable = state;
     }
 
-    public void openMenuAnimation() {
+    public void setMenuAnimation() {
 
-        float delay = 0; 
+        iconRotation += 90;
+        menuIcon.transform.DORotate(new Vector3(0, 0, iconRotation), 0.5f);
+        menuIcon.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.25f); 
+        menuIcon.transform.DOScale(Vector3.one, 0.5f).SetDelay(0.25f); 
 
-        foreach(Button button in menuButtons) {
+        // ABRIMOS EL MENU
+        if(!menuIsOpen) {
 
-            button.gameObject.SetActive(true);
+            Vector3 buttonPosition = new Vector3();
 
-            Sequence sequence = DOTween.Sequence(); 
-            sequence.Insert(delay, button.GetComponent<RectTransform>().DOAnchorPos(Vector3.zero, OPEN_BUTTON_DURATION).From().SetEase(menuButtonEase));
-            sequence.Insert(delay, button.GetComponent<RectTransform>().DOScale(Vector3.zero, OPEN_BUTTON_DURATION).From().SetEase(menuButtonEase));
-            sequence.Insert(delay, button.image.DOFade(0, OPEN_BUTTON_DURATION + 0.5f).From());
+            float delay = 0; 
+            float teta = 0; 
 
-            delay += 0.03f;
+            for(int i = 0; i < menuButtons.Length; i++) {
+
+                menuButtons[i].gameObject.SetActive(true);
+
+                float x = RADIAL_BUTTON_DISTANCE * Mathf.Cos(teta); 
+                float y = RADIAL_BUTTON_DISTANCE * Mathf.Sin(teta);             
+
+                buttonPosition.Set(x, y, 0); 
+
+                rectTransformButtons[i].anchoredPosition = Vector3.zero;
+                rectTransformButtons[i].localScale = Vector3.zero;
+                rectTransformButtons[i].gameObject.GetComponent<Button>().image.color = new Color(1, 1, 1, 0);
+                
+                Sequence sequence = DOTween.Sequence(); 
+                sequence.Insert(delay, rectTransformButtons[i].DOAnchorPos(buttonPosition, OPEN_BUTTON_DURATION).SetEase(menuButtonEase));
+                sequence.Insert(delay, rectTransformButtons[i].DOScale(Vector3.one, OPEN_BUTTON_DURATION).SetEase(menuButtonEase));
+                sequence.Insert(delay, menuButtons[i].gameObject.GetComponent<Button>().image.DOFade(1, OPEN_BUTTON_DURATION));
+
+                delay += 0.03f;
+                teta += Mathf.PI / 4;
+
+            }
+
+            menuIsOpen = true; 
 
         }
 
+        // Cerramos el menu
+        else {
+
+            for(int i = 0; i < menuButtons.Length; i++) {
+                
+                Sequence sequence = DOTween.Sequence(); 
+                sequence.Insert(0, rectTransformButtons[i].DOAnchorPos(Vector3.zero, OPEN_BUTTON_DURATION).SetEase(menuButtonEase));
+                sequence.Insert(0, rectTransformButtons[i].DOScale(Vector3.zero, OPEN_BUTTON_DURATION).SetEase(menuButtonEase));
+                sequence.Insert(0, menuButtons[i].gameObject.GetComponent<Button>().image.DOFade(0, OPEN_BUTTON_DURATION));
+
+            }
+
+            menuIsOpen = false;
+
+        }
+
+    }
+
+    // Set Auto Solver
+    public void autoSolveLevel() {
+        isAutoSolving = true;
+        setMenuAnimation();
     }
 
 }

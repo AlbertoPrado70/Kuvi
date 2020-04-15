@@ -98,9 +98,10 @@ public class MoveCube : State {
         }
 
         // Empezamos a resolver
-        if(Input.GetKeyDown("a")) {
+        if(kuvi.menuController.isAutoSolving) {
             autosolve = true; 
             kuvi.setState(kuvi.loadLevelState);
+            kuvi.menuController.isAutoSolving = false;
         }
 
         // Reiniciamos el nivel 
