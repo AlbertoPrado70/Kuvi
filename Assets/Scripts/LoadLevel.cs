@@ -31,6 +31,7 @@ public class LoadLevel : State {
 
         kuvi.solver.parseSolution(kuvi.actualLevel);
         kuvi.menuController.stopMessageAnimations();
+        kuvi.background.setBackgroundColor(Random.Range(0, kuvi.background.backgroundColor.Length));
 
     }
 

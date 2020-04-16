@@ -10,13 +10,13 @@ public class Cube : MonoBehaviour {
 
     public const float INIT_DURATION = 0.5f; 
     public const float OUT_ANIMATION = 0.5f;
-    public const float MOVE_DURATION = 0.5f;
+    public const float MOVE_DURATION = 0.6f;
     public const float SELECTED_DURATION = 0.2f;
 
     public Color cubeColor; 
-    public Color objectiveColor; 
+    public Color nextMoveColor; 
     public Renderer cubeRenderer;
-
+    public Renderer nextMoveRenderer; 
     public Renderer effectRenderer;
     public Transform effectTransform;
 
@@ -27,6 +27,7 @@ public class Cube : MonoBehaviour {
 
     void Awake() {
         isTweening = false; 
+        nextMoveRenderer.material.color = nextMoveColor;
     }
 
     public void setPosition(int row, int column) {
@@ -86,13 +87,5 @@ public class Cube : MonoBehaviour {
         cubeRenderer.material.DOFade(0, OUT_ANIMATION).OnComplete(() => isTweening = false); 
     }
 
-    // TODO: Creo que esta función no funciona muy bien.
-    public void completeAllAnimations() {
-        transform.DOComplete();
-        cubeRenderer.DOComplete();
-        effectRenderer.DOComplete();
-        effectTransform.DOComplete();
-        isTweening = false; 
-    }
 
 }

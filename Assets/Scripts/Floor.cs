@@ -68,11 +68,4 @@ public class Floor : MonoBehaviour {
         floorRenderer.material.DOFade(0, OUT_ANIMATION).OnComplete(() => isTweening = false); 
     }
 
-    // TODO: No se si esta funcion hace su trabajo. 
-    public void completeAllAnimations() {
-        transform.DOComplete();
-        floorRenderer.DOComplete();
-        isTweening = false; 
-    }
-
 }

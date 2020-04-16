@@ -2,7 +2,10 @@
 
 public class MoveCube : State {
 
+    public enum MoveState{WAITING_TOUCH};
     public enum Move{NONE, TOP, RIGHT, BOTTOM, LEFT};
+
+    public const int MOVE_INDICATOR_DISTANCE = 10;
     public const int SWIPE_DISTANCE = 20;
 
     private Kuvi kuvi;
@@ -107,6 +110,11 @@ public class MoveCube : State {
         // Reiniciamos el nivel 
         if(Input.GetKeyDown("r")) {
             kuvi.setState(kuvi.loadLevelState);
+        }
+
+        // Cambiamos el fondo
+        if(Input.GetKeyDown("b")) {
+            kuvi.background.setBackgroundColor(Random.Range(0, kuvi.background.backgroundColor.Length));
         }
 
     }

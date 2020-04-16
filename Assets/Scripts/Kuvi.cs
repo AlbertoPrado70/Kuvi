@@ -22,6 +22,8 @@ public class Kuvi : MonoBehaviour {
     public LevelComplete levelCompleteState;
     public State actualState; 
 
+    public Background background; 
+
     void Awake() {
 
         DOTween.Init(true);
