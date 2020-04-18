@@ -14,9 +14,8 @@ public class Cube : MonoBehaviour {
     public const float SELECTED_DURATION = 0.2f;
 
     public Color cubeColor; 
-    public Color nextMoveColor; 
+    public Color selectedColor; 
     public Renderer cubeRenderer;
-    public Renderer nextMoveRenderer; 
     public Renderer effectRenderer;
     public Transform effectTransform;
 
@@ -27,17 +26,16 @@ public class Cube : MonoBehaviour {
 
     void Awake() {
         isTweening = false; 
-        nextMoveRenderer.material.color = nextMoveColor;
     }
 
-    public void setPosition(int row, int column) {
+    public void set(int row, int column) {
         this.row = row; 
         this.column = column; 
+        cubeRenderer.material.color = cubeColor;
     }
 
     public void initAnimation(float delay) {
         isTweening = true; 
-        cubeRenderer.material.color = cubeColor;
         cubeRenderer.material.DOFade(0, INIT_DURATION).From().SetDelay(delay).OnComplete(() => isTweening = false);
     }
 
@@ -65,7 +63,7 @@ public class Cube : MonoBehaviour {
     }
 
     public void colorAnimation(Color color) {
-        cubeRenderer.material.DOColor(color, 1f);
+        cubeRenderer.material.DOColor(color, 0.1f);
     }
 
     public void completeAnimation() {

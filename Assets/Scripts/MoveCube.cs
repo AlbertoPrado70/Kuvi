@@ -2,22 +2,23 @@
 
 public class MoveCube : State {
 
-    public enum MoveState{WAITING_TOUCH};
+    // Cubo que desaparece cuando lo tocas
+    // Cubo que se mueve al lado contrario
+
+    public enum MoveState{WAITING_TOUCH, MAKE_MOVE};
     public enum Move{NONE, TOP, RIGHT, BOTTOM, LEFT};
 
-    public const int MOVE_INDICATOR_DISTANCE = 10;
-    public const int SWIPE_DISTANCE = 20;
+    public const int SWIPE_DISTANCE = 30;
 
     private Kuvi kuvi;
 
-    private Vector3 touchPosition;
-    private Vector3 lastPosition;
+    private Cube touchedCube; 
+    private Vector2 touchPosition;
+    private Vector2 lastPosition;
 
-    public bool isTouched; 
+    public MoveState state;
+    public string levelSolution; 
     public bool autosolve; 
-
-    // String para ayudarnos a escribir soluciones
-    public string solucion; 
 
     public MoveCube(Kuvi kuvi) {
 
@@ -25,75 +26,98 @@ public class MoveCube : State {
 
         touchPosition = new Vector3();
         lastPosition = new Vector3();
-
-        isTouched = false; 
-        autosolve = false; 
+        
+        state = MoveState.WAITING_TOUCH;
+        levelSolution = ""; 
 
     }
 
     public override void Tick() {
 
-        // Registramos un toque de pantalla o de mouse 
-        if(Input.GetMouseButtonDown(0)) {
-            touchPosition = Input.mousePosition;
-            isTouched = true;
-        }
+        // Registramos la posicion del mouse o evento tactil y determinamos si tocaron un cubo
+        if(state == MoveState.WAITING_TOUCH) {
 
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
-            touchPosition = Input.GetTouch(0).position;
-            isTouched = true;
-        }
+            bool touched = false; 
 
-        if(isTouched && !kuvi.levelCompleteState.levelCompleted && !autosolve) {
+            if(Input.GetMouseButtonDown(0)) {
+                touchPosition = Input.mousePosition;
+                touched = true;
+            }
 
-            lastPosition = (Input.touchCount > 0) ? (Vector3)Input.GetTouch(0).position : (Vector3)Input.mousePosition;
+            if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
+                touchPosition = Input.GetTouch(0).position;
+                touched = true;
+            }
 
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(touchPosition);
+            RaycastHit cubeCollider;
             
-            if (Physics.Raycast(ray, out hit)) {
-
-                Cube cube = hit.transform.GetComponent<Cube>();
-
-                if(touchPosition.x - lastPosition.x < -SWIPE_DISTANCE && touchPosition.y - lastPosition.y < -SWIPE_DISTANCE && !cube.isTweening) {
-                    moveCube(Move.BOTTOM, cube.row, cube.column);
-                    isTouched = false;
-                    kuvi.setState(kuvi.levelCompleteState);
-                }
-
-                if(touchPosition.x - lastPosition.x > SWIPE_DISTANCE && touchPosition.y - lastPosition.y > SWIPE_DISTANCE && !cube.isTweening) {
-                    moveCube(Move.TOP, cube.row, cube.column);
-                    isTouched = false;
-                    kuvi.setState(kuvi.levelCompleteState);
-                }
-
-                if(touchPosition.x - lastPosition.x < -SWIPE_DISTANCE && touchPosition.y - lastPosition.y > SWIPE_DISTANCE && !cube.isTweening) {
-                    moveCube(Move.LEFT, cube.row, cube.column);
-                    isTouched = false;
-                    kuvi.setState(kuvi.levelCompleteState);
-                }
-
-                if(touchPosition.x - lastPosition.x > SWIPE_DISTANCE && touchPosition.y - lastPosition.y < -SWIPE_DISTANCE && !cube.isTweening) {
-                    moveCube(Move.RIGHT, cube.row, cube.column);
-                    isTouched = false;
-                    kuvi.setState(kuvi.levelCompleteState);
-                }
-
+            if(touched && Physics.Raycast(Camera.main.ScreenPointToRay(touchPosition), out cubeCollider)) {
+                touchedCube = cubeCollider.transform.GetComponent<Cube>();
+                touchedCube.colorAnimation(touchedCube.selectedColor); 
+                state = MoveState.MAKE_MOVE;
             }
 
         }
 
-        // Cambiamos de nivel
+        // Calculamos la distancia entre el punto inicial y la posición obtenida 
+        if(state == MoveState.MAKE_MOVE && !kuvi.levelCompleteState.levelCompleted) {
+
+            lastPosition = (Input.touchCount > 0) ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
+
+            float deltaX = touchPosition.x - lastPosition.x;
+            float deltaY = touchPosition.y - lastPosition.y;  
+
+            // Ejecutamos el movimiento
+            if(deltaX < -SWIPE_DISTANCE && deltaY < -SWIPE_DISTANCE && !touchedCube.isTweening) {
+                state = MoveState.WAITING_TOUCH;
+                moveCube(Move.BOTTOM, touchedCube.row, touchedCube.column); 
+                kuvi.setState(kuvi.levelCompleteState);
+                touchedCube.colorAnimation(touchedCube.cubeColor);
+            }
+
+            if(deltaX > SWIPE_DISTANCE && deltaY > SWIPE_DISTANCE && !touchedCube.isTweening) {
+                state = MoveState.WAITING_TOUCH;
+                moveCube(Move.TOP, touchedCube.row, touchedCube.column); 
+                kuvi.setState(kuvi.levelCompleteState);
+                touchedCube.colorAnimation(touchedCube.cubeColor);
+            }
+
+            if(deltaX < -SWIPE_DISTANCE && deltaY > SWIPE_DISTANCE && !touchedCube.isTweening) {
+                state = MoveState.WAITING_TOUCH;
+                moveCube(Move.LEFT, touchedCube.row, touchedCube.column); 
+                kuvi.setState(kuvi.levelCompleteState);
+                touchedCube.colorAnimation(touchedCube.cubeColor);
+            }
+
+            if(deltaX > SWIPE_DISTANCE && deltaY < -SWIPE_DISTANCE && !touchedCube.isTweening) {
+                state = MoveState.WAITING_TOUCH;
+                moveCube(Move.RIGHT, touchedCube.row, touchedCube.column); 
+                kuvi.setState(kuvi.levelCompleteState);
+                touchedCube.colorAnimation(touchedCube.cubeColor);
+            }
+
+            // Si no realizaron un movimiento y dejan de enviar eventos regresamos a WAITING_TOUCH
+            if(Input.GetMouseButtonUp(0) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
+                touchedCube.colorAnimation(touchedCube.cubeColor); 
+                state = MoveState.WAITING_TOUCH; 
+            }
+
+        }
+
+
+        // Nivel Anterior
         if(kuvi.menuController.lastLevel) {
             kuvi.menuController.lastLevel = false; 
             kuvi.setState(kuvi.loadLevelState);
         }
 
+        // Siguiente Nivel
         if(kuvi.menuController.nextLevel) {
             kuvi.menuController.nextLevel = false;
             kuvi.setState(kuvi.loadLevelState);
         }
 
+        // Resolvemos
         if(autosolve && kuvi.totalTweens() == 0) {
             Movement m = kuvi.solver.makeMove();
             moveCube(m.move, m.row, m.column);
@@ -112,11 +136,6 @@ public class MoveCube : State {
             kuvi.setState(kuvi.loadLevelState);
         }
 
-        // Cambiamos el fondo
-        if(Input.GetKeyDown("b")) {
-            kuvi.background.setBackgroundColor(Random.Range(0, kuvi.background.backgroundColor.Length));
-        }
-
     }
 
     public void moveCube(Move move, int row, int column) {
@@ -130,10 +149,9 @@ public class MoveCube : State {
         m = (move == Move.RIGHT) ? "r" : m; 
         m = (move == Move.BOTTOM) ? "b" : m; 
         m = (move == Move.LEFT) ? "l" : m;
-        solucion += m + row + column + ";"; 
+        levelSolution += m + row + column + ";"; 
 
         // Movimiento
-
         if(move == Move.TOP) {
             for(int i = row - 1; i >= 0; i--) {
                 int nextValue = kuvi.level.matrix[i * Kuvi.LEVEL_SIZE + column];

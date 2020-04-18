@@ -68,8 +68,8 @@ public class LevelComplete : State {
             kuvi.setState(kuvi.loadLevelState); 
 
             // Move Debug Solution
-            Debug.Log(kuvi.moveCubeState.solucion); 
-            kuvi.moveCubeState.solucion = "";
+            Debug.Log(kuvi.moveCubeState.levelSolution); 
+            kuvi.moveCubeState.levelSolution = "";
 
         }
 

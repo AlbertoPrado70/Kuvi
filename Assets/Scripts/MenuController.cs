@@ -101,9 +101,9 @@ public class MenuController : MonoBehaviour {
     public void setMenuAnimation() {
 
         iconRotation += 90;
-        menuIcon.transform.DORotate(new Vector3(0, 0, iconRotation), 0.5f);
-        menuIcon.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.25f); 
-        menuIcon.transform.DOScale(Vector3.one, 0.5f).SetDelay(0.25f); 
+        menuIcon.transform.DORotate(new Vector3(0, 0, iconRotation), 0.25f);
+        menuIcon.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.1f); 
+        menuIcon.transform.DOScale(Vector3.one, 0.5f).SetDelay(0.1f); 
 
         // ABRIMOS EL MENU
         if(!menuIsOpen) {
@@ -158,11 +158,12 @@ public class MenuController : MonoBehaviour {
 
     }
 
-    // Set Auto Solver
+    // Iniciamos el auto solver
     public void autoSolveLevel() {
         isAutoSolving = true;
-        setMenuAnimation();
     }
+
+    // 
 
 }
 

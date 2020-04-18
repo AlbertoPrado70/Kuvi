@@ -31,7 +31,6 @@ public class LoadLevel : State {
 
         kuvi.solver.parseSolution(kuvi.actualLevel);
         kuvi.menuController.stopMessageAnimations();
-        kuvi.background.setBackgroundColor(Random.Range(0, kuvi.background.backgroundColor.Length));
 
     }
 
@@ -83,7 +82,7 @@ public class LoadLevel : State {
                         cube.transform.localPosition = cubePosition;
                         
                         Cube cubeComponent = cube.GetComponent<Cube>();
-                        cubeComponent.setPosition(row, column); 
+                        cubeComponent.set(row, column); 
                         cubeComponent.initAnimation(Floor.INIT_ANIMATION + delayAnimation);
         
                         kuvi.cubes.Add(cubeComponent);
