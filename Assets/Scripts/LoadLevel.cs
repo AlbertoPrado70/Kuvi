@@ -98,7 +98,7 @@ public class LoadLevel : State {
         }
 
         if(loadState == LoadLevelState.SET_STATE && kuvi.totalTweens() == 0) {
-            kuvi.menuController.showLevelMessage(kuvi.level.message);
+            kuvi.menuController.showLevelMessage(Messages.getLevelMessage(kuvi.preferences.actualLevel));
             kuvi.menuController.setMenuActive(true);
             kuvi.setState(kuvi.moveCubeState); 
         }

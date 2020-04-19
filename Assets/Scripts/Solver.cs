@@ -34,9 +34,6 @@ public class Solver {
         movement.move = (currentSolution[currentMove][0] == 'r') ? MoveCube.Move.RIGHT : movement.move;
         movement.move = (currentSolution[currentMove][0] == 'b') ? MoveCube.Move.BOTTOM : movement.move;
         movement.move = (currentSolution[currentMove][0] == 'l') ? MoveCube.Move.LEFT : movement.move; 
-
-
-        Debug.Log(currentSolution[currentMove][0]);
         
         int row = (int) char.GetNumericValue(currentSolution[currentMove][1]);
         int column = (int) char.GetNumericValue(currentSolution[currentMove][2]);
