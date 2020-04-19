@@ -23,9 +23,6 @@ public class MenuController : MonoBehaviour {
 
     public Sequence levelMessageSequence; 
 
-    public bool lastLevel;
-    public bool nextLevel; 
-
     public bool menuIsOpen = false; 
     public bool isAutoSolving = false; 
 
@@ -35,10 +32,7 @@ public class MenuController : MonoBehaviour {
 
     void Awake() {
 
-        lastLevel = false; 
-        nextLevel = false; 
         levelMessage.SetText("");
-
         rectTransformButtons = new RectTransform[5];
 
         for(int i = 0; i < menuButtons.Length; i++) {
@@ -55,19 +49,19 @@ public class MenuController : MonoBehaviour {
 
     // Ir al nivel anterior
     public void goToLastLevel() {
-        if(kuvi.preferences.actualLevel > 0) {
-            lastLevel = true; 
+        if(kuvi.preferences.actualLevel > 0) { 
             kuvi.preferences.actualLevel--;
             kuvi.preferences.saveCompletedLevel();
+            kuvi.setState(kuvi.loadLevelState);
         }
     }
 
     // Boton para ir al siguiente nivel
     public void goToNextLevel() {
         if(kuvi.preferences.actualLevel < Level.json.Length - 1) {
-            nextLevel = true; 
             kuvi.preferences.actualLevel++;
             kuvi.preferences.saveCompletedLevel();
+            kuvi.setState(kuvi.loadLevelState);
         }
     }
 
@@ -111,6 +105,9 @@ public class MenuController : MonoBehaviour {
         
     }
 
+    
+
+    // Establece las animaciones del menu
     public void setMenuAnimation() {
 
         iconRotation += 90;
@@ -118,7 +115,7 @@ public class MenuController : MonoBehaviour {
         menuIcon.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.1f); 
         menuIcon.transform.DOScale(Vector3.one, 0.5f).SetDelay(0.1f); 
 
-        // ABRIMOS EL MENU
+        // Abrimos el menu
         if(!menuIsOpen) {
 
             Vector3 buttonPosition = new Vector3();
@@ -171,13 +168,24 @@ public class MenuController : MonoBehaviour {
 
     }
 
+    // Reinicia el nivel 
+    public void resetLevel() {
+        kuvi.setState(kuvi.loadLevelState);
+        isAutoSolving = false;
+        setMenuAnimation();
+    }
+
     // Iniciamos el auto solver
     public void autoSolveLevel() {
         isAutoSolving = true;
-    }
+        setMenuAnimation();
+    }    
 
-    // Ocultamos los botones para cambiar de nivel cuando no son necesarios 
-    
+    // Cambia el volumen del dispositivo
+    public void setVolumen() {
+        AudioListener.volume = (AudioListener.volume == 0) ? 1 : 0; 
+        setMenuAnimation();
+    }
 
 }
 

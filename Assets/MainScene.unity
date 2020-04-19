@@ -655,7 +655,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 580937937}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1553543476}
+        m_MethodName: resetLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &580937937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,7 +935,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 633393421}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1553543476}
+        m_MethodName: setVolumen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &633393421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -996,7 +1018,6 @@ MonoBehaviour:
   menuController: {fileID: 1553543476}
   cubes: []
   level:
-    message: 
     matrix: 
   background: {fileID: 534669906}
 --- !u!4 &660491086
@@ -1733,8 +1754,6 @@ MonoBehaviour:
   rectTransformButtons: []
   levelText: {fileID: 1512681003}
   levelMessage: {fileID: 601766074}
-  lastLevel: 0
-  nextLevel: 0
   menuIsOpen: 0
   isAutoSolving: 0
   iconRotation: 0

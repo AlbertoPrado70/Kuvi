@@ -104,19 +104,6 @@ public class MoveCube : State {
 
         }
 
-
-        // Nivel Anterior
-        if(kuvi.menuController.lastLevel) {
-            kuvi.menuController.lastLevel = false; 
-            kuvi.setState(kuvi.loadLevelState);
-        }
-
-        // Siguiente Nivel
-        if(kuvi.menuController.nextLevel) {
-            kuvi.menuController.nextLevel = false;
-            kuvi.setState(kuvi.loadLevelState);
-        }
-
         // Resolvemos
         if(autosolve && kuvi.totalTweens() == 0) {
             Movement m = kuvi.solver.makeMove();
