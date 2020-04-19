@@ -15,7 +15,7 @@ public class Kuvi : MonoBehaviour {
 
     public Level level; 
     public Solver solver;
-    public int actualLevel;
+    public Preferences preferences; 
 
     public LoadLevel loadLevelState;
     public MoveCube moveCubeState; 
@@ -47,7 +47,7 @@ public class Kuvi : MonoBehaviour {
 
         level = new Level();
         solver = new Solver();
-        actualLevel = 0; 
+        preferences = new Preferences(); 
 
         loadLevelState = new LoadLevel(this);
         moveCubeState = new MoveCube(this);

@@ -26,10 +26,11 @@ public class LoadLevel : State {
             kuvi.menuController.fadeOutPanel();
         }
 
-        setLevel(kuvi.actualLevel);
+        setLevel(kuvi.preferences.actualLevel);
         setCameraPosition();
 
-        kuvi.solver.parseSolution(kuvi.actualLevel);
+        kuvi.menuController.setLevelIndicator((kuvi.preferences.actualLevel + 1).ToString());
+        kuvi.solver.parseSolution(kuvi.preferences.actualLevel);
         kuvi.menuController.stopMessageAnimations();
 
     }

@@ -54,27 +54,27 @@ public class MenuController : MonoBehaviour {
 
     public void goToLastLevel() {
 
-        if(kuvi.actualLevel > 0) {
+        if(kuvi.preferences.actualLevel > 0) {
             lastLevel = true; 
-            kuvi.actualLevel--;
+            kuvi.preferences.actualLevel--;
+            kuvi.preferences.saveCompletedLevel();
             setMenuActive(false); 
-            setLevelText((kuvi.actualLevel + 1).ToString());
         }
 
     }
 
     public void goToNextLevel() {
 
-        if(kuvi.actualLevel < Level.json.Length - 1) {
+        if(kuvi.preferences.actualLevel < Level.json.Length - 1) {
             nextLevel = true; 
-            kuvi.actualLevel++;
+            kuvi.preferences.actualLevel++;
+            kuvi.preferences.saveCompletedLevel();
             setMenuActive(false); 
-            setLevelText((kuvi.actualLevel + 1).ToString());
         }
 
     }
 
-    public void setLevelText(string level) {
+    public void setLevelIndicator(string level) {
         levelText.SetText(level);
     }
 
