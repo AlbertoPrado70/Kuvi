@@ -63,7 +63,10 @@ public class LevelComplete : State {
                 kuvi.moveCubeState.autosolve = false; 
             }
 
-            kuvi.preferences.actualLevel++;
+            if(kuvi.preferences.actualLevel < Level.json.Length - 1) {
+                kuvi.preferences.actualLevel++;
+            }
+
             kuvi.preferences.saveCompletedLevel(); 
             kuvi.setState(kuvi.loadLevelState); 
 

@@ -47,37 +47,36 @@ public class MenuController : MonoBehaviour {
 
     }
 
+    // FadeOut del inicio 
     public void fadeOutPanel() {
         blackPanel.gameObject.SetActive(true);
         blackPanel.DOFade(0, 1).OnComplete(() => blackPanel.gameObject.SetActive(false)); 
     }
 
+    // Ir al nivel anterior
     public void goToLastLevel() {
-
         if(kuvi.preferences.actualLevel > 0) {
             lastLevel = true; 
             kuvi.preferences.actualLevel--;
             kuvi.preferences.saveCompletedLevel();
-            setMenuActive(false); 
         }
-
     }
 
+    // Boton para ir al siguiente nivel
     public void goToNextLevel() {
-
         if(kuvi.preferences.actualLevel < Level.json.Length - 1) {
             nextLevel = true; 
             kuvi.preferences.actualLevel++;
             kuvi.preferences.saveCompletedLevel();
-            setMenuActive(false); 
         }
-
     }
 
+    // Establece el numero de nivel en la parte superior 
     public void setLevelIndicator(string level) {
         levelText.SetText(level);
     }
 
+    // Muestra el mensaje del nivel
     public void showLevelMessage(string message) {
 
         levelMessage.SetText(message);
@@ -89,13 +88,27 @@ public class MenuController : MonoBehaviour {
 
     }
 
+    // Detiene el mensaje
     public void stopMessageAnimations() {
         levelMessageSequence.Complete();
     }
 
-    public void setMenuActive(bool state) {
-        backButton.interactable = state; 
-        nextButton.interactable = state;
+    public void setMenuActive(bool state, int level) {
+
+        if(state && level > 0) {
+            backButton.interactable = true; 
+        }
+
+        if(state && level < Level.json.Length - 1) {
+            nextButton.interactable = true; 
+        }
+
+        if(!state) {
+            backButton.interactable = false; 
+            nextButton.interactable = false;
+        }
+
+        
     }
 
     public void setMenuAnimation() {
@@ -163,7 +176,8 @@ public class MenuController : MonoBehaviour {
         isAutoSolving = true;
     }
 
-    // 
+    // Ocultamos los botones para cambiar de nivel cuando no son necesarios 
+    
 
 }
 
