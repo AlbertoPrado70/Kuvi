@@ -49,6 +49,8 @@ public class Kuvi : MonoBehaviour {
         solver = new Solver();
         preferences = new Preferences(); 
 
+        AudioListener.volume = (preferences.muted) ? 0 : 1;
+
         loadLevelState = new LoadLevel(this);
         moveCubeState = new MoveCube(this);
         levelCompleteState = new LevelComplete(this);

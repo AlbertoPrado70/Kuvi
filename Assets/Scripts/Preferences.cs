@@ -32,4 +32,10 @@ public class Preferences {
         PlayerPrefs.Save();
     }
 
+    public void saveVolumeLevel(bool muted) {
+        this.muted = muted; 
+        PlayerPrefs.SetString("muted", muted.ToString());
+        PlayerPrefs.Save();
+    }
+
 }

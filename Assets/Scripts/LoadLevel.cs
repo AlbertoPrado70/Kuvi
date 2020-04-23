@@ -68,7 +68,7 @@ public class LoadLevel : State {
                         kuvi.floor[row, column].setFloor(kuvi.level.matrix[matrixIndex]);
                         kuvi.floor[row, column].initAnimation(delayAnimation);
 
-                        delayAnimation += (kuvi.level.matrix[matrixIndex] != -1) ? 0.1f : 0;
+                        delayAnimation += (kuvi.level.matrix[matrixIndex] != -1) ? 0.075f : 0;
 
                     }
 

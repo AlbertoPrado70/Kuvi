@@ -13,13 +13,20 @@ public class MenuController : MonoBehaviour {
 
     public Button backButton; 
     public Button nextButton;
+    public Image soundButton;
 
+    public Sprite muteIcon; 
+    public Sprite soundIcon; 
+    
     public Image menuIcon; 
     public GameObject[] menuButtons;
     public RectTransform[] rectTransformButtons;  
 
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI levelMessage;
+
+    public GameObject thanksCanvas; 
+    public CanvasGroup canvasGroup; 
 
     public Sequence levelMessageSequence; 
 
@@ -38,6 +45,8 @@ public class MenuController : MonoBehaviour {
         for(int i = 0; i < menuButtons.Length; i++) {
             rectTransformButtons[i] = menuButtons[i].GetComponent<RectTransform>();
         }
+
+        soundButton.sprite = (kuvi.preferences.muted) ? muteIcon : soundIcon; 
 
     }
 
@@ -183,7 +192,26 @@ public class MenuController : MonoBehaviour {
 
     // Cambia el volumen del dispositivo
     public void setVolumen() {
-        AudioListener.volume = (AudioListener.volume == 0) ? 1 : 0; 
+
+        if(AudioListener.volume == 1) {
+            AudioListener.volume = 0; 
+            soundButton.sprite = muteIcon; 
+            kuvi.preferences.saveVolumeLevel(true);
+        }
+
+        else {
+            AudioListener.volume = 1; 
+            soundButton.sprite = soundIcon; 
+            kuvi.preferences.saveVolumeLevel(false);
+        }
+
+        setMenuAnimation();
+    }
+
+    // Abrimos el panel de creditos
+    public void openThanksPanel() {
+        thanksCanvas.SetActive(true);
+        canvasGroup.DOFade(1, 0.5f);
         setMenuAnimation();
     }
 
