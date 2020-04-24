@@ -21,12 +21,12 @@ public class Messages {
     };
 
     public static string[] es_menu = new string[1] {
-        "Kuvi es desarrollado por una persona. Espero que te agrade.",
-    }
+        "Kuvi es desarrollado por una persona. Espero que te agrade."
+    };
 
     public static string[] en_menu = new string[1] {
         "Thank you for playing <3"
-    }
+    };
 
     public static string getLevelMessage(int level) {
         return((Application.systemLanguage == SystemLanguage.Spanish) ? es_text[level] : en_text[level]); 
