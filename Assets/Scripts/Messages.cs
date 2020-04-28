@@ -20,16 +20,24 @@ public class Messages {
         "Level 6"
     };
 
-    public static string[] es_menu = new string[1] {
-        "Kuvi es desarrollado por una persona. Espero que te agrade."
+    public static string[] es_menu = new string[3] {
+        "Kuvi es desarrollado por una persona. Espero que te agrade.",
+        "Este juego no seria posible sin el apoyo de Mama, Papa y la Chandy", 
+        "¿Quieres saber más de nosotros? Visita nuestro sitio web"
     };
 
-    public static string[] en_menu = new string[1] {
-        "Thank you for playing <3"
+    public static string[] en_menu = new string[3] {
+        "Kuvi is developed by one person. I hope you like it <3", 
+        "Null", 
+        "Null"
     };
 
     public static string getLevelMessage(int level) {
         return((Application.systemLanguage == SystemLanguage.Spanish) ? es_text[level] : en_text[level]); 
+    }
+
+    public static string getMenuMessage(int message) {
+        return((Application.systemLanguage == SystemLanguage.Spanish) ? es_menu[message] : en_menu[message]); 
     }
 
 }
