@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 using System.Collections.Generic;
+using UnityEngine.Advertisements;
 
 public class Kuvi : MonoBehaviour {
     
@@ -57,6 +58,9 @@ public class Kuvi : MonoBehaviour {
         
         setState(loadLevelState);
         
+        // ADS
+        Advertisement.Initialize ("3580984", true);
+
     }
 
     void Update() {

@@ -21,13 +21,13 @@ public class Messages {
     };
 
     public static string[] es_menu = new string[3] {
-        "Kuvi es desarrollado por una persona. Espero que te agrade.",
+        "Kuvi es desarrollado por pequeño equipo. Esperamos que te encante",
         "Este juego no seria posible sin el apoyo de Mama, Papa y la Chandy", 
         "¿Quieres saber más de nosotros? Visita nuestro sitio web"
     };
 
     public static string[] en_menu = new string[3] {
-        "Kuvi is developed by one person. I hope you like it <3", 
+        "Null", 
         "Null", 
         "Null"
     };

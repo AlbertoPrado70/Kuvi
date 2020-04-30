@@ -18,6 +18,7 @@ public class Cube : MonoBehaviour {
     public Renderer cubeRenderer;
     public Renderer effectRenderer;
     public Transform effectTransform;
+    public AudioSource slideEffect;
 
     public int row; 
     public int column; 
@@ -43,6 +44,7 @@ public class Cube : MonoBehaviour {
 
         isTweening = true;
         float floorLength = cubeRenderer.bounds.size.x;
+        slideEffect.Play();
 
         if(move == MoveCube.Move.TOP) { 
             transform.DOMoveX(transform.position.x - (distance * floorLength), MOVE_DURATION).SetEase(Ease.InOutQuart).OnComplete(() => isTweening = false);

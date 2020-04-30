@@ -513,7 +513,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 157902909}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 252592423}
+        m_MethodName: openRocketeor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &157902909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,7 +580,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &252592418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,7 +669,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252592417}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -1043,7 +1054,7 @@ GameObject:
   - component: {fileID: 533134533}
   - component: {fileID: 533134532}
   m_Layer: 5
-  m_Name: FacebookButton
+  m_Name: RateUsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1108,7 +1119,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 533134533}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 252592423}
+        m_MethodName: rateUs
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &533134533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3085,7 +3107,7 @@ GameObject:
   - component: {fileID: 1655333841}
   - component: {fileID: 1655333840}
   m_Layer: 5
-  m_Name: Player
+  m_Name: RateUs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3128,9 +3150,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Kuvi is developed by one person.
-
-    I hope you like it.'
+  m_text: Kuvi is made by a small team. We hope you love it.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3199,10 +3219,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1655333840}
-    characterCount: 52
+    characterCount: 50
     spriteCount: 0
-    spaceCount: 10
-    wordCount: 11
+    spaceCount: 11
+    wordCount: 12
     linkCount: 0
     lineCount: 2
     pageCount: 1
@@ -3534,7 +3554,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Facebook
+  m_text: Rate us
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 709beaffc1dc65946a2090b6eb1307ff, type: 2}
   m_sharedMaterial: {fileID: 21602268288900868, guid: 709beaffc1dc65946a2090b6eb1307ff,
@@ -3604,10 +3624,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2103310486}
-    characterCount: 8
+    characterCount: 7
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
