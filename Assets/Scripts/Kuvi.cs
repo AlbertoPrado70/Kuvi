@@ -58,9 +58,8 @@ public class Kuvi : MonoBehaviour {
         
         setState(loadLevelState);
         
-        // ADS
-        Advertisement.Initialize ("3580984", true);
-
+        Advertisements.Initialize("3580984", true);
+        
     }
 
     void Update() {
