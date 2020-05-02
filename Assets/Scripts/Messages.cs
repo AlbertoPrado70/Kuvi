@@ -21,7 +21,7 @@ public class Messages {
     };
 
     public static string[] es_menu = new string[3] {
-        "Kuvi es desarrollado por pequeño equipo. Esperamos que te encante",
+        "Kuvi es desarrollado por un pequeño equipo. Esperamos que te encante",
         "Este juego no seria posible sin el apoyo de Mama, Papa y la Chandy", 
         "¿Quieres saber más de nosotros? Visita nuestro sitio web"
     };

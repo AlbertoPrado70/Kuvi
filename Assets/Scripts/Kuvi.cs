@@ -6,6 +6,8 @@ using UnityEngine.Advertisements;
 public class Kuvi : MonoBehaviour {
     
     public const int LEVEL_SIZE = 7;
+    public const string UNITY_ADS_ID = "3580984";
+    public const bool UNITY_ADS_TEST = true; 
 
     public GameObject floorPrefab;
     public GameObject cubePrefab; 
@@ -58,7 +60,8 @@ public class Kuvi : MonoBehaviour {
         
         setState(loadLevelState);
         
-        Advertisement.Initialize("3580984", true);
+        // Inicializamos el modulo de anuncios 
+        Advertisement.Initialize(UNITY_ADS_ID, UNITY_ADS_TEST);
         
     }
 

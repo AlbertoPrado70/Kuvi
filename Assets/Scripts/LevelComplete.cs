@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Advertisements;
 
 public class LevelComplete : State {
 
@@ -60,7 +61,7 @@ public class LevelComplete : State {
             completeState = CompleteState.SET_STATE;
 
             // Mostramos un anuncio 
-            // Advertisement.Show();
+            Advertisement.Show();
 
             if(kuvi.moveCubeState.autosolve) {
                 kuvi.moveCubeState.autosolve = false; 
