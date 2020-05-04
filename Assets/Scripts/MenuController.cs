@@ -87,7 +87,7 @@ public class MenuController : MonoBehaviour {
 
         levelMessageSequence.Append(levelMessage.DOFade(0, 0));
         levelMessageSequence.Append(levelMessage.DOFade(1, 1));
-        levelMessageSequence.Insert(3, levelMessage.DOFade(0, 1));
+        levelMessageSequence.Insert(6, levelMessage.DOFade(0, 1));
 
     }
 

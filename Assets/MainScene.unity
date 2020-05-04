@@ -425,7 +425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &252592418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,7 +514,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252592417}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -531,8 +531,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thanksPanel: {fileID: 252592422}
-  playerText: {fileID: 1655333840}
-  creditsText: {fileID: 323361388}
+  aboutUs: {fileID: 1655333840}
+  thanksTitle: {fileID: 518750320}
+  parentsTitle: {fileID: 560651673}
+  parentsText: {fileID: 323361388}
+  chandyText: {fileID: 1747247804}
   moreText: {fileID: 1598953035}
 --- !u!1 &279636254
 GameObject:
@@ -765,7 +768,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -250}
+  m_AnchoredPosition: {x: 0, y: -260}
   m_SizeDelta: {x: 420, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &323361388
@@ -786,7 +789,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Keep being awasome parents.
+  m_text: Keep being awasome
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -855,10 +858,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 323361388}
-    characterCount: 27
+    characterCount: 18
     spriteCount: 0
-    spaceCount: 3
-    wordCount: 4
+    spaceCount: 2
+    wordCount: 3
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -1203,7 +1206,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 0.5600274, b: 0.43921566, a: 0}
+  m_BackGroundColor: {r: 0.5, g: 0.5, b: 0.5, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -1263,11 +1266,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundColor:
   - {r: 0.5058824, g: 0.7921569, b: 0.4745098, a: 1}
-  - {r: 0.8784314, g: 0.2627451, b: 0.35686275, a: 1}
-  - {r: 0.8867924, g: 0.25516194, b: 0.705627, a: 1}
-  - {r: 0.70980394, g: 0.37254903, b: 0.8509804, a: 1}
-  - {r: 0.37254903, g: 0.41568628, b: 0.8509804, a: 1}
-  - {r: 0.2, g: 0.7490196, b: 0.8509804, a: 1}
 --- !u!1 &560651671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,7 +1278,7 @@ GameObject:
   - component: {fileID: 560651674}
   - component: {fileID: 560651673}
   m_Layer: 5
-  m_Name: Mom and Dad
+  m_Name: ParentsTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1302,7 +1300,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -220}
+  m_AnchoredPosition: {x: 0, y: -230}
   m_SizeDelta: {x: 420, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &560651673
@@ -1323,7 +1321,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Mom and Dad
+  m_text: Mom & Dad
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1392,10 +1390,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 560651673}
-    characterCount: 11
+    characterCount: 9
     spriteCount: 0
     spaceCount: 2
-    wordCount: 3
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -2898,7 +2896,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 480, y: 780}
+  m_SizeDelta: {x: 520, y: 820}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1481872752
 MonoBehaviour:
@@ -3288,7 +3286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -432.1}
+  m_AnchoredPosition: {x: 0, y: -450}
   m_SizeDelta: {x: 420, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1598953035
@@ -3421,7 +3419,7 @@ GameObject:
   - component: {fileID: 1655333841}
   - component: {fileID: 1655333840}
   m_Layer: 5
-  m_Name: RateUs
+  m_Name: AboutKuvi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3444,7 +3442,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -110}
-  m_SizeDelta: {x: 420, y: 50}
+  m_SizeDelta: {x: 450, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1655333840
 MonoBehaviour:
@@ -3464,7 +3462,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Kuvi is made by a small team. \nWe hope you love it."
+  m_text: "Kuvi is developed by a small team. \nWe hope you love it."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3533,7 +3531,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1655333840}
-    characterCount: 51
+    characterCount: 56
     spriteCount: 0
     spaceCount: 12
     wordCount: 12
@@ -3700,7 +3698,7 @@ GameObject:
   - component: {fileID: 1747247805}
   - component: {fileID: 1747247804}
   m_Layer: 5
-  m_Name: MomDad
+  m_Name: Chandy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3722,7 +3720,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -340}
+  m_AnchoredPosition: {x: 0, y: -360}
   m_SizeDelta: {x: 420, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1747247804
@@ -3743,7 +3741,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Thank you for listening so much about game development.
+  m_text: 'Thank you for listening so much about gamedev
 
 '
   m_isRightToLeft: 0
@@ -3814,10 +3812,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1747247804}
-    characterCount: 56
+    characterCount: 46
     spriteCount: 0
-    spaceCount: 9
-    wordCount: 9
+    spaceCount: 8
+    wordCount: 8
     linkCount: 0
     lineCount: 2
     pageCount: 1
@@ -3857,7 +3855,7 @@ GameObject:
   - component: {fileID: 1921030887}
   - component: {fileID: 1921030886}
   m_Layer: 5
-  m_Name: Chandy
+  m_Name: Chandy Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3879,7 +3877,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -293.2}
+  m_AnchoredPosition: {x: 0, y: -310}
   m_SizeDelta: {x: 420, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1921030886
@@ -3900,7 +3898,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Chandy Perro
+  m_text: Chandy
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3969,10 +3967,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1921030886}
-    characterCount: 12
+    characterCount: 6
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1

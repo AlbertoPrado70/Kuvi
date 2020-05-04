@@ -3,18 +3,18 @@
 public class Messages {
 
     public static string[] es_text = new string[6] {
-        "Intenta mover el cubo a la derecha",
-        "¡Bien! Ahora llena los dos pisos azules",
-        "Nivel 3",
+        "Intenta mover el cubo azul",
+        "¡Muy bien! \nAqui tienes mas cubos",
+        "A cada color le corresponde un sitio",
         "Nivel 4",
         "Nivel 5",
         "Nivel 6"
     };
 
     public static string[] en_text = new string[6] {
-        "Try to move the cube to the right",
-        "Level 2",
-        "Level 3",
+        "Try to move the blue cube",
+        "Very nice! \nHave some more cubes",
+        "Each color has it's own tile",
         "Level 4",
         "Level 5",
         "Level 6"

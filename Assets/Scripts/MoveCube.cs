@@ -53,7 +53,6 @@ public class MoveCube : State {
             
             if(touched && Physics.Raycast(Camera.main.ScreenPointToRay(touchPosition), out cubeCollider)) {
                 touchedCube = cubeCollider.transform.GetComponent<Cube>();
-                touchedCube.colorAnimation(touchedCube.selectedColor); 
                 state = MoveState.MAKE_MOVE;
             }
 
@@ -72,33 +71,33 @@ public class MoveCube : State {
                 state = MoveState.WAITING_TOUCH;
                 moveCube(Move.BOTTOM, touchedCube.row, touchedCube.column); 
                 kuvi.setState(kuvi.levelCompleteState);
-                touchedCube.colorAnimation(touchedCube.cubeColor);
+                // touchedCube.colorAnimation(touchedCube.cubeColor);
             }
 
             if(deltaX > SWIPE_DISTANCE && deltaY > SWIPE_DISTANCE && !touchedCube.isTweening) {
                 state = MoveState.WAITING_TOUCH;
                 moveCube(Move.TOP, touchedCube.row, touchedCube.column); 
                 kuvi.setState(kuvi.levelCompleteState);
-                touchedCube.colorAnimation(touchedCube.cubeColor);
+                // touchedCube.colorAnimation(touchedCube.cubeColor);
             }
 
             if(deltaX < -SWIPE_DISTANCE && deltaY > SWIPE_DISTANCE && !touchedCube.isTweening) {
                 state = MoveState.WAITING_TOUCH;
                 moveCube(Move.LEFT, touchedCube.row, touchedCube.column); 
                 kuvi.setState(kuvi.levelCompleteState);
-                touchedCube.colorAnimation(touchedCube.cubeColor);
+                // touchedCube.colorAnimation(touchedCube.cubeColor);
             }
 
             if(deltaX > SWIPE_DISTANCE && deltaY < -SWIPE_DISTANCE && !touchedCube.isTweening) {
                 state = MoveState.WAITING_TOUCH;
                 moveCube(Move.RIGHT, touchedCube.row, touchedCube.column); 
                 kuvi.setState(kuvi.levelCompleteState);
-                touchedCube.colorAnimation(touchedCube.cubeColor);
+                // touchedCube.colorAnimation(touchedCube.cubeColor);
             }
 
             // Si no realizaron un movimiento y dejan de enviar eventos regresamos a WAITING_TOUCH
             if(Input.GetMouseButtonUp(0) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
-                touchedCube.colorAnimation(touchedCube.cubeColor); 
+                // touchedCube.colorAnimation(touchedCube.cubeColor); 
                 state = MoveState.WAITING_TOUCH; 
             }
 
@@ -142,7 +141,7 @@ public class MoveCube : State {
         if(move == Move.TOP) {
             for(int i = row - 1; i >= 0; i--) {
                 int nextValue = kuvi.level.matrix[i * Kuvi.LEVEL_SIZE + column];
-                cubeCollided = (nextValue == 1 || nextValue == -1 || nextValue == 4) ? true : cubeCollided;
+                cubeCollided = (nextValue == -1 || nextValue == 1 || nextValue == 3 || nextValue == 5) ? true : cubeCollided;
                 distance += (!cubeCollided) ? 1 : 0;
             }
         }
@@ -150,7 +149,7 @@ public class MoveCube : State {
         if(move == Move.RIGHT) {
             for(int i = column + 1; i < Kuvi.LEVEL_SIZE; i++) {
                 int nextValue = kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + i];
-                cubeCollided = (nextValue == 1 || nextValue == -1 || nextValue == 4) ? true : cubeCollided;
+                cubeCollided = (nextValue == -1 || nextValue == 1 || nextValue == 3 || nextValue == 5) ? true : cubeCollided;
                 distance += (!cubeCollided) ? 1 : 0;
             }
         }
@@ -158,7 +157,7 @@ public class MoveCube : State {
         if(move == Move.BOTTOM) {
             for(int i = row + 1; i < Kuvi.LEVEL_SIZE; i++) {
                 int nextValue = kuvi.level.matrix[i * Kuvi.LEVEL_SIZE + column];
-                cubeCollided = (nextValue == 1 || nextValue == -1 || nextValue == 4) ? true : cubeCollided;
+                cubeCollided = (nextValue == -1 || nextValue == 1 || nextValue == 3 || nextValue == 5) ? true : cubeCollided;
                 distance += (!cubeCollided) ? 1 : 0;
             }
         }
@@ -166,7 +165,7 @@ public class MoveCube : State {
         if(move == Move.LEFT) {
             for(int i = column - 1; i >= 0; i--) {
                 int nextValue = kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + i];
-                cubeCollided = (nextValue == 1 || nextValue == -1 || nextValue == 4) ? true : cubeCollided;
+                cubeCollided = (nextValue == -1 || nextValue == 1 || nextValue == 3 || nextValue == 5) ? true : cubeCollided;
                 distance += (!cubeCollided) ? 1 : 0;
             }
         }

@@ -8,7 +8,6 @@ public class Floor : MonoBehaviour {
 
     public Color floorColor;
     public Color grayFloorColor;
-    public Color buttonColor; 
 
     public Color redButtonColor;
     public Color yellowButtonColor;
@@ -21,8 +20,10 @@ public class Floor : MonoBehaviour {
     public MeshFilter floorMeshFilter;
     
     public FloorType type;
+    public CubeColor cubeColor; 
     public bool isTweening; 
     public int value; 
+
 
     void Awake() {
         type = FloorType.EMPTY;
@@ -33,6 +34,7 @@ public class Floor : MonoBehaviour {
 
     public void setFloor(int value) {
 
+        this.cubeColor = CubeColor.NONE;
         this.value = value; 
 
         if(value == -1) {
@@ -47,14 +49,31 @@ public class Floor : MonoBehaviour {
             floorRenderer.material.color = floorColor;
         }
 
-        // Pisos botones 
+        // Objetivo azul
         if(value == 2) {
             type = FloorType.OBJETIVE;
             floorMeshFilter.mesh = buttonMesh.sharedMesh;
-            floorRenderer.material.color = buttonColor;
+            floorRenderer.material.color = blueButtonColor;
+            cubeColor = CubeColor.BLUE;
         }
 
-        
+        // Objetivo amarillo
+        if(value == 4) {
+            type = FloorType.OBJETIVE;
+            floorMeshFilter.mesh = buttonMesh.sharedMesh;
+            floorRenderer.material.color = yellowButtonColor;
+            cubeColor = CubeColor.YELLOW;
+        }
+
+        // Objetivo rojo
+        if(value == 6) {
+            type = FloorType.OBJETIVE;
+            floorMeshFilter.mesh = buttonMesh.sharedMesh;
+            floorRenderer.material.color = redButtonColor;
+            cubeColor = CubeColor.RED;
+        }
+
+
         
     }
 

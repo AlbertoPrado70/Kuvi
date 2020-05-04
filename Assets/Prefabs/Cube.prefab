@@ -216,14 +216,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c3696c375c793418d4bc6bc92d3464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeColor: {r: 1, g: 0.4962727, b: 0.43921566, a: 1}
-  selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  blueCube: {r: 0.4575472, g: 0.5402067, b: 1, a: 1}
+  yellowCube: {r: 1, g: 0.9490196, b: 0.5137255, a: 1}
+  redCube: {r: 1, g: 0.5254902, b: 0.5254902, a: 1}
   cubeRenderer: {fileID: 2651405929955630207}
   effectRenderer: {fileID: 2399601632551176080}
   effectTransform: {fileID: 8587621703878662289}
   slideEffect: {fileID: 8988277849810355870}
   row: 0
   column: 0
+  cubeColor: 0
   isTweening: 0
 --- !u!65 &249797474375274626
 BoxCollider:

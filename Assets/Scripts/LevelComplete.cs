@@ -24,7 +24,7 @@ public class LevelComplete : State {
         bool allButtonsPressed = true; 
 
         foreach(Cube cube in kuvi.cubes) {
-            allButtonsPressed = (kuvi.floor[cube.row, cube.column].type == FloorType.OBJETIVE) ? allButtonsPressed : false; 
+            allButtonsPressed = (kuvi.floor[cube.row, cube.column].cubeColor == cube.cubeColor) ? allButtonsPressed : false; 
         }
 
         levelCompleted = allButtonsPressed; 

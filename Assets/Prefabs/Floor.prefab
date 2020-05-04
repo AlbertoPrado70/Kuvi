@@ -123,7 +123,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorColor: {r: 1, g: 1, b: 1, a: 1}
   grayFloorColor: {r: 0.9339623, g: 0.9339623, b: 0.9339623, a: 1}
-  buttonColor: {r: 1, g: 0.48627448, b: 0.48627448, a: 1}
+  redButtonColor: {r: 1, g: 0.5235849, b: 0.5235849, a: 0}
+  yellowButtonColor: {r: 1, g: 0.947203, b: 0.514151, a: 0}
+  blueButtonColor: {r: 0.4764151, g: 0.5532177, b: 1, a: 0}
   floorMesh: {fileID: 3300000, guid: 4671cdc6db8936e4ea59c2e358e22c4e, type: 3}
   buttonMesh: {fileID: 3300000, guid: e3ad5c6255d0f5b459aae281e5f5ab64, type: 3}
   floorRenderer: {fileID: 6672426604624241541}

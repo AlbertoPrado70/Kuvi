@@ -13,8 +13,10 @@ public class Cube : MonoBehaviour {
     public const float MOVE_DURATION = 0.6f;
     public const float SELECTED_DURATION = 0.2f;
 
-    public Color cubeColor; 
-    public Color selectedColor; 
+    public Color blueCube; 
+    public Color yellowCube;
+    public Color redCube; 
+
     public Renderer cubeRenderer;
     public Renderer effectRenderer;
     public Transform effectTransform;
@@ -22,6 +24,7 @@ public class Cube : MonoBehaviour {
 
     public int row; 
     public int column; 
+    public CubeColor cubeColor; 
 
     public bool isTweening; 
 
@@ -29,10 +32,26 @@ public class Cube : MonoBehaviour {
         isTweening = false; 
     }
 
-    public void set(int row, int column) {
+    public void set(int row, int column, int value) {
+
         this.row = row; 
         this.column = column; 
-        cubeRenderer.material.color = cubeColor;
+
+        if(value == 1) {
+            cubeRenderer.material.color = blueCube; 
+            cubeColor = CubeColor.BLUE;
+        }
+
+        if(value == 3) {
+            cubeRenderer.material.color = yellowCube;
+            cubeColor = CubeColor.YELLOW;
+        }
+
+        if(value == 5) {
+            cubeRenderer.material.color = redCube;
+            cubeColor = CubeColor.RED; 
+        }
+        
     }
 
     public void initAnimation(float delay) {
@@ -64,9 +83,9 @@ public class Cube : MonoBehaviour {
 
     }
 
-    public void colorAnimation(Color color) {
-        cubeRenderer.material.DOColor(color, 0.1f);
-    }
+    // public void colorAnimation(Color color) {
+    //     cubeRenderer.material.DOColor(color, 0.1f);
+    // }
 
     public void completeAnimation() {
 
