@@ -9,7 +9,7 @@ public class Floor : MonoBehaviour {
     public Color floorColor;
     public Color grayFloorColor;
     public Color buttonColor; 
-    
+
     public Color redButtonColor;
     public Color yellowButtonColor;
     public Color blueButtonColor;
@@ -47,11 +47,14 @@ public class Floor : MonoBehaviour {
             floorRenderer.material.color = floorColor;
         }
 
+        // Pisos botones 
         if(value == 2) {
             type = FloorType.OBJETIVE;
             floorMeshFilter.mesh = buttonMesh.sharedMesh;
             floorRenderer.material.color = buttonColor;
         }
+
+        
         
     }
 
