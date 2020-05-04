@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c3696c375c793418d4bc6bc92d3464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeColor: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
+  cubeColor: {r: 1, g: 0.4962727, b: 0.43921566, a: 1}
   selectedColor: {r: 1, g: 1, b: 1, a: 1}
   cubeRenderer: {fileID: 2651405929955630207}
   effectRenderer: {fileID: 2399601632551176080}

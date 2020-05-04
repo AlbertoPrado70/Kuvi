@@ -6,14 +6,20 @@ public class ThanksController : MonoBehaviour {
 
     public CanvasGroup thanksPanel; 
 
-    public TextMeshProUGUI playerText;
-    public TextMeshProUGUI creditsText;
-    public TextMeshProUGUI moreText;
+    public TextMeshProUGUI aboutUs;
+    public TextMeshProUGUI thanksTitle;
+    public TextMeshProUGUI parentsTitle;
+    public TextMeshProUGUI parentsText;
+    public TextMeshProUGUI chandyText;
+    public TextMeshProUGUI moreText; 
 
     void Start() {
-        playerText.SetText(Messages.getMenuMessage(0));
-        creditsText.SetText(Messages.getMenuMessage(1));
-        moreText.SetText(Messages.getMenuMessage(2));
+        aboutUs.SetText(Messages.getMenuMessage(0));
+        thanksTitle.SetText(Messages.getMenuMessage(1));
+        parentsTitle.SetText(Messages.getMenuMessage(2));
+        parentsText.SetText(Messages.getMenuMessage(3));
+        chandyText.SetText(Messages.getMenuMessage(4));
+        moreText.SetText(Messages.getMenuMessage(5));
     }
 
     public void closeThanksMenu() {

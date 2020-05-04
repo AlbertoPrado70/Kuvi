@@ -3,8 +3,8 @@
 public class Messages {
 
     public static string[] es_text = new string[6] {
-        "Nivel 1",
-        "Nivel 2",
+        "Intenta mover el cubo a la derecha",
+        "¡Bien! Ahora llena los dos pisos azules",
         "Nivel 3",
         "Nivel 4",
         "Nivel 5",
@@ -12,7 +12,7 @@ public class Messages {
     };
 
     public static string[] en_text = new string[6] {
-        "Level 1",
+        "Try to move the cube to the right",
         "Level 2",
         "Level 3",
         "Level 4",
@@ -20,16 +20,22 @@ public class Messages {
         "Level 6"
     };
 
-    public static string[] es_menu = new string[3] {
-        "Kuvi es desarrollado por un pequeño equipo. Esperamos que te encante",
-        "Este juego no seria posible sin el apoyo de Mama, Papa y la Chandy", 
+    public static string[] es_menu = new string[6] {
+        "Kuvi es desarrollado por un pequeño equipo. \nEsperamos que te encante",
+        "AGRADECIMIENTOS", 
+        "Mama y Papa", 
+        "Sigan siendo increibles",
+        "Gracias por escucharme hablar tanto sobre desarrollo",
         "¿Quieres saber más de nosotros? Visita nuestro sitio web"
     };
 
-    public static string[] en_menu = new string[3] {
-        "Null", 
-        "Null", 
-        "Null"
+    public static string[] en_menu = new string[6] {
+        "Kuvi is developed by a small team. We hope you love it", 
+        "THANKS",
+        "Mom & Dad",
+        "Keep being awesome",
+        "Thank you for listening so much about gamedev", 
+        "Do you want to know more \nCheck our other projects"
     };
 
     public static string getLevelMessage(int level) {

@@ -61,7 +61,10 @@ public class LevelComplete : State {
             completeState = CompleteState.SET_STATE;
 
             // Mostramos un anuncio 
-            Advertisement.Show();
+            // Advertisement.Show();
+
+            // Cambiamos el fondo 
+            kuvi.background.setBackgroundColor(Random.Range(0, kuvi.background.backgroundColor.Length));
 
             if(kuvi.moveCubeState.autosolve) {
                 kuvi.moveCubeState.autosolve = false; 

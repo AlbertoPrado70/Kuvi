@@ -9,6 +9,10 @@ public class Floor : MonoBehaviour {
     public Color floorColor;
     public Color grayFloorColor;
     public Color buttonColor; 
+    
+    public Color redButtonColor;
+    public Color yellowButtonColor;
+    public Color blueButtonColor;
 
     public MeshFilter floorMesh; 
     public MeshFilter buttonMesh; 
