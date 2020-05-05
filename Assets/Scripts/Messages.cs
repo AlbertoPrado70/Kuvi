@@ -2,7 +2,17 @@
 
 public class Messages {
 
-    public static string[] es_text = new string[10] {
+    public static string[] es_text = new string[20] {
+        "Intenta mover el cubo azul",
+        "¡Muy bien! \nAqui tienes mas cubos",
+        "A cada color le corresponde un sitio",
+        "El orden si importa",
+        "Nivel 5",
+        "Nivel 6",
+        "Nivel 6",
+        "Nivel 6",
+        "Nivel 6",
+        "Nivel 6",
         "Intenta mover el cubo azul",
         "¡Muy bien! \nAqui tienes mas cubos",
         "A cada color le corresponde un sitio",
@@ -15,7 +25,17 @@ public class Messages {
         "Nivel 6",
     };
 
-    public static string[] en_text = new string[10] {
+    public static string[] en_text = new string[20] {
+        "Try to move the blue cube",
+        "Very nice! \nHave some more cubes",
+        "Order matters",
+        "Level 4",
+        "Level 5",
+        "Level 6",
+        "Nivel 6",
+        "Nivel 6",
+        "Nivel 6",
+        "Nivel 6",
         "Try to move the blue cube",
         "Very nice! \nHave some more cubes",
         "Order matters",
