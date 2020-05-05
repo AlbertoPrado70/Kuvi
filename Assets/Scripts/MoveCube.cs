@@ -141,7 +141,7 @@ public class MoveCube : State {
         if(move == Move.TOP) {
             for(int i = row - 1; i >= 0; i--) {
                 int nextValue = kuvi.level.matrix[i * Kuvi.LEVEL_SIZE + column];
-                cubeCollided = (nextValue == -1 || nextValue == 1 || nextValue == 3 || nextValue == 5) ? true : cubeCollided;
+                cubeCollided = (nextValue == -1 || nextValue == 1 || nextValue == 3 || nextValue == 5 || nextValue == 7) ? true : cubeCollided;
                 distance += (!cubeCollided) ? 1 : 0;
             }
         }
@@ -149,7 +149,7 @@ public class MoveCube : State {
         if(move == Move.RIGHT) {
             for(int i = column + 1; i < Kuvi.LEVEL_SIZE; i++) {
                 int nextValue = kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + i];
-                cubeCollided = (nextValue == -1 || nextValue == 1 || nextValue == 3 || nextValue == 5) ? true : cubeCollided;
+                cubeCollided = (nextValue == -1 || nextValue == 1 || nextValue == 3 || nextValue == 5 || nextValue == 7) ? true : cubeCollided;
                 distance += (!cubeCollided) ? 1 : 0;
             }
         }
@@ -157,7 +157,7 @@ public class MoveCube : State {
         if(move == Move.BOTTOM) {
             for(int i = row + 1; i < Kuvi.LEVEL_SIZE; i++) {
                 int nextValue = kuvi.level.matrix[i * Kuvi.LEVEL_SIZE + column];
-                cubeCollided = (nextValue == -1 || nextValue == 1 || nextValue == 3 || nextValue == 5) ? true : cubeCollided;
+                cubeCollided = (nextValue == -1 || nextValue == 1 || nextValue == 3 || nextValue == 5 || nextValue == 7) ? true : cubeCollided;
                 distance += (!cubeCollided) ? 1 : 0;
             }
         }
@@ -165,7 +165,7 @@ public class MoveCube : State {
         if(move == Move.LEFT) {
             for(int i = column - 1; i >= 0; i--) {
                 int nextValue = kuvi.level.matrix[row * Kuvi.LEVEL_SIZE + i];
-                cubeCollided = (nextValue == -1 || nextValue == 1 || nextValue == 3 || nextValue == 5) ? true : cubeCollided;
+                cubeCollided = (nextValue == -1 || nextValue == 1 || nextValue == 3 || nextValue == 5 || nextValue == 7) ? true : cubeCollided;
                 distance += (!cubeCollided) ? 1 : 0;
             }
         }

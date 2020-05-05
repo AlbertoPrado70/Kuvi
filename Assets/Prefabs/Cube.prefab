@@ -219,6 +219,7 @@ MonoBehaviour:
   blueCube: {r: 0.4575472, g: 0.5402067, b: 1, a: 1}
   yellowCube: {r: 1, g: 0.9490196, b: 0.5137255, a: 1}
   redCube: {r: 1, g: 0.5254902, b: 0.5254902, a: 1}
+  grayCube: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
   cubeRenderer: {fileID: 2651405929955630207}
   effectRenderer: {fileID: 2399601632551176080}
   effectTransform: {fileID: 8587621703878662289}

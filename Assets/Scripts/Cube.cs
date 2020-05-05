@@ -16,6 +16,7 @@ public class Cube : MonoBehaviour {
     public Color blueCube; 
     public Color yellowCube;
     public Color redCube; 
+    public Color grayCube;
 
     public Renderer cubeRenderer;
     public Renderer effectRenderer;
@@ -50,6 +51,11 @@ public class Cube : MonoBehaviour {
         if(value == 5) {
             cubeRenderer.material.color = redCube;
             cubeColor = CubeColor.RED; 
+        }
+
+        if(value == 7) {
+            cubeRenderer.material.color = grayCube;
+            cubeColor = CubeColor.NONE;
         }
         
     }

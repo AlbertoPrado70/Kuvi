@@ -76,7 +76,7 @@ public class LoadLevel : State {
                         kuvi.floor[row, column].floorRenderer.material.color = kuvi.floor[row, column].grayFloorColor;
                     }
 
-                    if(kuvi.level.matrix[matrixIndex] == 1 || kuvi.level.matrix[matrixIndex] == 3 || kuvi.level.matrix[matrixIndex] == 5) {
+                    if(kuvi.level.matrix[matrixIndex] == 1 || kuvi.level.matrix[matrixIndex] == 3 || kuvi.level.matrix[matrixIndex] == 5 || kuvi.level.matrix[matrixIndex] == 7) {
 
                         Vector3 floorSize = kuvi.floorPrefab.GetComponent<Floor>().floorRenderer.bounds.size;
                         GameObject cube = Kuvi.Instantiate(kuvi.cubePrefab, Vector3.zero, Quaternion.identity, kuvi.transform);
