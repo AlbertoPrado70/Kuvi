@@ -18,6 +18,9 @@ public class Cube : MonoBehaviour {
     public Color redCube; 
     public Color grayCube;
 
+    public Color actualColor; 
+    public Color lightColor; 
+
     public Renderer cubeRenderer;
     public Renderer effectRenderer;
     public Transform effectTransform;
@@ -58,6 +61,9 @@ public class Cube : MonoBehaviour {
             cubeColor = CubeColor.NONE;
         }
         
+        actualColor = cubeRenderer.material.color;
+        lightColor = new Color(actualColor.r * 1.3f, actualColor.g * 1.3f, actualColor.b * 1.3f, 1); 
+
     }
 
     public void initAnimation(float delay) {
@@ -89,9 +95,9 @@ public class Cube : MonoBehaviour {
 
     }
 
-    // public void colorAnimation(Color color) {
-    //     cubeRenderer.material.DOColor(color, 0.1f);
-    // }
+    public void colorAnimation(Color color) {
+        cubeRenderer.material.DOColor(color, 0.1f);
+    }
 
     public void completeAnimation() {
 

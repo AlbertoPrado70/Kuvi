@@ -53,6 +53,7 @@ public class MoveCube : State {
             
             if(touched && Physics.Raycast(Camera.main.ScreenPointToRay(touchPosition), out cubeCollider)) {
                 touchedCube = cubeCollider.transform.GetComponent<Cube>();
+                touchedCube.colorAnimation(touchedCube.lightColor);
                 state = MoveState.MAKE_MOVE;
             }
 
@@ -71,33 +72,33 @@ public class MoveCube : State {
                 state = MoveState.WAITING_TOUCH;
                 moveCube(Move.BOTTOM, touchedCube.row, touchedCube.column); 
                 kuvi.setState(kuvi.levelCompleteState);
-                // touchedCube.colorAnimation(touchedCube.cubeColor);
+                touchedCube.colorAnimation(touchedCube.actualColor);
             }
 
             if(deltaX > SWIPE_DISTANCE && deltaY > SWIPE_DISTANCE && !touchedCube.isTweening) {
                 state = MoveState.WAITING_TOUCH;
                 moveCube(Move.TOP, touchedCube.row, touchedCube.column); 
                 kuvi.setState(kuvi.levelCompleteState);
-                // touchedCube.colorAnimation(touchedCube.cubeColor);
+                touchedCube.colorAnimation(touchedCube.actualColor);
             }
 
             if(deltaX < -SWIPE_DISTANCE && deltaY > SWIPE_DISTANCE && !touchedCube.isTweening) {
                 state = MoveState.WAITING_TOUCH;
                 moveCube(Move.LEFT, touchedCube.row, touchedCube.column); 
                 kuvi.setState(kuvi.levelCompleteState);
-                // touchedCube.colorAnimation(touchedCube.cubeColor);
+                touchedCube.colorAnimation(touchedCube.actualColor);
             }
 
             if(deltaX > SWIPE_DISTANCE && deltaY < -SWIPE_DISTANCE && !touchedCube.isTweening) {
                 state = MoveState.WAITING_TOUCH;
                 moveCube(Move.RIGHT, touchedCube.row, touchedCube.column); 
                 kuvi.setState(kuvi.levelCompleteState);
-                // touchedCube.colorAnimation(touchedCube.cubeColor);
+                touchedCube.colorAnimation(touchedCube.actualColor);
             }
 
             // Si no realizaron un movimiento y dejan de enviar eventos regresamos a WAITING_TOUCH
             if(Input.GetMouseButtonUp(0) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
-                // touchedCube.colorAnimation(touchedCube.cubeColor); 
+                touchedCube.colorAnimation(touchedCube.actualColor); 
                 state = MoveState.WAITING_TOUCH; 
             }
 

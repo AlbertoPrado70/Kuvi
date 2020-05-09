@@ -18,6 +18,9 @@ public class Floor : MonoBehaviour {
 
     public Renderer floorRenderer; 
     public MeshFilter floorMeshFilter;
+
+    public GameObject floorShadow;
+    public Renderer shadowRenderer; 
     
     public FloorType type;
     public CubeColor cubeColor; 
@@ -30,6 +33,7 @@ public class Floor : MonoBehaviour {
         isTweening = false;
         value = -1; 
         floorRenderer.material.color = new Color(0, 0, 0, 0);
+        shadowRenderer.material.color = new Color(0, 0, 0, 0.1f);
     }
 
     public void setFloor(int value) {
@@ -40,11 +44,13 @@ public class Floor : MonoBehaviour {
         if(value == -1) {
             type = FloorType.EMPTY;
             gameObject.SetActive(false);
+            floorShadow.SetActive(false);
         }
 
         if(value >= 0) {
             type = FloorType.NORMAL;
             gameObject.SetActive(true);
+            floorShadow.SetActive(true);
             floorMeshFilter.mesh = floorMesh.sharedMesh;
             floorRenderer.material.color = floorColor;
         }
@@ -81,17 +87,20 @@ public class Floor : MonoBehaviour {
 
 
         floorRenderer.material.DOFade(0, 0);
+        shadowRenderer.material.DOFade(0, 0);
 
         isTweening = true; 
 
         transform.DOLocalMoveY(2, INIT_ANIMATION).From().SetDelay(delay);      
         floorRenderer.material.DOFade(1, INIT_ANIMATION).SetDelay(delay).OnComplete(() => isTweening = false);  
+        shadowRenderer.material.DOFade(0.1f, INIT_ANIMATION).SetDelay(delay);
     
     }
 
     public void fadeOutAnimation() {
         isTweening = true; 
         floorRenderer.material.DOFade(0, OUT_ANIMATION).OnComplete(() => isTweening = false); 
+        shadowRenderer.material.DOFade(0, OUT_ANIMATION);
     }
 
 }
