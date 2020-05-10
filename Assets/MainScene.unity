@@ -1265,7 +1265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundColor:
-  - {r: 0.5058824, g: 0.7921569, b: 0.4745098, a: 1}
+  - {r: 0.41176465, g: 0.83748543, b: 0.98039216, a: 1}
 --- !u!1 &560651671
 GameObject:
   m_ObjectHideFlags: 0
