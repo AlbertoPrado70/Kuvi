@@ -49,6 +49,9 @@ public class LevelComplete : State {
 
         if(completeState == CompleteState.SET_COMPLETE_ANIMATION && kuvi.totalTweens() == 0) {
             
+            // Audio
+            kuvi.completeSFX.Play();
+
             foreach(Cube cube in kuvi.cubes) {
                 cube.completeAnimation();
             }

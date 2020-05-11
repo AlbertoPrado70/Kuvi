@@ -54,6 +54,7 @@ public class MoveCube : State {
             if(touched && Physics.Raycast(Camera.main.ScreenPointToRay(touchPosition), out cubeCollider)) {
                 touchedCube = cubeCollider.transform.GetComponent<Cube>();
                 touchedCube.colorAnimation(touchedCube.lightColor);
+                kuvi.selectSFX.Play();
                 state = MoveState.MAKE_MOVE;
             }
 
@@ -73,6 +74,7 @@ public class MoveCube : State {
                 moveCube(Move.BOTTOM, touchedCube.row, touchedCube.column); 
                 kuvi.setState(kuvi.levelCompleteState);
                 touchedCube.colorAnimation(touchedCube.actualColor);
+                kuvi.moveSFX.Play();
             }
 
             if(deltaX > SWIPE_DISTANCE && deltaY > SWIPE_DISTANCE && !touchedCube.isTweening) {
@@ -80,6 +82,7 @@ public class MoveCube : State {
                 moveCube(Move.TOP, touchedCube.row, touchedCube.column); 
                 kuvi.setState(kuvi.levelCompleteState);
                 touchedCube.colorAnimation(touchedCube.actualColor);
+                kuvi.moveSFX.Play();
             }
 
             if(deltaX < -SWIPE_DISTANCE && deltaY > SWIPE_DISTANCE && !touchedCube.isTweening) {
@@ -87,6 +90,7 @@ public class MoveCube : State {
                 moveCube(Move.LEFT, touchedCube.row, touchedCube.column); 
                 kuvi.setState(kuvi.levelCompleteState);
                 touchedCube.colorAnimation(touchedCube.actualColor);
+                kuvi.moveSFX.Play();
             }
 
             if(deltaX > SWIPE_DISTANCE && deltaY < -SWIPE_DISTANCE && !touchedCube.isTweening) {
@@ -94,6 +98,7 @@ public class MoveCube : State {
                 moveCube(Move.RIGHT, touchedCube.row, touchedCube.column); 
                 kuvi.setState(kuvi.levelCompleteState);
                 touchedCube.colorAnimation(touchedCube.actualColor);
+                kuvi.moveSFX.Play();
             }
 
             // Si no realizaron un movimiento y dejan de enviar eventos regresamos a WAITING_TOUCH

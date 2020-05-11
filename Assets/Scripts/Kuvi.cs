@@ -27,6 +27,10 @@ public class Kuvi : MonoBehaviour {
 
     public Background background; 
 
+    public AudioSource completeSFX; 
+    public AudioSource selectSFX;
+    public AudioSource moveSFX;
+
     void Awake() {
 
         DOTween.Init(true);
