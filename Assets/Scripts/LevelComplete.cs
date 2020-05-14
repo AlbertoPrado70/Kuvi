@@ -49,7 +49,7 @@ public class LevelComplete : State {
 
         if(completeState == CompleteState.SET_COMPLETE_ANIMATION && kuvi.totalTweens() == 0) {
             
-            // Audio
+            // Iniciamos el SFX de completado
             kuvi.completeSFX.Play();
 
             foreach(Cube cube in kuvi.cubes) {
@@ -65,16 +65,24 @@ public class LevelComplete : State {
             levelCompleted = false; 
             completeState = CompleteState.SET_STATE;
 
+            // Si usaron autosolve incrementamos el contador de anuncios
+            if(kuvi.moveCubeState.autosolve) {
+                kuvi.moveCubeState.autosolve = false; 
+                kuvi.preferences.adCount += 4;
+            }
+
             // Mostramos un anuncio 
-            // Advertisement.Show();
+            kuvi.preferences.adCount++; 
+            if(kuvi.preferences.adCount >= 10) {
+                kuvi.preferences.adCount = 0;
+                kuvi.preferences.saveAdCount();
+                Advertisement.Show();
+            }
 
             // Cambiamos el fondo 
             kuvi.background.setBackgroundColor(Random.Range(0, kuvi.background.backgroundColor.Length));
 
-            if(kuvi.moveCubeState.autosolve) {
-                kuvi.moveCubeState.autosolve = false; 
-            }
-
+            // Avanzamos de nivel
             if(kuvi.preferences.actualLevel < Level.json.Length - 1) {
                 kuvi.preferences.actualLevel++;
             }
@@ -82,9 +90,9 @@ public class LevelComplete : State {
             kuvi.preferences.saveCompletedLevel(); 
             kuvi.setState(kuvi.loadLevelState); 
 
-            // Move Debug Solution
-            Debug.Log(kuvi.moveCubeState.levelSolution); 
-            kuvi.moveCubeState.levelSolution = "";
+            // Imprime la solución del nivel
+            // Debug.Log(kuvi.moveCubeState.levelSolution); 
+            // kuvi.moveCubeState.levelSolution = "";
 
         }
 

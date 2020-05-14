@@ -2,9 +2,6 @@
 
 public class MoveCube : State {
 
-    // Cubo que desaparece cuando lo tocas
-    // Cubo que se mueve al lado contrario
-
     public enum MoveState{WAITING_TOUCH, MAKE_MOVE};
     public enum Move{NONE, TOP, RIGHT, BOTTOM, LEFT};
 
@@ -28,7 +25,7 @@ public class MoveCube : State {
         lastPosition = new Vector3();
         
         state = MoveState.WAITING_TOUCH;
-        levelSolution = ""; 
+        levelSolution = "";
 
     }
 
@@ -61,7 +58,7 @@ public class MoveCube : State {
         }
 
         // Calculamos la distancia entre el punto inicial y la posición obtenida 
-        if(state == MoveState.MAKE_MOVE && !kuvi.levelCompleteState.levelCompleted) {
+        if(state == MoveState.MAKE_MOVE && !kuvi.levelCompleteState.levelCompleted && !autosolve) {
 
             lastPosition = (Input.touchCount > 0) ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
 
