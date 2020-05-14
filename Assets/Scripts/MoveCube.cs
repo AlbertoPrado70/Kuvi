@@ -32,7 +32,7 @@ public class MoveCube : State {
     public override void Tick() {
 
         // Registramos la posicion del mouse o evento tactil y determinamos si tocaron un cubo
-        if(state == MoveState.WAITING_TOUCH) {
+        if(state == MoveState.WAITING_TOUCH && !autosolve) {
 
             bool touched = false; 
 
