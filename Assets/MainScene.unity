@@ -1206,7 +1206,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 0.495283, b: 0.52159375, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -1265,7 +1265,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundColor:
-  - {r: 0.41176465, g: 0.83748543, b: 0.98039216, a: 1}
+  - {r: 0.21960784, g: 0.84313726, b: 0.74509805, a: 1}
+  - {r: 0.7157233, g: 0.4669811, b: 1, a: 1}
+  - {r: 0.5254902, g: 0.8901961, b: 0.5254902, a: 1}
+  - {r: 0.23137255, g: 0.8039216, b: 1, a: 1}
 --- !u!1 &560651671
 GameObject:
   m_ObjectHideFlags: 0
@@ -3124,6 +3127,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172554962}
   m_CullTransparentMesh: 0
+--- !u!1 &1402214563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1402214565}
+  - component: {fileID: 1402214564}
+  m_Layer: 0
+  m_Name: Purchase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1402214564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402214563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41faf614b4db74f4ca7ca5d54f05da33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kuvi: {fileID: 660491084}
+--- !u!4 &1402214565
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402214563}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 221.2042, y: 471.83047, z: -63.607727}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1423623448
 GameObject:
   m_ObjectHideFlags: 0
@@ -3201,7 +3248,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1423623451}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1402214564}
+        m_MethodName: buyNoAds
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1423623451
 MonoBehaviour:
   m_ObjectHideFlags: 0

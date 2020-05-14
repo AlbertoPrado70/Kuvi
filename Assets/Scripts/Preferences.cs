@@ -45,4 +45,9 @@ public class Preferences {
         PlayerPrefs.Save();
     }
 
+    public void saveUserPremium() {
+        isPremium = true; 
+        PlayerPrefs.SetString("is_premium", "true");
+    }
+
 }

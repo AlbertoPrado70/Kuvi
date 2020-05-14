@@ -73,10 +73,13 @@ public class LevelComplete : State {
 
             // Mostramos un anuncio 
             kuvi.preferences.adCount++; 
-            if(kuvi.preferences.adCount >= 10) {
+            if(kuvi.preferences.adCount >= 10 && !kuvi.preferences.isPremium) {
                 kuvi.preferences.adCount = 0;
                 kuvi.preferences.saveAdCount();
                 Advertisement.Show();
+            }
+            else {
+                Debug.Log("Ignorando Anuncio. El usuario es premium"); 
             }
 
             // Cambiamos el fondo 

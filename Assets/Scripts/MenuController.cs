@@ -114,8 +114,6 @@ public class MenuController : MonoBehaviour {
         
     }
 
-    
-
     // Establece las animaciones del menu
     public void setMenuAnimation() {
 
