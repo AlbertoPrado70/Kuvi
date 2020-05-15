@@ -78,9 +78,8 @@ public class LevelComplete : State {
                 kuvi.preferences.saveAdCount();
                 Advertisement.Show();
             }
-            else {
-                Debug.Log("Ignorando Anuncio. El usuario es premium"); 
-            }
+
+            Debug.Log("AdCount: " + kuvi.preferences.adCount);
 
             // Cambiamos el fondo 
             kuvi.background.setBackgroundColor(Random.Range(0, kuvi.background.backgroundColor.Length));

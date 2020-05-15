@@ -61,6 +61,8 @@ public class MenuController : MonoBehaviour {
         if(kuvi.preferences.actualLevel > 0) { 
             kuvi.preferences.actualLevel--;
             kuvi.preferences.saveCompletedLevel();
+            kuvi.preferences.adCount++;
+            kuvi.preferences.saveAdCount();
             kuvi.setState(kuvi.loadLevelState);
         }
     }
@@ -70,6 +72,8 @@ public class MenuController : MonoBehaviour {
         if(kuvi.preferences.actualLevel < Level.json.Length - 1) {
             kuvi.preferences.actualLevel++;
             kuvi.preferences.saveCompletedLevel();
+            kuvi.preferences.adCount++;
+            kuvi.preferences.saveAdCount();
             kuvi.setState(kuvi.loadLevelState);
         }
     }
