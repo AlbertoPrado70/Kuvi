@@ -73,7 +73,7 @@ public class LevelComplete : State {
 
             // Mostramos un anuncio 
             kuvi.preferences.adCount++; 
-            if(kuvi.preferences.adCount >= 10 && !kuvi.preferences.isPremium) {
+            if(kuvi.preferences.adCount >= 5 && !kuvi.preferences.isPremium) {
                 kuvi.preferences.adCount = 0;
                 kuvi.preferences.saveAdCount();
                 Advertisement.Show();

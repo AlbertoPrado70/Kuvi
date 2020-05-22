@@ -64,6 +64,8 @@ public class MenuController : MonoBehaviour {
             kuvi.preferences.adCount++;
             kuvi.preferences.saveAdCount();
             kuvi.setState(kuvi.loadLevelState);
+            kuvi.moveCubeState.autosolve = false;
+            isAutoSolving = false;
         }
     }
 
@@ -75,6 +77,8 @@ public class MenuController : MonoBehaviour {
             kuvi.preferences.adCount++;
             kuvi.preferences.saveAdCount();
             kuvi.setState(kuvi.loadLevelState);
+            kuvi.moveCubeState.autosolve = false;
+            isAutoSolving = false;
         }
     }
 
@@ -182,6 +186,7 @@ public class MenuController : MonoBehaviour {
     // Reinicia el nivel 
     public void resetLevel() {
         kuvi.setState(kuvi.loadLevelState);
+        kuvi.moveCubeState.autosolve = false;
         isAutoSolving = false;
         setMenuAnimation();
     }

@@ -3,7 +3,7 @@
 public class LoadLevel : State {
  
     public enum LoadLevelState {FADE_FLOOR, ANIMATE_FLOOR, SET_STATE};
-    public const float LEVEL_PADDING = 0.05f;
+    public const float LEVEL_PADDING = 0.5f;
     
     private Kuvi kuvi;
     
