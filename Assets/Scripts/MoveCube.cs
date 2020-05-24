@@ -16,6 +16,7 @@ public class MoveCube : State {
     public MoveState state;
     public string levelSolution; 
     public bool autosolve; 
+    public int totalMoves; 
 
     public MoveCube(Kuvi kuvi) {
 
@@ -69,6 +70,7 @@ public class MoveCube : State {
             if(deltaX < -SWIPE_DISTANCE && deltaY < -SWIPE_DISTANCE && !touchedCube.isTweening) {
                 state = MoveState.WAITING_TOUCH;
                 moveCube(Move.BOTTOM, touchedCube.row, touchedCube.column); 
+                totalMoves++;
                 kuvi.setState(kuvi.levelCompleteState);
                 touchedCube.colorAnimation(touchedCube.actualColor);
                 kuvi.moveSFX.Play();
@@ -77,6 +79,7 @@ public class MoveCube : State {
             if(deltaX > SWIPE_DISTANCE && deltaY > SWIPE_DISTANCE && !touchedCube.isTweening) {
                 state = MoveState.WAITING_TOUCH;
                 moveCube(Move.TOP, touchedCube.row, touchedCube.column); 
+                totalMoves++;
                 kuvi.setState(kuvi.levelCompleteState);
                 touchedCube.colorAnimation(touchedCube.actualColor);
                 kuvi.moveSFX.Play();
@@ -85,6 +88,7 @@ public class MoveCube : State {
             if(deltaX < -SWIPE_DISTANCE && deltaY > SWIPE_DISTANCE && !touchedCube.isTweening) {
                 state = MoveState.WAITING_TOUCH;
                 moveCube(Move.LEFT, touchedCube.row, touchedCube.column); 
+                totalMoves++;
                 kuvi.setState(kuvi.levelCompleteState);
                 touchedCube.colorAnimation(touchedCube.actualColor);
                 kuvi.moveSFX.Play();
@@ -93,9 +97,10 @@ public class MoveCube : State {
             if(deltaX > SWIPE_DISTANCE && deltaY < -SWIPE_DISTANCE && !touchedCube.isTweening) {
                 state = MoveState.WAITING_TOUCH;
                 moveCube(Move.RIGHT, touchedCube.row, touchedCube.column); 
+                totalMoves++;
                 kuvi.setState(kuvi.levelCompleteState);
                 touchedCube.colorAnimation(touchedCube.actualColor);
-                kuvi.moveSFX.Play();
+                kuvi.moveSFX.Play(); 
             }
 
             // Si no realizaron un movimiento y dejan de enviar eventos regresamos a WAITING_TOUCH
@@ -110,6 +115,7 @@ public class MoveCube : State {
         if(autosolve && kuvi.totalTweens() == 0) {
             Movement m = kuvi.solver.makeMove();
             moveCube(m.move, m.row, m.column);
+            totalMoves++;
             kuvi.setState(kuvi.levelCompleteState);
         }
 

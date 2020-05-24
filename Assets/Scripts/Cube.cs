@@ -106,9 +106,9 @@ public class Cube : MonoBehaviour {
         effectRenderer.material.DOFade(1, 0);
         effectTransform.DOScale(0, 0);
 
-        cubeRenderer.material.DOFade(0, 0.7f);
-        effectRenderer.material.DOFade(0, 0.7f);
-        effectTransform.DOScale(5, 0.7f).OnComplete(() => isTweening = false);
+        cubeRenderer.material.DOFade(0, 0.9f);
+        effectRenderer.material.DOFade(0, 0.9f);
+        effectTransform.DOScale(5, 0.9f).OnComplete(() => isTweening = false);
 
     }
 

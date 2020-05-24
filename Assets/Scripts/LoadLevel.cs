@@ -29,7 +29,10 @@ public class LoadLevel : State {
         setLevel(kuvi.preferences.actualLevel);
         setCameraPosition();
 
-        kuvi.menuController.setLevelIndicator((kuvi.preferences.actualLevel + 1).ToString());
+        // Reiniciamos el contador de movimientos
+        kuvi.moveCubeState.totalMoves = 0;
+
+        kuvi.menuController.setLevelIndicator((kuvi.preferences.actualLevel + 1) + " - " + 0);
         kuvi.menuController.stopMessageAnimations();
         kuvi.menuController.setMenuActive(false, kuvi.preferences.actualLevel);
 

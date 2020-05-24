@@ -31,6 +31,10 @@ public class LevelComplete : State {
 
         levelCompleted = allButtonsPressed; 
 
+        // Ponemos el numero de movimientos
+        Debug.Log("incrementando movimientos: " + kuvi.moveCubeState.totalMoves);
+        kuvi.menuController.setLevelIndicator((kuvi.preferences.actualLevel + 1) + " - " + kuvi.moveCubeState.totalMoves);
+
     }
 
     public override void Tick() {
