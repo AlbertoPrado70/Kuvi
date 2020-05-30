@@ -88,6 +88,13 @@ public class LevelComplete : State {
             // Cambiamos el fondo 
             kuvi.background.setBackgroundColor(Random.Range(0, kuvi.background.backgroundColor.Length));
 
+            // Si estamos en el ultimo nivel abrimos el panel de agradecimientos
+            if(kuvi.preferences.actualLevel >= Level.json.Length - 1) {
+                Debug.Log(kuvi.preferences.actualLevel);
+                kuvi.endPanelController.showPanel();
+                kuvi.preferences.actualLevel = -1;
+            }
+
             // Avanzamos de nivel
             if(kuvi.preferences.actualLevel < Level.json.Length - 1) {
                 kuvi.preferences.actualLevel++;

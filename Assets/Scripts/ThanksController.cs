@@ -27,11 +27,11 @@ public class ThanksController : MonoBehaviour {
     }
     
     public void rateUs() {
-        Application.OpenURL("https://www.google.com");
+        Application.OpenURL("market://details?id=" + Application.identifier);
     }
 
     public void openRocketeor() {
-        Application.OpenURL("https://www.google.com");
+        Application.OpenURL("https://www.rocketeor.com");
     }
 
 }

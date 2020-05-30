@@ -12,6 +12,7 @@ public class Kuvi : MonoBehaviour {
     public GameObject floorPrefab;
     public GameObject cubePrefab; 
     public MenuController menuController;
+    public EndPanelController endPanelController; 
 
     public Floor[,] floor;
     public List<Cube> cubes;
